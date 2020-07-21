@@ -68,7 +68,7 @@ layout = html.Div([
                                                className="text-center"),
                                        
                                        dbc.Button(
-            html.Span([html.I(className="fab fa-github ml-0"), " GitHub"]), href="https://github.com/mparoca/ds4A-demo-app", target="_blank",
+            html.Span([html.I(className="fab fa-github ml-0"), " GitHub"]), href="https://github.com/DS4A-TEAM25/ds4a-saber-pro-app", target="_blank",
                                                   color="primary",
                                                   className="mt-3"),
  
