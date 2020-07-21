@@ -7,7 +7,8 @@ import dash_bootstrap_components as dbc
 from app import server
 from app import app
 # import all pages in the app
-from apps import home, explore_variables, by_university, by_location, model1, model2, model3
+#from apps import home, explore_variables, by_university, by_location, model1, model2, model3
+from apps import home, model1, model2, model3
 
 # building the navigation bar
 # https://github.com/facultyai/dash-bootstrap-components/blob/master/examples/advanced-component-usage/Navbars.py
