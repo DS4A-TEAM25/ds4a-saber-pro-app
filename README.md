@@ -1,8 +1,18 @@
 # Dash Identifying Factors that Contribute to SABER PRO score
 This is a demo of the Dash interactive Python app created for 2020 Colombia Data Science for All DS4A.
 
-Dash abstracts away all of the technologies and protocols required to build an interactive web-based application and is a simple and effective way to bind a user interface around your Python code. To learn more check out our [documentation](https://plot.ly/dash).
 
+
+
+
+## Deployment
+
+### Plotly Dash
+
+The app was built on [Dash](https://plot.ly/dash), which is a simple and effective way to bind a user interface around Python code. It functions as a multipage application where each *.py* file within the App folder of this repo is a page on the app. 
+
+### GitHub Integration (Heroku GitHub Deploys)
+The app is currently deployed using Heorku through GitHub integration on the Heroku website. GitHub integration is configured for a Heroku app and manually deployed, which creates an immediate deployment of the master branch from the current [GitHub repo](https://github.com/DS4A-TEAM25/ds4a-saber-pro-app). 
 
 ## Running the app locally
 
@@ -44,3 +54,5 @@ $ git add .
 $ git commit -am "make it better"
 $ git push heroku master
 ```
+
+
