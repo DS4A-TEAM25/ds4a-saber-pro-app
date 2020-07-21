@@ -18,11 +18,11 @@ dropdown = dbc.DropdownMenu(
         dbc.DropdownMenuItem(divider=True),
         dbc.DropdownMenuItem("Describe", header=True),
         dbc.DropdownMenuItem(
-            html.Span([html.I(className="fas fa-chart-bar ml-0"), " Explore Variables"]), href="/explore_variables"),
+            html.Span([html.I(className="fas fa-chart-bar ml-0"), " Explore Variables"]), href="#"),
         dbc.DropdownMenuItem(
-            html.Span([html.I(className="fas fa-map-marked-alt ml-0"), " Explore by Location"]), href="/by_location"),
+            html.Span([html.I(className="fas fa-map-marked-alt ml-0"), " Explore by Location"]), href="#),
         dbc.DropdownMenuItem(
-            html.Span([html.I(className="fas fa-university ml-0"), " Explore by University"]), href="/by_university"),
+            html.Span([html.I(className="fas fa-university ml-0"), " Explore by University"]), href="#"),
         dbc.DropdownMenuItem(divider=True),
         dbc.DropdownMenuItem("Predict", header=True),
         dbc.DropdownMenuItem("Model1", href="/model1"),
