@@ -29,6 +29,7 @@ posenglish_form = dbc.Form(
                 dbc.Label("posenglish", className="mr-2"),
                 dbc.Input(type="text", placeholder="posenglish"),
             ],
+            justify="around",
             className="mr-3",
         )
 
@@ -45,6 +46,7 @@ program_form = dbc.Form(
             dbc.Label("Program", className="mr-2"),
             dbc.Input(type="text", placeholder="Program"),
         ],
+        justify="around",
         className="mr-3",
     )
     ],
@@ -59,6 +61,7 @@ dbc.FormGroup(
         dbc.Label("ScoreMathHighSchool", className="mr-2"),
         dbc.Input(type="text", placeholder="ScoreMathHighSchool"),
     ],
+    justify="around",
     className="mr-3",
 )
     ],
