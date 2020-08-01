@@ -7,7 +7,7 @@ import dash_bootstrap_components as dbc
 from app import server
 from app import app
 # import all pages in the app
-from apps import home, by_location, model1, model2, about_us
+from apps import home, model1, model2, about_us
 
 # building the navigation bar
 dropdown = dbc.DropdownMenu(
@@ -16,8 +16,8 @@ dropdown = dbc.DropdownMenu(
             html.Span([html.I(className="fas fa-home ml-0"), " Home"]), href="/home"),
         dbc.DropdownMenuItem(divider=True),
         dbc.DropdownMenuItem("Describe", header=True),
-        dbc.DropdownMenuItem(
-            html.Span([html.I(className="fas fa-map-marked-alt ml-0"), " Explore by Location"]), href="/by_location"),
+        #dbc.DropdownMenuItem(
+         #   html.Span([html.I(className="fas fa-map-marked-alt ml-0"), " Explore by Location"]), href="/by_location"),
         dbc.DropdownMenuItem(
             html.Span([html.I(className="fas fa-university ml-0"), " Explore by University"]), href="#"),
         dbc.DropdownMenuItem(divider=True),
@@ -97,10 +97,10 @@ app.layout = html.Div([
 @app.callback(Output('page-content', 'children'),
               [Input('url', 'pathname')])
 def display_page(pathname):
-    if pathname == '/by_location':
-        return by_location.layout
-    elif pathname == '/model1':
+    if pathname == '/model1':
         return model1.layout
+    #elif pathname == '/by_location':
+     #   return by_location.layout
     #elif pathname == '/model2':
      #   return model2.layout
     elif pathname == '/about_us':
