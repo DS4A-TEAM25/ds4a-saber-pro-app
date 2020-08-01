@@ -1,5 +1,12 @@
-# SABER PRO Exploratory Dashboard
+# SABER PRO Exploratory Dashboard Repo
 This is the code to deploy an interactive Python Dash app created for 2020 Colombia Data Science for All DS4A. You can see the live app [here](https://ds4a-saber-pro.herokuapp.com/). 
+
+
+## Introduction
+
+Each year, Colombian undergraduates take the Test for the Quality of Higher Education - Saber PRO, as a prerequisite for graduation. The test assesses math, reading, citizenship, writing and English skills of students at every higher education institution. The scores of this test become publicly available each year, with the idea that institutions and the Government identify vulnerable populations and adjust their education policies. 
+
+This interactive dashboard allows universities and other institutions to easily explore which factors matter the most to student performance on the SABER PRO. Our application lets institutions visualize the results of predictive models to explore how changing some of these factors could affect scores in future exams.
 
 ## App Description
 
