@@ -10,7 +10,7 @@ This interactive dashboard allows universities and other institutions to easily 
 
 ## App Description
 
-This multi-page app allows the user to explore all the data from the last 3 years of SABER PRO scores of over 990 thousand students. The app allows the users to look at the data both through descriptive visualizations, as well as through visually exploring the results of predictive models. 
+This multi-page app allows the user to explore all the data from 2016 to 2019 of SABER PRO scores of over 990 thousand students. The app allows the users to look at the data both through descriptive visualizations, as well as through visually exploring the results of predictive models. 
 
 *HOME PAGE*  
 
