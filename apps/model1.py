@@ -319,6 +319,7 @@ row = html.Div(
 
 layout = html.Div([
     html.H1(X1),
+    row
     
 ])
 
