@@ -316,7 +316,7 @@ def plot_score_choro_state(scores, period_slider):
         
         
         
-        mean_score = pd.read_sql("SELECT estu_inst_departamento,AVG(CAST ( "+scores+" AS DOUBLE PRECISION)) mean_score FROM pro WHERE periodo BETWEEN '"+str(period_slider[0])+ "' AND '" +str(period_slider[1])+"'  GROUP BY estu_inst_departamento", engine.connect())
+        mean_score = pd.read_sql("SELECT estu_inst_departamento,AVG(CAST ( "+scores+" AS DOUBLE PRECISION)) mean_score FROM avg_score WHERE periodo BETWEEN '"+str(period_slider[0])+ "' AND '" +str(period_slider[1])+"'  GROUP BY estu_inst_departamento", engine.connect())
         mean_score = mean_score.set_index("estu_inst_departamento")
         mean_score = mean_score.rename(index={'BOGOTA': 'SANTAFE DE BOGOTA D.C'}) #Changing names that are different in the json file and our data
         mean_score = mean_score.rename(index={'VALLE': 'VALLE DEL CAUCA'})
