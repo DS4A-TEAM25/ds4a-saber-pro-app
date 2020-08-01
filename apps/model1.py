@@ -35,14 +35,73 @@ form = dbc.Form(
                 dbc.Input(type="text", placeholder="State Where you Live"),
             ],
             className="mr-3",
+        )
+    ],
+    inline=True,
+)
+form2 = dbc.Form(
+    [
+        dbc.FormGroup(
+            [
+                dbc.Label("ScoreMathHighSchool", className="mr-2"),
+                dbc.Input(type="text", placeholder="ScoreMathHighSchool"),
+            ],
+            className="mr-3",
         ),
-        dbc.Button("Wish me luck!", color="primary"),
+        dbc.FormGroup(
+            [
+                dbc.Label("University", className="mr-2"),
+                dbc.Input(type="text", placeholder="University"),
+            ],
+            className="mr-3",
+        )
+    ],
+    inline=True,
+)
+form3 = dbc.Form(
+    [
+        dbc.FormGroup(
+            [
+                dbc.Label("ScoreEnglishHighSchool", className="mr-2"),
+                dbc.Input(type="text", placeholder="ScoreEnglishHighSchool"),
+            ],
+            className="mr-3",
+        ),
+        dbc.FormGroup(
+            [
+                dbc.Label("State Where you Live", className="mr-2"),
+                dbc.Input(type="text", placeholder="State Where you Live"),
+            ],
+            className="mr-3",
+        )
+    ],
+    inline=True,
+)
+form4 = dbc.Form(
+    [
+        dbc.FormGroup(
+            [
+                dbc.Label("Age", className="mr-2"),
+                dbc.Input(type="text", placeholder="Age"),
+            ],
+            className="mr-3",
+        ),
+        dbc.FormGroup(
+            [
+                dbc.Label("State Where you Study", className="mr-2"),
+                dbc.Input(type="text", placeholder="State Where you Study"),
+            ],
+            className="mr-3",
+        )
     ],
     inline=True,
 )
 
 layout = html.Div([
     html.H1(X1),
-    form
+    form,
+    form2,
+    form3,
+    form4
 ])
 
