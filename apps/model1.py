@@ -21,6 +21,22 @@ X1=int(QR1[0])
 X1
 
 
+age_form = dbc.Form(
+    [
+        dbc.FormGroup(
+            [
+                dbc.Label("age", className="mr-2"),
+                dbc.Input(type="text", placeholder="age"),
+            ],
+            className="mr-3",
+        
+        
+    ],
+    inline=True,
+)
+    ]
+)
+
 
 
 layout = html.Div([
