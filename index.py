@@ -25,7 +25,7 @@ dropdown = dbc.DropdownMenu(
         dbc.DropdownMenuItem(
             html.Span([html.I(className="fas fa-chart-line ml-0"), " Predict Scores"]), href="#"),
         dbc.DropdownMenuItem(
-            html.Span([html.I(className="fas fa-chart-bar ml-0"), " Which factors matter?"]), href="#"),
+            html.Span([html.I(className="fas fa-chart-bar ml-0"), " Which factors matter?"]), href="/model1"),
         dbc.DropdownMenuItem(divider=True),
         dbc.DropdownMenuItem(
             html.Span([html.I(className="fas fa-info-circle ml-0"), " About Us"]), href="/about_us"),
@@ -99,8 +99,8 @@ app.layout = html.Div([
 def display_page(pathname):
     if pathname == '/by_location':
         return by_location.layout
-    #elif pathname == '/model1':
-     #   return model1.layout
+    elif pathname == '/model1':
+        return model1.layout
     #elif pathname == '/model2':
      #   return model2.layout
     elif pathname == '/about_us':
