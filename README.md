@@ -1,4 +1,4 @@
-<a href="url"><img src="/assets/logo.png" align="left" height="100" width="100" ></a>
+<a href="url"><img src="/assets/logo.png" align="left" height="60" width="60" ></a>
 
 # SABER PRO Exploratory Dashboard Repo 
 
