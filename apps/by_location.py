@@ -23,7 +23,6 @@ from app import app
 with urlopen('https://gist.githubusercontent.com/john-guerra/43c7656821069d00dcbc/raw/be6a6e239cd5b5b803c6e7c2ec405b793a9064dd/Colombia.geo.json') as response:
     colombia = json.load(response)
     
-
 #Mapbox Token
 token = "pk.eyJ1IjoibXBhcm9jYSIsImEiOiJja2NpZjUwczEwaGVvMnF1OWM2OGNxOHZkIn0.EVHh5zRvHQBD-PcIU1flEw"    
     
@@ -301,7 +300,7 @@ def plot_score_choro_state(scores, period_slider):
                 "visible": False
             },
             'title': {
-                'text' : '<b>Scores Across Deparments:</b><br>' + 'Select a Department' + str(period_slider[0]) + str(period_slider[1])
+                'text' : '<b>Scores Across Deparments:</b><br>' + 'Select a Score'
             },
             'titlefont': {
                 'size':'14'
