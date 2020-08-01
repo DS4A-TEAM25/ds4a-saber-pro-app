@@ -38,7 +38,9 @@ python index.py
 ## Deploying App from Heroku using Heroku CLI
 
 **1.** Create heroku account
+
 **2.** Download and install the Heroku CLI
+
 **3.** Log into Heroku account in CMD
 
 ```
