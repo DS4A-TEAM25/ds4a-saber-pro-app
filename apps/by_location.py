@@ -9,26 +9,40 @@ from dash.dependencies import Input, Output
 import dash_bootstrap_components as dbc
 import dash_table as dt
 import numpy as np
-
+import json
+from urllib.request import urlopen
+from plotly.offline import plot
+import plotly.io as pio
+pio.renderers.default = 'browser' #prevent graphs from opening in other tabs
+from sqlalchemy import create_engine
 
 
 from app import app
 
-#Read in data
-df = pd.read_csv('pro.csv', low_memory=False)
+#Load map
+with urlopen('https://gist.githubusercontent.com/john-guerra/43c7656821069d00dcbc/raw/be6a6e239cd5b5b803c6e7c2ec405b793a9064dd/Colombia.geo.json') as response:
+    colombia = json.load(response)
+    
+
+#Mapbox Token
+token = "pk.eyJ1IjoibXBhcm9jYSIsImEiOiJja2NpZjUwczEwaGVvMnF1OWM2OGNxOHZkIn0.EVHh5zRvHQBD-PcIU1flEw"    
+    
+#Read in data from rds
+engine = create_engine('postgresql://admin:ds4a@data-team25.c6tqz0tiazsw.us-east-2.rds.amazonaws.com/project_ds4a')
+
+#df = pd.read_sql("SELECT * FROM pro", engine.connect())
+
+#df = pd.read_csv('pro.csv', low_memory=False)    
 
 #Define variables for reactive components
-period = df['periodo'].unique()
 
-departamento_options = df['estu_inst_departamento'].dropna().unique()
+#Department options
+#departamento_options = df['estu_inst_departamento'].dropna().unique() #QUERY
+
+departamento_options = pd.read_sql("SELECT DISTINCT estu_inst_departamento FROM PRO", engine.connect())
+departamento_options = departamento_options['estu_inst_departamento']
 
 wrapper = textwrap.TextWrapper(width=11) #Text wrapper so that long labels are wrapped in legend
-
-var_options = ("estu_genero", "estu_areareside", "estu_pagomatriculabeca", "estu_pagomatriculacredito", "estu_pagomatriculapadres",
-"estu_pagomatriculapropio", "estu_comocapacitoexamensb11", "fami_hogaractual", "fami_cabezafamilia", "fami_numpersonasacargo",
-"fami_educacionpadre", "fami_educacionmadre", "fami_ocupacionpadre", "fami_ocupacionmadre", "fami_estratovivienda", "fami_personashogar",
-"fami_cuartoshogar", "fami_tieneinternet", "fami_tienecomputador", "fami_tienelavadora", "fami_tienehornomicroogas", "fami_tienetelevisor",
-"fami_tieneautomovil", "fami_tienemotocicleta", "fami_numlibros", "estu_dedicacionlecturadiaria", "estu_dedicacioninternet", "estu_prgm_academico")
 
 ####STYLES: (this should be in a css file but will leave here so that changes can be made more easily, then move)
 #Style: move this to somewhere else so that you can use it on all pages
@@ -121,7 +135,7 @@ html.Div(
                    2018: '2018',
                    2019: '2019'
                   },
-            id='period-slider',
+            id='period_slider',
             step=1,
             min=2016,
             max=2019,
@@ -163,19 +177,6 @@ html.Div(
         style={'width': '100%'}
         ), 
         
-         #Var 1
-        html.P(
-            "Variables", className="lead"
-        ),
-        dcc.Dropdown(
-        id='variables',
-        options=[{'label': i, 'value': i} for i in var_options],
-        placeholder="Select a Variable", 
-        multi=False,
-        className= "mb-4",      
-        style={'width': '100%'}
-        ), 
-
         
     ],
     style=SIDEBAR_STYLE,
@@ -281,3 +282,65 @@ html.Div(
 
 
 ##################### Callbacks ######################################
+
+
+
+###MAP
+
+@app.callback(Output("map", "figure"), [Input("scores", "value"), 
+                                       Input("period_slider", "value")])
+
+def plot_score_choro_state(scores, period_slider):
+    
+    if scores is None:
+        return {"layout": {
+            "xaxis": {
+                "visible": False
+            },
+            "yaxis": {
+                "visible": False
+            },
+            'title': {
+                'text' : '<b>Scores Across Deparments:</b><br>' + 'Select a Department' + str(period_slider[0]) + str(period_slider[1])
+            },
+            'titlefont': {
+                'size':'14'
+            },
+            'plot_bgcolor': "#F9F9F9",
+            'paper_bgcolor':"#F9F9F9"
+        }
+               }
+    
+    else:
+        #mean_score = df.groupby('estu_inst_departamento')[scores].agg(mean_score=('mean')) #####QUERY
+        #mean_score.index.names = ['Department']
+        
+        
+        
+        mean_score = pd.read_sql("SELECT estu_inst_departamento,AVG(CAST ( "+scores+" AS DOUBLE PRECISION)) mean_score FROM pro WHERE periodo BETWEEN '"+str(period_slider[0])+ "' AND '" +str(period_slider[1])+"'  GROUP BY estu_inst_departamento", engine.connect())
+        mean_score = mean_score.set_index("estu_inst_departamento")
+        mean_score = mean_score.rename(index={'BOGOTA': 'SANTAFE DE BOGOTA D.C'}) #Changing names that are different in the json file and our data
+        mean_score = mean_score.rename(index={'VALLE': 'VALLE DEL CAUCA'})
+        mean_score = mean_score.rename(index={'NORTE SANTANDER': 'NORTE DE SANTANDER'})
+        
+        fig_map = go.Figure(data=go.Choroplethmapbox(
+            locations=mean_score.index, # Spatial coordinates
+            z = mean_score.mean_score, # Data to be color-coded
+            geojson=colombia, 
+            featureidkey = "properties.NOMBRE_DPT", # set of locations match entries in `locations`
+            colorscale = "RdYlBu",
+            marker_opacity=0.6,
+            zmin=min(mean_score.mean_score),
+            zmax=max(mean_score.mean_score),
+            colorbar_title = 'Mean Score',
+            marker_line_color='#395CA3', # line markers between states
+        ))
+        
+        fig_map.update_layout(
+            title_text = 'Mean Score across Departments',
+            mapbox_style="mapbox://styles/mparoca/ckd9lvz570c4i1ippkzk9q8gq", mapbox_accesstoken=token,
+            mapbox_zoom=4,
+            mapbox_center = {"lat": 4.570868, "lon": -74.2973328}, 
+            margin={"r":0,"t":0,"l":0,"b":0}
+        )
+        return fig_map
