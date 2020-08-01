@@ -7,11 +7,9 @@ import dash_bootstrap_components as dbc
 from app import server
 from app import app
 # import all pages in the app
-#from apps import home, explore_variables, by_university, by_location, model1, model2, model3
-from apps import home, model1, model2, model3
+from apps import home, by_location, model1, model2, about_us
 
 # building the navigation bar
-# https://github.com/facultyai/dash-bootstrap-components/blob/master/examples/advanced-component-usage/Navbars.py
 dropdown = dbc.DropdownMenu(
     children=[
         dbc.DropdownMenuItem(
@@ -19,16 +17,18 @@ dropdown = dbc.DropdownMenu(
         dbc.DropdownMenuItem(divider=True),
         dbc.DropdownMenuItem("Describe", header=True),
         dbc.DropdownMenuItem(
-            html.Span([html.I(className="fas fa-chart-bar ml-0"), " Explore Variables"]), href="#"),
-        dbc.DropdownMenuItem(
-            html.Span([html.I(className="fas fa-map-marked-alt ml-0"), " Explore by Location"]), href="#"),
+            html.Span([html.I(className="fas fa-map-marked-alt ml-0"), " Explore by Location"]), href="/by_location"),
         dbc.DropdownMenuItem(
             html.Span([html.I(className="fas fa-university ml-0"), " Explore by University"]), href="#"),
         dbc.DropdownMenuItem(divider=True),
-        dbc.DropdownMenuItem("Predict", header=True),
-        dbc.DropdownMenuItem("Model1", href="/model1"),
-        dbc.DropdownMenuItem("Model2", href="/model2"),
-        dbc.DropdownMenuItem("Model3", href="/model3"),
+        dbc.DropdownMenuItem("Estimate", header=True),
+        dbc.DropdownMenuItem(
+            html.Span([html.I(className="fas fa-chart-line ml-0"), " Predict Scores"]), href="#"),
+        dbc.DropdownMenuItem(
+            html.Span([html.I(className="fas fa-chart-bar ml-0"), " Which factors matter?"]), href="#"),
+        dbc.DropdownMenuItem(divider=True),
+        dbc.DropdownMenuItem(
+            html.Span([html.I(className="fas fa-info-circle ml-0"), " About Us"]), href="/about_us"),
     
     ],
     nav = True,
@@ -39,6 +39,8 @@ dropdown = dbc.DropdownMenu(
 )
 
 
+
+#Create navigation bar
 navbar = dbc.Navbar(
     dbc.Container(
         [
@@ -65,7 +67,7 @@ navbar = dbc.Navbar(
             ),
         ]
     ),
-    color="#395CA3",
+    color="#395CA3", #Company color
     dark=True,
     className="mb-4",
 )
@@ -90,21 +92,21 @@ app.layout = html.Div([
 ])
 
 
+#Making the links on the navbar reactive
+
 @app.callback(Output('page-content', 'children'),
               [Input('url', 'pathname')])
 def display_page(pathname):
     if pathname == '/by_location':
         return by_location.layout
-    elif pathname == '/model1':
-        return model1.layout
-    elif pathname == '/model2':
-        return model2.layout
-    elif pathname == '/model3':
-        return model3.layout
-    elif pathname == '/explore_variables':
-        return explore_variables.layout
-    elif pathname == '/by_university':
-        return by_university.layout
+    #elif pathname == '/model1':
+     #   return model1.layout
+    #elif pathname == '/model2':
+     #   return model2.layout
+    elif pathname == '/about_us':
+        return about_us.layout
+    #elif pathname == '/by_university':
+       # return by_university.layout
     else:
         return home.layout
 
