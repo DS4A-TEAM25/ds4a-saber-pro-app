@@ -24,8 +24,6 @@ X1
 
 
 layout = html.Div([
-    html.H1(X1),
-    row
-    
+    html.H1(X1),    
 ])
 
