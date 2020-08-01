@@ -80,7 +80,7 @@ $ git push heroku master
 
 ## Contact
 
-For any doubts, please contact:  
+For more information please contact:  
 
 | Name            |            Email                  | Linkedin                                       |
 |-----------------|:---------------------------------:|------------------------------------------------|
