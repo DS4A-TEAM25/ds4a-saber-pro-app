@@ -1,5 +1,5 @@
 # SABER PRO Exploratory Dashboard Repo 
-![1 home page](/screenshots/FE_screenshot_1.PNG=32x32)
+![](/screenshots/FE_screenshot_1.PNG){:height="10%" width="10%"}
 
 This is the code to deploy an interactive Python Dash app created for 2020 Colombia Data Science for All -DS4A- program. You can see the live app [here](https://ds4a-saber-pro.herokuapp.com/). 
 
