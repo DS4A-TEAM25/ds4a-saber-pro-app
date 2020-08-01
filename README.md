@@ -14,7 +14,6 @@ This multi-page app allows the user to explore all the data from the last 3 year
 
 *HOME PAGE*  
 
-![1 home page](/screenshots/FE_screenshot1.PNG)
 
 
 ## Back end Structure
