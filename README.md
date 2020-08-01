@@ -1,5 +1,8 @@
-# Dash Identifying Factors that Contribute to SABER PRO score
-This is a demo of the Dash interactive Python app created for 2020 Colombia Data Science for All DS4A.
+# SABER PRO Exploratory Dashboard
+This is the code to deploy an interactive Python Dash app created for 2020 Colombia Data Science for All DS4A. You can see the live app [here](https://ds4a-saber-pro.herokuapp.com/). 
+
+## App Description
+
 
 
 
