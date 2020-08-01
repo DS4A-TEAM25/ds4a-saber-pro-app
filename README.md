@@ -20,7 +20,11 @@ The app is currently deployed using Heorku through GitHub integration on the Her
 
 **1.** Open Anaconda Prompt and activate your working environment.
 
-**2.** Install the requirements using pip install -r path to file/requirements.txt
+**2.** Install the requirements using 
+
+```
+pip install -r path to file/requirements.txt
+```
 
 **3.** Set the current directory to the folder App and run the index.py file. This can be done by typing
 
