@@ -263,6 +263,10 @@ help_form = dbc.Form(
     inline=True,
 )
 
+##################################################################
+
+suerte_botton = dbc.Button("Wish me luck!", color="primary")
+
 ##################################################################################################################
 
 row = html.Div(
@@ -300,15 +304,21 @@ row = html.Div(
         dbc.Row(
             [
                 dbc.Col(year_pro_form),
-                dbc.Col(html.Div("One of three columns")),
+                dbc.Col(mother_level_form),
             ]
         ),
         dbc.Row(
             [
-                dbc.Col(year_pro_form),
-                dbc.Col(mother_level_form),
+                dbc.Col(value_form),
+                dbc.Col(credit_form),
             ]
         ),
+        dbc.Row(
+            [
+                dbc.Col(help_form),
+                
+            ]
+        ),        
     ]
 )
 
@@ -316,6 +326,7 @@ row = html.Div(
 
 layout = html.Div([
     html.H1(X1),
-    row
+    row,
+    suerte_botton
 ])
 
