@@ -72,4 +72,15 @@ $ git commit -am "make it better"
 $ git push heroku master
 ```
 
+## Contact
 
+For any doubts, please contact:  
+
+| Name            |            Email                  | Linkedin                                       |
+|-----------------|:---------------------------------:|------------------------------------------------|
+| Paula Almonacid | palmona1@eafit.edu.co             | [linkedin.com/in/paula-almonacid](https://www.linkedin.com/in/paula-almonacid-802997100/) |
+| Maria P. Aroca  | mp.arocav2@gmail.com              | [linkedin.com/in/maria-paula-aroca](https://www.linkedin.com/in/maria-paula-aroca-42a0a5166/)           |
+| Eugenia Arrieta | eugeniaarrietarodriguez@gmail.com | [linkedin.com/in/eugenia-arrieta-rodríguez](https://www.linkedin.com/in/eugenia-arrieta-rodríguez-98797659/)  |
+| Santiago Cortés | santi.cortes.oc@gmail.com         | [linkedin.com/in/santiago-cortés-ocaña](https://www.linkedin.com/in/santiago-cortés-ocaña-55122917a/)  |
+| Rafael Deaguas  | rafaeldeaguas@gmail.com           | [linkedin.com/in/rafael](https://www.linkedin.com/in/rafael-d-8236b2136/)  |
+| Nohora Diaz     | nohoradiaz@gmail.com              | [linkedin.com/in/nohoradiaz](https://www.linkedin.com/in/nohoradiaz/)  |
