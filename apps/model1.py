@@ -384,11 +384,12 @@ cards = html.Div([row_1, row_2, row_3])
 esquema = dbc.Row(
     [
         dbc.Col(row),
-        dbc.Col(cards)),
+        dbc.Col(cards),
 
     ],
     no_gutters=True,
 )
+
 
 layout = html.Div([
     html.H1(X1),
