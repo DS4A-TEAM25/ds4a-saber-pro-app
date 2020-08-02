@@ -392,6 +392,6 @@ esquema = dbc.Row(
 
 layout = html.Div([
     html.H1(X1),
-    ,   
+    esquema,   
 ])
 
