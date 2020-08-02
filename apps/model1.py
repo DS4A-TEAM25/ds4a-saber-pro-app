@@ -330,19 +330,19 @@ card_content = [
             html.P(
                 "Score expected for you:",
                 className="card-text",
-            ),html.div("result 1"),
+            ),
             html.P(
                 "Average Score expected for your program",
                 className="card-text",
-            ),html.div("result 2"),
+            ),
             html.P(
                 "Average Score expected for your University",
                 className="card-text",
-            ),html.div("result 3"),
+            ),
             html.P(
                 "Average Score Expected for your State",
                 className="card-text",
-            ),html.div("result 4"),
+            ),
 
         ]
     ),
