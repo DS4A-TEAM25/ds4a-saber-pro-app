@@ -268,60 +268,207 @@ help_form = dbc.Form(
 suerte_botton = dbc.Button("Wish me luck!", color="primary")
 
 ##################################################################################################################
-
-row = html.Div(
-    [
-        dbc.Row(
-            [
-                dbc.Col(posenglish_form),
-                dbc.Col(program_form),
-            ]
-        ),
-        dbc.Row(
-            [
-                dbc.Col(scoreMathHighSchool_form),
-                dbc.Col(university_form),
-            ]
-        ),
-        dbc.Row(
-            [
-                dbc.Col(ScoreEnglishHighSchool_form),
-                dbc.Col(state_form),
-            ]
-        ),
-        dbc.Row(
-            [
-                dbc.Col(age_form),
-                dbc.Col(state_uni_form),
-            ]
-        ),
-        dbc.Row(
-            [
-                dbc.Col(years11_form),
-                dbc.Col(gender_form),
-            ]
-        ),
-        dbc.Row(
-            [
-                dbc.Col(year_pro_form),
-                dbc.Col(mother_level_form),
-            ]
-        ),
-        dbc.Row(
-            [
-                dbc.Col(value_form),
-                dbc.Col(credit_form),
-            ]
-        ),
-        dbc.Row(
-            [
-                dbc.Col(help_form),
-                
-            ]
-        ),
-        suerte_botton,
-    ]
+##################################################################################################################
+posenglish_form_card = dbc.Card(
+    dbc.CardBody(
+        [
+            posenglish_form            
+        ]
+    )
 )
+
+program_form_card = dbc.Card(
+    dbc.CardBody(
+        [
+            program_form            
+        ]
+    )
+)
+
+scoreMathHighSchool_form_card = dbc.Card(
+    dbc.CardBody(
+        [
+            scoreMathHighSchool_form            
+        ]
+    )
+)
+
+university_form_card = dbc.Card(
+    dbc.CardBody(
+        [
+            university_form            
+        ]
+    )
+)
+
+ScoreEnglishHighSchool_form_card = dbc.Card(
+    dbc.CardBody(
+        [
+            ScoreEnglishHighSchool_form            
+        ]
+    )
+)
+
+pstate_form_card = dbc.Card(
+    dbc.CardBody(
+        [
+            state_form            
+        ]
+    )
+)
+
+age_form_card = dbc.Card(
+    dbc.CardBody(
+        [
+            age_form            
+        ]
+    )
+)
+
+state_uni_form_card = dbc.Card(
+    dbc.CardBody(
+        [
+            state_uni_form            
+        ]
+    )
+)
+
+years11_form_card = dbc.Card(
+    dbc.CardBody(
+        [
+            years11_form            
+        ]
+    )
+)
+
+gender_form_card = dbc.Card(
+    dbc.CardBody(
+        [
+            gender_form            
+        ]
+    )
+)
+
+year_pro_form_card = dbc.Card(
+    dbc.CardBody(
+        [
+            year_pro_form            
+        ]
+    )
+)
+
+mother_level_form_card = dbc.Card(
+    dbc.CardBody(
+        [
+            mother_level_form            
+        ]
+    )
+)
+
+value_form_card = dbc.Card(
+    dbc.CardBody(
+        [
+            value_form            
+        ]
+    )
+)
+
+credit_form_card = dbc.Card(
+    dbc.CardBody(
+        [
+            credit_form            
+        ]
+    )
+)
+
+help_form_card = dbc.Card(
+    dbc.CardBody(
+        [
+            help_form            
+        ]
+    )
+)
+
+suerte_botton_card = dbc.Card(
+    dbc.CardBody(
+        [
+            suerte_botton            
+        ]
+    )
+)
+
+
+row_1 = dbc.Row(
+    [
+        dbc.Col(dbc.Card(posenglish_form_card, color="secondary", outline=True)),
+        dbc.Col(dbc.Card(program_form_card, color="secondary", outline=True)),
+    ],
+    className="mb-4",
+)
+
+row_2 = dbc.Row(
+    [
+        dbc.Col(dbc.Card(scoreMathHighSchool_form_card, color="secondary", outline=True)),
+        dbc.Col(dbc.Card(university_form_card, color="secondary", outline=True)),
+    ],
+    className="mb-4",
+)
+
+row_3 = dbc.Row(
+    [
+        dbc.Col(dbc.Card(ScoreEnglishHighSchool_form_card, color="secondary", outline=True)),
+        dbc.Col(dbc.Card(pstate_form_card, color="secondary", outline=True)),
+    ],
+    className="mb-4",
+)
+
+row_4 = dbc.Row(
+    [
+        dbc.Col(dbc.Card(age_form_card, color="secondary", outline=True)),
+        dbc.Col(dbc.Card(state_uni_form_card, color="secondary", outline=True)),
+    ],
+    className="mb-4",
+)
+
+row_5 = dbc.Row(
+    [
+        dbc.Col(dbc.Card(years11_form_card, color="secondary", outline=True)),
+        dbc.Col(dbc.Card(gender_form_card, color="secondary", outline=True)),
+    ],
+    className="mb-4",
+)
+
+row_6 = dbc.Row(
+    [
+        dbc.Col(dbc.Card(year_pro_form_card, color="secondary", outline=True)),
+        dbc.Col(dbc.Card(mother_level_form_card, color="secondary", outline=True)),
+    ],
+    className="mb-4",
+)
+
+row_7 = dbc.Row(
+    [
+        dbc.Col(dbc.Card(value_form_card, color="secondary", outline=True)),
+        dbc.Col(dbc.Card(credit_form_card, color="secondary", outline=True)),
+    ],
+    className="mb-4",
+)
+
+row_8 = dbc.Row(
+    [
+        dbc.Col(dbc.Card(help_form_card, color="secondary", outline=True)),
+        dbc.Col(dbc.Card(suerte_botton_card, color="secondary", outline=True)),
+    ],
+    className="mb-4",
+)
+
+forumulario = html.Div([row_1, row_2, row_3,row_4, row_5, row_6,row_7, row_8])
+
+
+
+#######################################################################################
+#######################################################################################
+
 
 
 card_content_1 = [
@@ -504,13 +651,12 @@ cards = html.Div([row_1, row_2, row_3])
 
 esquema = dbc.Row(
     [
-        dbc.Col(row),
+        dbc.Col(forumulario),
         dbc.Col(cards),
 
     ],
     no_gutters=True,
 )
-
 
 layout = html.Div([
     html.H1(X1),
