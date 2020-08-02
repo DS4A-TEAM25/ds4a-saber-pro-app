@@ -324,14 +324,7 @@ row = html.Div(
 )
 
 card_content = [
-    dbc.CardHeader(
-        [
-            html.H3("Quantitative Reasoning"),
-            html.H2("variable HML")
-            html.H5("You will be between the 10% with a higher score in the country")
-
-        ]
-    ),
+    dbc.CardHeader("Quantitative Reasoning"),
     dbc.CardBody(
         [
             html.P(
