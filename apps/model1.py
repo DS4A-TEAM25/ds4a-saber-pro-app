@@ -363,7 +363,7 @@ row_1 = dbc.Row(
     className="mb-4",
 )
 
-row_1 = dbc.Row(
+row_2 = dbc.Row(
     [
         dbc.Col(dbc.Card(card_content, color="secondary", outline=True)),
         dbc.Col(dbc.Card(card_content, color="secondary", outline=True)),
@@ -371,7 +371,7 @@ row_1 = dbc.Row(
     className="mb-4",
 )
 
-row_1 = dbc.Row(
+row_3 = dbc.Row(
     [
         dbc.Col(dbc.Card(card_content, color="secondary", outline=True)),
         dbc.Col(dbc.Card(card_content, color="secondary", outline=True)),
