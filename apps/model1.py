@@ -231,14 +231,25 @@ value_form = dbc.Form(
         dbc.FormGroup(
             [
                 dbc.Label("Value payd in the university per semester", className="mr-2"),
-                dbc.Input(type="text", placeholder="Value payd in the university per semester"),
+                dbc.Select(
+                    id="costuniv",
+                    options=[
+                                {"label": "Menos de 500 mil'", "value": "1"},
+                                {"label": "0.5M-4M", "value": "2"},
+                                {"label": "4M-7M", "value": "3"},
+                                {"label": "7+", "value": "4"},
+                                {"label": "No pago matricula", "value": "5"},
+                    ],
+                )
+
+
+
             ],
             className="mr-3",
         )
 
     ],
 )
-
 
 #############################################################################################################
 
@@ -246,8 +257,17 @@ credit_form = dbc.Form(
     [
         dbc.FormGroup(
             [
-                dbc.Label("Did you use a credit to pay university?", className="mr-2"),
-                dbc.Input(type="text", placeholder="Did you use a credit to pay university?"),
+                dbc.Label("VDid you use a credit to pay university?", className="mr-2"),
+                dbc.Select(
+                    id="credit",
+                    options=[
+                                {"label": "YES", "value": "YES"},
+                                {"label": "NO", "value": "NO"},
+                    ],
+                )
+
+
+
             ],
             className="mr-3",
         )
@@ -256,21 +276,30 @@ credit_form = dbc.Form(
 )
 
 
-##################################################################################################################
 
+##################################################################################################################
 help_form = dbc.Form(
     [
         dbc.FormGroup(
             [
-                dbc.Label("Did your parents help you to pay the university", className="mr-2"),
-                dbc.Input(type="text", placeholder="Did your parents help you to pau the university"),
+                dbc.Label("Did your parents help you to pay the university?", className="mr-2"),
+                dbc.Select(
+                    id="help_p",
+                    options=[
+                                {"label": "Parents", "value": "Parents"},
+                                {"label": "Scholarship", "value": "Scholarship"},
+                                {"label": "Myself", "value": "Myself"},
+                    ],
+                )
+
+
+
             ],
             className="mr-3",
         )
 
     ],
 )
-
 ##################################################################
 
 suerte_botton = dbc.Button("Wish me luck!", color="primary")
