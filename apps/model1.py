@@ -164,8 +164,8 @@ gender_form = dbc.Form(
                 dbc.Select(
                     id="gender",
                     options=[
-                                {"label": "Male", "value": "M"},
-                                {"label": "Female", "value": "F"},
+                                {"label": "Male", "value": "1"},
+                                {"label": "Female", "value": "0"},
                         ],
                 )
 
