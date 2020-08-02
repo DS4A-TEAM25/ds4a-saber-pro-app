@@ -114,10 +114,8 @@ ScoreEnglishHighSchool_form = dbc.Form(
 #)
 
 select_uni = dbc.Select(
-    id="select",
-    options=[
-        {"label": i , "value": i } for i in departamento_options_1,
-    ],
+    id="select_1",
+    options=[{"label": i , "value": i } for i in departamento_options_1],
 )
 
 
@@ -134,7 +132,6 @@ state_form = dbc.Form(
 
     ],
 )
-
 ###########****######################################################################
 
 age_form = dbc.Form(
