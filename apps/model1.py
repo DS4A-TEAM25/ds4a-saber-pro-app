@@ -33,7 +33,6 @@ posenglish_form = dbc.Form(
         )
 
     ],
-    inline=True,
 )
 
 ###################################################################
@@ -48,7 +47,6 @@ program_form = dbc.Form(
         className="mr-3",
     )
     ],
-inline = True,
 )
 
 ###########################################################################
@@ -62,7 +60,6 @@ dbc.FormGroup(
     className="mr-3",
 )
     ],
-    inline=True,
 )
 
 ##############################################################################
@@ -76,7 +73,6 @@ university_form = dbc.Form(
             className="mr-3",
         )
     ],
-    inline=True,
 )
 
 ############################################################################
@@ -91,7 +87,6 @@ ScoreEnglishHighSchool_form = dbc.Form(
         )
 
     ],
-    inline=True,
 )
 
 
@@ -108,7 +103,6 @@ state_form = dbc.Form(
         )
 
     ],
-    inline=True,
 )
 
 
@@ -125,7 +119,6 @@ age_form = dbc.Form(
         )
 
     ],
-    inline=True,
 )
 
 
@@ -142,7 +135,6 @@ state_uni_form = dbc.Form(
         )
 
     ],
-    inline=True,
 )
 
 
@@ -159,7 +151,6 @@ years11_form = dbc.Form(
         )
 
     ],
-    inline=True,
 )
 
 
@@ -176,7 +167,6 @@ gender_form = dbc.Form(
         )
 
     ],
-    inline=True,
 )
 
 
@@ -193,7 +183,6 @@ year_pro_form = dbc.Form(
         )
 
     ],
-    inline=True,
 )
 
 
@@ -209,7 +198,6 @@ mother_level_form = dbc.Form(
         )
 
     ],
-    inline=True,
 )
 
 
@@ -226,7 +214,6 @@ value_form = dbc.Form(
         )
 
     ],
-    inline=True,
 )
 
 
@@ -243,7 +230,6 @@ credit_form = dbc.Form(
         )
 
     ],
-    inline=True,
 )
 
 
@@ -260,7 +246,6 @@ help_form = dbc.Form(
         )
 
     ],
-    inline=True,
 )
 
 ##################################################################
