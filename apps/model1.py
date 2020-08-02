@@ -27,7 +27,7 @@ posenglish_form = dbc.Form(
         dbc.FormGroup(
             [
                 dbc.Label("posenglish", className="mr-2"),
-                dbc.Input(type="text", placeholder="posenglish"),
+                dbc.Input(type="number", placeholder="posenglish", min=0, max=10, step=0.01),
             ],
             className="mr-3",
         )
