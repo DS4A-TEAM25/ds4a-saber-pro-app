@@ -659,7 +659,7 @@ esquema = dbc.Row(
 )
 
 layout = html.Div([
-    html.H1(X1),
+    html.H1("I will present my exam soon and i want to check how is going to be my result"),
     esquema,   
 ])
 
