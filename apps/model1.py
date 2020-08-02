@@ -323,7 +323,8 @@ row = html.Div(
     ]
 )
 
-card_content = [
+
+card_content_1 = [
     dbc.CardHeader("Quantitative Reasoning"),
     dbc.CardBody(
         [
@@ -348,26 +349,153 @@ card_content = [
     ),
 ]
 
+card_content_2 = [
+    dbc.CardHeader("Citizen competence"),
+    dbc.CardBody(
+        [
+            html.P(
+                "Score expected for you:",
+                className="card-text",
+            ),
+            html.P(
+                "Average Score expected for your program",
+                className="card-text",
+            ),
+            html.P(
+                "Average Score expected for your University",
+                className="card-text",
+            ),
+            html.P(
+                "Average Score Expected for your State",
+                className="card-text",
+            ),
+
+        ]
+    ),
+]
+
+card_content_3 = [
+    dbc.CardHeader("Critical Lecture"),
+    dbc.CardBody(
+        [
+            html.P(
+                "Score expected for you:",
+                className="card-text",
+            ),
+            html.P(
+                "Average Score expected for your program",
+                className="card-text",
+            ),
+            html.P(
+                "Average Score expected for your University",
+                className="card-text",
+            ),
+            html.P(
+                "Average Score Expected for your State",
+                className="card-text",
+            ),
+
+        ]
+    ),
+]
+
+card_content_4 = [
+    dbc.CardHeader("English"),
+    dbc.CardBody(
+        [
+            html.P(
+                "Score expected for you:",
+                className="card-text",
+            ),
+            html.P(
+                "Average Score expected for your program",
+                className="card-text",
+            ),
+            html.P(
+                "Average Score expected for your University",
+                className="card-text",
+            ),
+            html.P(
+                "Average Score Expected for your State",
+                className="card-text",
+            ),
+
+        ]
+    ),
+]
+
+
+card_content_5 = [
+    dbc.CardHeader("model 5"),
+    dbc.CardBody(
+        [
+            html.P(
+                "Score expected for you:",
+                className="card-text",
+            ),
+            html.P(
+                "Average Score expected for your program",
+                className="card-text",
+            ),
+            html.P(
+                "Average Score expected for your University",
+                className="card-text",
+            ),
+            html.P(
+                "Average Score Expected for your State",
+                className="card-text",
+            ),
+
+        ]
+    ),
+]
+
+card_content_6 = [
+    dbc.CardHeader("model 6"),
+    dbc.CardBody(
+        [
+            html.P(
+                "Score expected for you:",
+                className="card-text",
+            ),
+            html.P(
+                "Average Score expected for your program",
+                className="card-text",
+            ),
+            html.P(
+                "Average Score expected for your University",
+                className="card-text",
+            ),
+            html.P(
+                "Average Score Expected for your State",
+                className="card-text",
+            ),
+
+        ]
+    ),
+]
+
+
 row_1 = dbc.Row(
     [
-        dbc.Col(dbc.Card(card_content, color="secondary", outline=True)),
-        dbc.Col(dbc.Card(card_content, color="secondary", outline=True)),
+        dbc.Col(dbc.Card(card_content_1, color="secondary", outline=True)),
+        dbc.Col(dbc.Card(card_content_2, color="secondary", outline=True)),
     ],
     className="mb-4",
 )
 
 row_2 = dbc.Row(
     [
-        dbc.Col(dbc.Card(card_content, color="secondary", outline=True)),
-        dbc.Col(dbc.Card(card_content, color="secondary", outline=True)),
+        dbc.Col(dbc.Card(card_content_3, color="secondary", outline=True)),
+        dbc.Col(dbc.Card(card_content_4, color="secondary", outline=True)),
     ],
     className="mb-4",
 )
 
 row_3 = dbc.Row(
     [
-        dbc.Col(dbc.Card(card_content, color="secondary", outline=True)),
-        dbc.Col(dbc.Card(card_content, color="secondary", outline=True)),
+        dbc.Col(dbc.Card(card_content_5, color="secondary", outline=True)),
+        dbc.Col(dbc.Card(card_content_6, color="secondary", outline=True)),
     ],
     className="mb-4",
 )
