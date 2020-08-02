@@ -321,7 +321,7 @@ tarjeta1 = dbc.Card(
     )
 )
 
-program_form_card = dbc.Card(
+tarjeta2 = dbc.Card(
     dbc.CardBody(
         [
             program_form,
@@ -332,7 +332,7 @@ program_form_card = dbc.Card(
             gender_form,
             mother_level_form,
             credit_form,
-            suerte_botton
+            suerte_botton,
         ]
     )
 )
@@ -341,8 +341,8 @@ program_form_card = dbc.Card(
 
 row_1 = dbc.Row(
     [
-        dbc.Col(dbc.Card(posenglish_form_card, color="secondary", outline=True)),
-        dbc.Col(dbc.Card(program_form_card, color="secondary", outline=True)),
+        dbc.Col(dbc.Card(tarjeta1, color="secondary", outline=True)),
+        dbc.Col(dbc.Card(tarjeta2, color="secondary", outline=True)),
     ],
     className="mb-4",
 )
