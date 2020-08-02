@@ -318,7 +318,8 @@ row = html.Div(
                 dbc.Col(help_form),
                 
             ]
-        ),        
+        ),
+        suerte_botton,
     ]
 )
 
@@ -326,7 +327,6 @@ row = html.Div(
 
 layout = html.Div([
     html.H1(X1),
-    row,
-    suerte_botton
+    row,   
 ])
 
