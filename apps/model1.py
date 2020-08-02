@@ -12,7 +12,15 @@ from sklearn.ensemble import RandomForestRegressor
 import joblib
 #from sklearn.model_selection import train_test_split
 import pickle
+from sqlalchemy import create_engine
+from utils import *
 
+# Create Engine and connect to DB
+engine = create_engine('postgresql://admin:ds4a@data-team25.c6tqz0tiazsw.us-east-2.rds.amazonaws.com/project_ds4a')
+
+#Define variables for reactive components
+#Departamento options
+departamento_options_1 = get_unique(engine, 'pro_data', "estu_inst_departamento")
 
 ModelQRPrueba = joblib.load('ModelQR.pkl')
 QR1=np.round(ModelQRPrueba.predict([[59, 59, 59, 22, 6, 0,1,1,1,1,0,1,0,0,0,0,0,0]]),0)
@@ -92,19 +100,40 @@ ScoreEnglishHighSchool_form = dbc.Form(
 
 ##############################################################################
 
+#state_form = dbc.Form(
+#    [
+#        dbc.FormGroup(
+#            [
+#                dbc.Label("State Where you Live", className="mr-2"),
+#                dbc.Input(type="text", placeholder="State Where you Live"),
+#            ],
+#            className="mr-3",
+#        )
+#
+#    ],
+#)
+
+select_uni = dbc.Select(
+    id="select",
+    options=[
+        {"label": i , "value": i } for i in departamento_options_1,
+    ],
+)
+
+
+
 state_form = dbc.Form(
     [
         dbc.FormGroup(
             [
                 dbc.Label("State Where you Live", className="mr-2"),
-                dbc.Input(type="text", placeholder="State Where you Live"),
+                select_uni,
             ],
             className="mr-3",
         )
 
     ],
 )
-
 
 ###########****######################################################################
 
