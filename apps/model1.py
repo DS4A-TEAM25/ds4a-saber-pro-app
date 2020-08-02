@@ -21,13 +21,13 @@ X1=int(QR1[0])
 X1
 
 
-####################################################################
+#######****Corregir_nombre#############################################################
 posenglish_form = dbc.Form(
     [
         dbc.FormGroup(
             [
                 dbc.Label("posenglish", className="mr-2"),
-                dbc.Input(type="number", placeholder="posenglish", min=0, max=10, step=0.01),
+                dbc.Input(type="number", placeholder="posenglish", min=0, max=1000, step=0.01),
             ],
             className="mr-3",
         )
@@ -49,13 +49,13 @@ program_form = dbc.Form(
     ],
 )
 
-###########################################################################
+#####****######################################################################
 scoreMathHighSchool_form = dbc.Form(
     [
 dbc.FormGroup(
     [
         dbc.Label("ScoreMathHighSchool", className="mr-2"),
-        dbc.Input(type="text", placeholder="ScoreMathHighSchool"),
+        dbc.Input(type="number", placeholder="ScoreMathHighSchool", min=0, max=150, step=0.01),
     ],
     className="mr-3",
 )
@@ -81,7 +81,7 @@ ScoreEnglishHighSchool_form = dbc.Form(
         dbc.FormGroup(
             [
                 dbc.Label("ScoreEnglishHighSchool", className="mr-2"),
-                dbc.Input(type="text", placeholder="ScoreEnglishHighSchool"),
+                dbc.Input(type="number", placeholder="ScoreEnglishHighSchool", min=0, max=150, step=0.01),
             ],
             className="mr-3",
         )
@@ -106,14 +106,14 @@ state_form = dbc.Form(
 )
 
 
-#################################################################################
+###########****######################################################################
 
 age_form = dbc.Form(
     [
         dbc.FormGroup(
             [
                 dbc.Label("age", className="mr-2"),
-                dbc.Input(type="text", placeholder="age"),
+                dbc.Input(type="number", placeholder="age", min=0, max=60, step=1),
             ],
             className="mr-3",
         )
@@ -145,7 +145,7 @@ years11_form = dbc.Form(
         dbc.FormGroup(
             [
                 dbc.Label("Year when Saber11 was presented", className="mr-2"),
-                dbc.Input(type="text", placeholder="Year when Saber11 was presented"),
+                dbc.Input(type="number", placeholder="Year when Saber11 was presented", min=1990, max=2019, step=1),
             ],
             className="mr-3",
         )
@@ -161,13 +161,23 @@ gender_form = dbc.Form(
         dbc.FormGroup(
             [
                 dbc.Label("Gender", className="mr-2"),
-                dbc.Input(type="text", placeholder="Gender"),
+                dbc.Select(
+                    id="gender",
+                    options=[
+                                {"label": "Male", "value": "M"},
+                                {"label": "Female", "value": "F"},
+                        ],
+                )
+
+
+
             ],
             className="mr-3",
         )
 
     ],
 )
+
 
 
 ##########################################################################################
@@ -177,7 +187,7 @@ year_pro_form = dbc.Form(
         dbc.FormGroup(
             [
                 dbc.Label("Year when Saber Pro was presented", className="mr-2"),
-                dbc.Input(type="text", placeholder="Year when Saber pro was presented"),
+                dbc.Input(type="number", placeholder="Year when Saber pro was presented", min=2016, max=2025, step=1),
             ],
             className="mr-3",
         )
@@ -191,8 +201,21 @@ mother_level_form = dbc.Form(
     [
         dbc.FormGroup(
             [
-                dbc.Label("Year when Saber11 was presented", className="mr-2"),
-                dbc.Input(type="text", placeholder="Year when Saber11 was presented"),
+                dbc.Label("MotherEducation", className="mr-2"),
+                dbc.Select(
+                    id="nother_lev",
+                    options=[
+                                {"label": "No bachiller", "value": "1"},
+                                {"label": "Bachiller", "value": "2"},
+                                {"label": "Tecnico", "value": "3"},
+                                {"label": "Profesional", "value": "4"},
+                                {"label": "Postgrado", "value": "5"},
+                                {"label": "NS-NR", "value": "6"},
+                    ],
+                )
+
+
+
             ],
             className="mr-3",
         )
