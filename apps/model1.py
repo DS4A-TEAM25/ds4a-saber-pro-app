@@ -323,10 +323,75 @@ row = html.Div(
     ]
 )
 
+card_content = [
+    dbc.CardHeader(
+        [
+            html.H3("Quantitative Reasoning"),
+            html.H2("variable HML")
+            html.H5("You will be between the 10% with a higher score in the country")
 
+        ]
+    ),
+    dbc.CardBody(
+        [
+            html.P(
+                "Score expected for you:",
+                className="card-text",
+            ),html.div("result 1"),
+            html.P(
+                "Average Score expected for your program",
+                className="card-text",
+            ),html.div("result 2"),
+            html.P(
+                "Average Score expected for your University",
+                className="card-text",
+            ),html.div("result 3"),
+            html.P(
+                "Average Score Expected for your State",
+                className="card-text",
+            ),html.div("result 4"),
+
+        ]
+    ),
+]
+
+row_1 = dbc.Row(
+    [
+        dbc.Col(dbc.Card(card_content, color="secondary", outline=True)),
+        dbc.Col(dbc.Card(card_content, color="secondary", outline=True)),
+    ],
+    className="mb-4",
+)
+
+row_1 = dbc.Row(
+    [
+        dbc.Col(dbc.Card(card_content, color="secondary", outline=True)),
+        dbc.Col(dbc.Card(card_content, color="secondary", outline=True)),
+    ],
+    className="mb-4",
+)
+
+row_1 = dbc.Row(
+    [
+        dbc.Col(dbc.Card(card_content, color="secondary", outline=True)),
+        dbc.Col(dbc.Card(card_content, color="secondary", outline=True)),
+    ],
+    className="mb-4",
+)
+
+cards = html.Div([row_1, row_2, row_3])
+
+esquema = dbc.Row(
+    [
+        dbc.Col(row),
+        dbc.Col(cards)),
+
+    ],
+    no_gutters=True,
+)
 
 layout = html.Div([
     html.H1(X1),
-    row,   
+    ,   
 ])
 
