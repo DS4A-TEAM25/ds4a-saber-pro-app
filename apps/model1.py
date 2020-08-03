@@ -21,7 +21,6 @@ engine = create_engine('postgresql://admin:ds4a@data-team25.c6tqz0tiazsw.us-east
 #Define variables for reactive components
 #Departamento options
 departamento_options_1 = get_unique(engine, 'pro_data', "estu_inst_departamento")
-departamento_options_1.sort()
 
 ModelQRPrueba = joblib.load('ModelQR.pkl')
 QR1=np.round(ModelQRPrueba.predict([[59, 59, 59, 22, 6, 0,1,1,1,1,0,1,0,0,0,0,0,0]]),0)
@@ -36,7 +35,7 @@ posenglish_form = dbc.Form(
         dbc.FormGroup(
             [
                 dbc.Label("posenglish", className="mr-2"),
-                dbc.Input(id = "model_1id", type="number", placeholder="posenglish", min=0, max=1000, step=0.01),
+                dbc.Input(type="number", placeholder="posenglish", min=0, max=1000, step=0.01),
             ],
             className="mr-3",
         )
@@ -49,11 +48,11 @@ posenglish_form = dbc.Form(
 ###################################################################
 
 programa_options = get_unique(engine, 'pro_data', "estu_prgm_academico")
-programa_options.sort()
+
 
 
 select_programa = dbc.Select(
-    id = "model_2id", 
+    id="programa_2",
     options=[{"label": i , "value": i } for i in programa_options],
 )
 
@@ -78,7 +77,7 @@ scoreMathHighSchool_form = dbc.Form(
 dbc.FormGroup(
     [
         dbc.Label("ScoreMathHighSchool", className="mr-2"),
-        dbc.Input(id = "model_3id", type="number", placeholder="ScoreMathHighSchool", min=0, max=150, step=0.01),
+        dbc.Input(type="number", placeholder="ScoreMathHighSchool", min=0, max=150, step=0.01),
     ],
     className="mr-3",
 )
@@ -90,10 +89,10 @@ dbc.FormGroup(
 
 
 university_opt1 = get_unique(engine, 'pro_data', "inst_nombre_institucion")
-university_opt1.sort()
+
 
 select_universidad = dbc.Select(
-    id = "model_4id", 
+    id="select_2",
     options=[{"label": i , "value": i } for i in university_opt1],
 )
 
@@ -120,7 +119,7 @@ ScoreEnglishHighSchool_form = dbc.Form(
         dbc.FormGroup(
             [
                 dbc.Label("ScoreEnglishHighSchool", className="mr-2"),
-                dbc.Input(id = "model_5id", type="number", placeholder="ScoreEnglishHighSchool", min=0, max=150, step=0.01),
+                dbc.Input(type="number", placeholder="ScoreEnglishHighSchool", min=0, max=150, step=0.01),
             ],
             className="mr-3",
         )
@@ -132,10 +131,10 @@ ScoreEnglishHighSchool_form = dbc.Form(
 ##############################################################################
 
 departamento_options_2 = get_unique(engine, 'pro', "estu_depto_reside")
-departamento_options_2.sort()
+
 
 select_lugar_est = dbc.Select(
-    id = "model_6id",
+    id="select_est_dtp",
     options=[{"label": i , "value": i } for i in departamento_options_2],
 )
 
@@ -160,7 +159,7 @@ age_form = dbc.Form(
         dbc.FormGroup(
             [
                 dbc.Label("age", className="mr-2"),
-                dbc.Input(id = "model_7id", type="number", placeholder="age", min=0, max=60, step=1),
+                dbc.Input(type="number", placeholder="age", min=0, max=60, step=1),
             ],
             className="mr-3",
         )
@@ -174,7 +173,7 @@ age_form = dbc.Form(
 
 
 select_uni = dbc.Select(
-    id = "model_8id",
+    id="select_1",
     options=[{"label": i , "value": i } for i in departamento_options_1],
 )
 
@@ -200,7 +199,7 @@ years11_form = dbc.Form(
         dbc.FormGroup(
             [
                 dbc.Label("Year when Saber11 was presented", className="mr-2"),
-                dbc.Input(id = "model_9id", type="number", placeholder="Year when Saber11 was presented", min=1990, max=2019, step=1),
+                dbc.Input(type="number", placeholder="Year when Saber11 was presented", min=1990, max=2019, step=1),
             ],
             className="mr-3",
         )
@@ -217,7 +216,7 @@ gender_form = dbc.Form(
             [
                 dbc.Label("Gender", className="mr-2"),
                 dbc.Select(
-                    id = "model_10id",
+                    id="gender",
                     options=[
                                 {"label": "Male", "value": "1"},
                                 {"label": "Female", "value": "0"},
@@ -242,7 +241,7 @@ year_pro_form = dbc.Form(
         dbc.FormGroup(
             [
                 dbc.Label("Year when Saber Pro was presented", className="mr-2"),
-                dbc.Input(id = "model_11id", type="number", placeholder="Year when Saber pro was presented", min=2016, max=2025, step=1),
+                dbc.Input(type="number", placeholder="Year when Saber pro was presented", min=2016, max=2025, step=1),
             ],
             className="mr-3",
         )
@@ -258,7 +257,7 @@ mother_level_form = dbc.Form(
             [
                 dbc.Label("MotherEducation", className="mr-2"),
                 dbc.Select(
-                    id = "model_12id",
+                    id="nother_lev",
                     options=[
                                 {"label": "No bachiller", "value": "1"},
                                 {"label": "Bachiller", "value": "2"},
@@ -287,7 +286,7 @@ value_form = dbc.Form(
             [
                 dbc.Label("Value payd in the university per semester", className="mr-2"),
                 dbc.Select(
-                    id = "model_13id",
+                    id="costuniv",
                     options=[
                                 {"label": "Menos de 500 mil'", "value": "1"},
                                 {"label": "0.5M-4M", "value": "2"},
@@ -314,7 +313,7 @@ credit_form = dbc.Form(
             [
                 dbc.Label("VDid you use a credit to pay university?", className="mr-2"),
                 dbc.Select(
-                    id = "model_14id", 
+                    id="credit",
                     options=[
                                 {"label": "YES", "value": "YES"},
                                 {"label": "NO", "value": "NO"},
@@ -339,7 +338,7 @@ help_form = dbc.Form(
             [
                 dbc.Label("Did your parents help you to pay the university?", className="mr-2"),
                 dbc.Select(
-                    id = "model_15id", 
+                    id="help_p",
                     options=[
                                 {"label": "Parents", "value": "Parents"},
                                 {"label": "Scholarship", "value": "Scholarship"},
@@ -602,4 +601,3 @@ layout = html.Div([
     html.H1("I will present my exam soon and i want to check how is going to be my result"),
     esquema,   
 ])
-
