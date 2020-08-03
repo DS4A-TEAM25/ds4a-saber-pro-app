@@ -6,11 +6,11 @@ import pandas as pd
 import numpy as np
 import os
 import glob
-#import sklearn.metrics       as Metrics
+import sklearn.metrics       as Metrics
 from sklearn import metrics
-#from sklearn.ensemble import RandomForestRegressor 
+from sklearn.ensemble import RandomForestRegressor 
 import joblib
-#from sklearn.model_selection import train_test_split
+from sklearn.model_selection import train_test_split
 import pickle
 from sqlalchemy import create_engine
 from utils import *
