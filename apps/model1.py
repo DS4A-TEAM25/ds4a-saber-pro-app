@@ -560,7 +560,7 @@ layout = html.Div([
 ])
    
 
-@app.callback(Output("mout_01", "children"), [Input("m016", "n_clicks"),
+@callback(Output("mout_01", "children"), [Input("m016", "n_clicks"),
                                         Input("m02", "value")])
 
 def plot_score_choro_state(m016, m02):
