@@ -27,7 +27,7 @@ posenglish_form = dbc.Form(
         dbc.FormGroup(
             [
                 dbc.Label("posenglish", className="mr-2"),
-                dbc.Input(type="number", placeholder="posenglish", min=0, max=1000, step=0.01),
+                dbc.Input(id="m01", type="number", placeholder="posenglish", min=0, max=1000, step=0.01),
             ],
             className="mr-3",
         )
@@ -42,7 +42,7 @@ program_form = dbc.Form(
     dbc.FormGroup(
         [
             dbc.Label("Program", className="mr-2"),
-            dbc.Input(type="text", placeholder="Program"),
+            dbc.Input(id="m02", type="text", placeholder="Program"),
         ],
         className="mr-3",
     )
@@ -55,7 +55,7 @@ scoreMathHighSchool_form = dbc.Form(
 dbc.FormGroup(
     [
         dbc.Label("ScoreMathHighSchool", className="mr-2"),
-        dbc.Input(type="number", placeholder="ScoreMathHighSchool", min=0, max=150, step=0.01),
+        dbc.Input(id="m03", type="number", placeholder="ScoreMathHighSchool", min=0, max=150, step=0.01),
     ],
     className="mr-3",
 )
@@ -68,7 +68,7 @@ university_form = dbc.Form(
         dbc.FormGroup(
             [
     dbc.Label("University", className="mr-2"),
-    dbc.Input(type="text", placeholder="University"),
+    dbc.Input(id="m04", type="text", placeholder="University"),
             ],
             className="mr-3",
         )
@@ -81,7 +81,7 @@ ScoreEnglishHighSchool_form = dbc.Form(
         dbc.FormGroup(
             [
                 dbc.Label("ScoreEnglishHighSchool", className="mr-2"),
-                dbc.Input(type="number", placeholder="ScoreEnglishHighSchool", min=0, max=150, step=0.01),
+                dbc.Input(id="m05", type="number", placeholder="ScoreEnglishHighSchool", min=0, max=150, step=0.01),
             ],
             className="mr-3",
         )
@@ -97,7 +97,7 @@ state_form = dbc.Form(
         dbc.FormGroup(
             [
                 dbc.Label("State Where you Live", className="mr-2"),
-                dbc.Input(type="text", placeholder="State Where you Live"),
+                dbc.Input(id="m06", type="text", placeholder="State Where you Live"),
             ],
             className="mr-3",
         )
@@ -113,7 +113,7 @@ age_form = dbc.Form(
         dbc.FormGroup(
             [
                 dbc.Label("age", className="mr-2"),
-                dbc.Input(type="number", placeholder="age", min=0, max=60, step=1),
+                dbc.Input(id="m07", type="number", placeholder="age", min=0, max=60, step=1),
             ],
             className="mr-3",
         )
@@ -129,7 +129,7 @@ state_uni_form = dbc.Form(
         dbc.FormGroup(
             [
                 dbc.Label("State Where you Study", className="mr-2"),
-                dbc.Input(type="text", placeholder="State Where you Study"),
+                dbc.Input(id="m08", type="text", placeholder="State Where you Study"),
             ],
             className="mr-3",
         )
@@ -145,7 +145,7 @@ years11_form = dbc.Form(
         dbc.FormGroup(
             [
                 dbc.Label("Year when Saber11 was presented", className="mr-2"),
-                dbc.Input(type="number", placeholder="Year when Saber11 was presented", min=1990, max=2019, step=1),
+                dbc.Input(id="m09", type="number", placeholder="Year when Saber11 was presented", min=1990, max=2019, step=1),
             ],
             className="mr-3",
         )
@@ -162,7 +162,7 @@ gender_form = dbc.Form(
             [
                 dbc.Label("Gender", className="mr-2"),
                 dbc.Select(
-                    id="gender",
+                    id="m010",
                     options=[
                                 {"label": "Male", "value": "M"},
                                 {"label": "Female", "value": "F"},
@@ -187,7 +187,7 @@ year_pro_form = dbc.Form(
         dbc.FormGroup(
             [
                 dbc.Label("Year when Saber Pro was presented", className="mr-2"),
-                dbc.Input(type="number", placeholder="Year when Saber pro was presented", min=2016, max=2025, step=1),
+                dbc.Input(id="m011", type="number", placeholder="Year when Saber pro was presented", min=2016, max=2025, step=1),
             ],
             className="mr-3",
         )
@@ -203,7 +203,7 @@ mother_level_form = dbc.Form(
             [
                 dbc.Label("MotherEducation", className="mr-2"),
                 dbc.Select(
-                    id="nother_lev",
+                    id="m012",
                     options=[
                                 {"label": "No bachiller", "value": "1"},
                                 {"label": "Bachiller", "value": "2"},
@@ -232,7 +232,7 @@ value_form = dbc.Form(
             [
                 dbc.Label("Value payd in the university per semester", className="mr-2"),
                 dbc.Select(
-                    id="costuniv",
+                    id="m013", 
                     options=[
                                 {"label": "Menos de 500 mil'", "value": "1"},
                                 {"label": "0.5M-4M", "value": "2"},
@@ -259,7 +259,7 @@ credit_form = dbc.Form(
             [
                 dbc.Label("VDid you use a credit to pay university?", className="mr-2"),
                 dbc.Select(
-                    id="credit",
+                    id="m014", 
                     options=[
                                 {"label": "YES", "value": "YES"},
                                 {"label": "NO", "value": "NO"},
@@ -284,7 +284,7 @@ help_form = dbc.Form(
             [
                 dbc.Label("Did your parents help you to pay the university?", className="mr-2"),
                 dbc.Select(
-                    id="help_p",
+                    id="m015", 
                     options=[
                                 {"label": "Parents", "value": "Parents"},
                                 {"label": "Scholarship", "value": "Scholarship"},
