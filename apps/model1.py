@@ -16,7 +16,6 @@ from sqlalchemy import create_engine
 from utils import *
 from dash.dependencies import Input, Output
 
-
 # Create Engine and connect to DB
 engine = create_engine('postgresql://admin:ds4a@data-team25.c6tqz0tiazsw.us-east-2.rds.amazonaws.com/project_ds4a')
 
@@ -561,11 +560,3 @@ layout = html.Div([
 ])
    
                                     
-@app.callback(
-    Output("mout_01", "children"), [Input("m016", "n_clicks")]
-)
-def on_button_click(n):
-    if n is None:
-        return "Not clicked."
-    else:
-        return f"Clicked {n} times."
