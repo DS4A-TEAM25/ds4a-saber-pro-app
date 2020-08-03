@@ -560,3 +560,12 @@ layout = html.Div([
     esquema,   
 ])
 
+@app.callback(
+    Output("mout_01", "children"), [Input("m016", "n_clicks")]
+)
+def on_button_click(n):
+    if n is None:
+        return ""
+    else:
+        on_button_click==0
+        return f"modelo"
