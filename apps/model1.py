@@ -15,6 +15,7 @@ import pickle
 from sqlalchemy import create_engine
 from utils import *
 from dash.dependencies import Input, Output
+import app
 
 # Create Engine and connect to DB
 engine = create_engine('postgresql://admin:ds4a@data-team25.c6tqz0tiazsw.us-east-2.rds.amazonaws.com/project_ds4a')
