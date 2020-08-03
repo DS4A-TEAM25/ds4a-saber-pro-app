@@ -578,10 +578,11 @@ layout = html.Div([
 
 
 @app.callback(Output("mout_01", "children"), [Input("m016", "n_clicks"),
+                                              Input("m01", "value"),
                                               Input("m010", "value")])
-                                              
-   
-def modelos(n_clicks,m010):
+
+
+def modelos(n_clicks,m01,m010):
     if n_clicks is None:
 
         return "Not clicked."
@@ -592,9 +593,13 @@ def modelos(n_clicks,m010):
             mof=1
         else:
             mof=0
-            ModelQRPrueba = joblib.load('ModelQR.pkl')
-            QR1 = np.round(ModelQRPrueba.predict([[59, 59, 59, 22, 6, mof, 1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0]]), 0)
-            X1 = int(QR1[0])
+        hscore=m01
+        ModelQRPrueba = joblib.load('ModelQR.pkl')
+        QR1 = np.round(ModelQRPrueba.predict([[hscore, 59, 59, 22, 6, mof, 1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0]]), 0)
+        QR1
+        X1 = int(QR1[0])
+        X1
+
         return X1
 
 
