@@ -28,4 +28,8 @@ QR1
 X1=int(QR1[0])
 X1
 
+layout = html.Div([
+    html.H1(X1)
+])
+
 
