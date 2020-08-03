@@ -21,6 +21,7 @@ engine = create_engine('postgresql://admin:ds4a@data-team25.c6tqz0tiazsw.us-east
 #Define variables for reactive components
 #Departamento options
 departamento_options_1 = get_unique(engine, 'pro_data', "estu_inst_departamento")
+departamento_options_1.sort()
 
 ModelQRPrueba = joblib.load('ModelQR.pkl')
 QR1=np.round(ModelQRPrueba.predict([[59, 59, 59, 22, 6, 0,1,1,1,1,0,1,0,0,0,0,0,0]]),0)
@@ -48,7 +49,7 @@ posenglish_form = dbc.Form(
 ###################################################################
 
 programa_options = get_unique(engine, 'pro_data', "estu_prgm_academico")
-
+programa_options.sort()
 
 
 select_programa = dbc.Select(
@@ -89,7 +90,7 @@ dbc.FormGroup(
 
 
 university_opt1 = get_unique(engine, 'pro_data', "inst_nombre_institucion")
-
+university_opt1.sort()
 
 select_universidad = dbc.Select(
     id = "model_4id", 
@@ -131,7 +132,7 @@ ScoreEnglishHighSchool_form = dbc.Form(
 ##############################################################################
 
 departamento_options_2 = get_unique(engine, 'pro', "estu_depto_reside")
-
+departamento_options_2.sort()
 
 select_lugar_est = dbc.Select(
     id = "model_6id",
