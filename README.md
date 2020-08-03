@@ -22,6 +22,8 @@ This multi-page app allows the user to explore all the data from 2016 to 2019 of
 ## Back end Structure
 
 
+![backend](/screenshots/architecture.png)
+
 ## Deployment
 
 ### Plotly Dash
