@@ -43,17 +43,31 @@ posenglish_form = dbc.Form(
     ],
 )
 
+
+
 ###################################################################
+
+programa_options = get_unique(engine, 'pro_data', "estu_prgm_academico")
+
+
+
+select_programa = dbc.Select(
+    id="programa_2",
+    options=[{"label": i , "value": i } for i in programa_options],
+)
+
+
+
 program_form = dbc.Form(
     [
+        dbc.FormGroup(
+            [
+                dbc.Label("Program", className="mr-2"),
+                select_programa,
+            ],
+            className="mr-3",
+        )
 
-    dbc.FormGroup(
-        [
-            dbc.Label("Program", className="mr-2"),
-            dbc.Input(type="text", placeholder="Program"),
-        ],
-        className="mr-3",
-    )
     ],
 )
 
@@ -73,7 +87,7 @@ dbc.FormGroup(
 ##############################################################################
 
 
-#Departamento options
+
 university_opt1 = get_unique(engine, 'pro_data', "inst_nombre_institucion")
 
 
@@ -116,38 +130,28 @@ ScoreEnglishHighSchool_form = dbc.Form(
 
 ##############################################################################
 
+departamento_options_2 = get_unique(engine, 'pro', "estu_depto_reside")
+
+
+select_lugar_est = dbc.Select(
+    id="select_est_dtp",
+    options=[{"label": i , "value": i } for i in departamento_options_2],
+)
+
+
+
 state_form = dbc.Form(
     [
         dbc.FormGroup(
             [
                 dbc.Label("State Where you Live", className="mr-2"),
-                dbc.Input(type="text", placeholder="State Where you Live"),
+                select_lugar_est,
             ],
             className="mr-3",
         )
 
     ],
 )
-
-#select_lugar = dbc.Select(
-#    id="select_1",
-#    options=[{"label": i , "value": i } for i in departamento_options_1],
-#)
-#
-#
-#
-#state_form = dbc.Form(
-#    [
-#        dbc.FormGroup(
-#            [
-#                dbc.Label("State Where you Live", className="mr-2"),
-#                select_lugar,
-#            ],
-#            className="mr-3",
-#        )
-#
-#    ],
-#)
 ###########****######################################################################
 
 age_form = dbc.Form(
