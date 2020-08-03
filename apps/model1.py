@@ -553,9 +553,34 @@ esquema = dbc.Row(
     no_gutters=True,
 )
 
+button = html.Div(
+    [
+        dbc.Button("Click me", id="example-button", className="mr-2"),
+        html.Span(id="example-output", style={"vertical-align": "middle"}),
+    ]
+)
+
+
 layout = html.Div([
     html.H1("I will present my exam soon and i want to check how is going to be my result"),
     html.H3(id="mout_01", style={"vertical-align": "middle"}),
-    esquema,   
+    esquema,
+    button
 ])
+
+
+
+
+
+
+
+@app.callback(
+    Output("example-output", "children"), [Input("example-button", "n_clicks")]
+)
+def on_button_click(n):
+    if n is None:
+        return "Not clicked."
+    else:
+        return f"Clicked {n} times."
+###############CALLBACKS
 
