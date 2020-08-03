@@ -12,15 +12,7 @@ from sklearn.ensemble import RandomForestRegressor
 import joblib
 #from sklearn.model_selection import train_test_split
 import pickle
-from sqlalchemy import create_engine
-from utils import *
 
-# Create Engine and connect to DB
-engine = create_engine('postgresql://admin:ds4a@data-team25.c6tqz0tiazsw.us-east-2.rds.amazonaws.com/project_ds4a')
-
-#Define variables for reactive components
-#Departamento options
-departamento_options_1 = get_unique(engine, 'pro_data', "estu_inst_departamento")
 
 ModelQRPrueba = joblib.load('ModelQR.pkl')
 QR1=np.round(ModelQRPrueba.predict([[59, 59, 59, 22, 6, 0,1,1,1,1,0,1,0,0,0,0,0,0]]),0)
@@ -43,31 +35,17 @@ posenglish_form = dbc.Form(
     ],
 )
 
-
-
 ###################################################################
-
-programa_options = get_unique(engine, 'pro_data', "estu_prgm_academico")
-
-
-
-select_programa = dbc.Select(
-    id="programa_2",
-    options=[{"label": i , "value": i } for i in programa_options],
-)
-
-
-
 program_form = dbc.Form(
     [
-        dbc.FormGroup(
-            [
-                dbc.Label("Program", className="mr-2"),
-                select_programa,
-            ],
-            className="mr-3",
-        )
 
+    dbc.FormGroup(
+        [
+            dbc.Label("Program", className="mr-2"),
+            dbc.Input(type="text", placeholder="Program"),
+        ],
+        className="mr-3",
+    )
     ],
 )
 
@@ -85,33 +63,17 @@ dbc.FormGroup(
 )
 
 ##############################################################################
-
-
-
-university_opt1 = get_unique(engine, 'pro_data', "inst_nombre_institucion")
-
-
-select_universidad = dbc.Select(
-    id="select_2",
-    options=[{"label": i , "value": i } for i in university_opt1],
-)
-
-
-
 university_form = dbc.Form(
     [
         dbc.FormGroup(
             [
-                dbc.Label("University", className="mr-2"),
-                select_universidad,
+    dbc.Label("University", className="mr-2"),
+    dbc.Input(type="text", placeholder="University"),
             ],
             className="mr-3",
         )
-
     ],
 )
-
-
 
 ############################################################################
 ScoreEnglishHighSchool_form = dbc.Form(
@@ -130,28 +92,20 @@ ScoreEnglishHighSchool_form = dbc.Form(
 
 ##############################################################################
 
-departamento_options_2 = get_unique(engine, 'pro', "estu_depto_reside")
-
-
-select_lugar_est = dbc.Select(
-    id="select_est_dtp",
-    options=[{"label": i , "value": i } for i in departamento_options_2],
-)
-
-
-
 state_form = dbc.Form(
     [
         dbc.FormGroup(
             [
                 dbc.Label("State Where you Live", className="mr-2"),
-                select_lugar_est,
+                dbc.Input(type="text", placeholder="State Where you Live"),
             ],
             className="mr-3",
         )
 
     ],
 )
+
+
 ###########****######################################################################
 
 age_form = dbc.Form(
@@ -170,27 +124,19 @@ age_form = dbc.Form(
 
 ##################################################################################
 
-
-
-select_uni = dbc.Select(
-    id="select_1",
-    options=[{"label": i , "value": i } for i in departamento_options_1],
-)
-
-
-
 state_uni_form = dbc.Form(
     [
         dbc.FormGroup(
             [
                 dbc.Label("State Where you Study", className="mr-2"),
-                select_uni,
+                dbc.Input(type="text", placeholder="State Where you Study"),
             ],
             className="mr-3",
         )
 
     ],
 )
+
 
 #####################################################################################
 
@@ -218,8 +164,8 @@ gender_form = dbc.Form(
                 dbc.Select(
                     id="gender",
                     options=[
-                                {"label": "Male", "value": "1"},
-                                {"label": "Female", "value": "0"},
+                                {"label": "Male", "value": "M"},
+                                {"label": "Female", "value": "F"},
                         ],
                 )
 
@@ -381,6 +327,7 @@ tarjeta2 = dbc.Card(
             program_form,
             university_form,
             state_form,
+            age_form,
             state_uni_form,
             gender_form,
             mother_level_form,
@@ -601,4 +548,3 @@ layout = html.Div([
     html.H1("I will present my exam soon and i want to check how is going to be my result"),
     esquema,   
 ])
-
