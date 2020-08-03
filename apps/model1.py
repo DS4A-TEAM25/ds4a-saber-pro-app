@@ -568,7 +568,6 @@ layout = html.Div([
     html.H1("I will present my exam soon and i want to check how is going to be my result"),
     html.H3(id="mout_01", style={"vertical-align": "middle"}),
     esquema,
-    button
 ])
 
 
@@ -577,11 +576,16 @@ layout = html.Div([
 
 
 
-@app.callback(
-    Output("example-output", "children"), [Input("m016", "n_clicks")]
-)
-def on_button_click(n):
-    if n is None:
+
+@app.callback(Output("mout_01", "children"), [Input("m016", "n_clicks"),
+                                              Input("m010", "value")])
+                                              
+   
+def modelos(n_clicks,m010):
+    if n_clicks is None:
+
         return "Not clicked."
     else:
-        return f"Clicked {n} times."
+        genero = m010
+
+        return genero
