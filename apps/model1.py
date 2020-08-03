@@ -130,28 +130,28 @@ ScoreEnglishHighSchool_form = dbc.Form(
 
 ##############################################################################
 
-departamento_options_2 = get_unique(engine, 'pro', "estu_depto_reside")
-
-
-select_lugar_est = dbc.Select(
-    id="select_est_dtp",
-    options=[{"label": i , "value": i } for i in departamento_options_2],
-)
-
-
-
-state_form = dbc.Form(
-    [
-        dbc.FormGroup(
-            [
-                dbc.Label("State Where you Live", className="mr-2"),
-                select_lugar_est,
-            ],
-            className="mr-3",
-        )
-
-    ],
-)
+#departamento_options_2 = get_unique(engine, 'pro', "estu_depto_reside")
+#
+#
+#select_lugar_est = dbc.Select(
+#    id="select_est_dtp",
+#    options=[{"label": i , "value": i } for i in departamento_options_2],
+#)
+#
+#
+#
+#state_form = dbc.Form(
+#    [
+#        dbc.FormGroup(
+#            [
+#                dbc.Label("State Where you Live", className="mr-2"),
+#                select_lugar_est,
+#            ],
+#            className="mr-3",
+#        )
+#
+#    ],
+#)
 ###########****######################################################################
 
 age_form = dbc.Form(
