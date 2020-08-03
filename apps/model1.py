@@ -71,17 +71,33 @@ dbc.FormGroup(
 )
 
 ##############################################################################
+
+
+#Departamento options
+university_opt1 = get_unique(engine, 'pro_data', "inst_nombre_institucion")
+
+
+select_universidad = dbc.Select(
+    id="select_2",
+    options=[{"label": i , "value": i } for i in university_opt1],
+)
+
+
+
 university_form = dbc.Form(
     [
         dbc.FormGroup(
             [
-    dbc.Label("University", className="mr-2"),
-    dbc.Input(type="text", placeholder="University"),
+                dbc.Label("University", className="mr-2"),
+                select_universidad,
             ],
             className="mr-3",
         )
+
     ],
 )
+
+
 
 ############################################################################
 ScoreEnglishHighSchool_form = dbc.Form(
@@ -100,38 +116,38 @@ ScoreEnglishHighSchool_form = dbc.Form(
 
 ##############################################################################
 
-#state_form = dbc.Form(
-#    [
-#        dbc.FormGroup(
-#            [
-#                dbc.Label("State Where you Live", className="mr-2"),
-#                dbc.Input(type="text", placeholder="State Where you Live"),
-#            ],
-#            className="mr-3",
-#        )
-#
-#    ],
-#)
-
-select_uni = dbc.Select(
-    id="select_1",
-    options=[{"label": i , "value": i } for i in departamento_options_1],
-)
-
-
-
 state_form = dbc.Form(
     [
         dbc.FormGroup(
             [
                 dbc.Label("State Where you Live", className="mr-2"),
-                select_uni,
+                dbc.Input(type="text", placeholder="State Where you Live"),
             ],
             className="mr-3",
         )
 
     ],
 )
+
+#select_lugar = dbc.Select(
+#    id="select_1",
+#    options=[{"label": i , "value": i } for i in departamento_options_1],
+#)
+#
+#
+#
+#state_form = dbc.Form(
+#    [
+#        dbc.FormGroup(
+#            [
+#                dbc.Label("State Where you Live", className="mr-2"),
+#                select_lugar,
+#            ],
+#            className="mr-3",
+#        )
+#
+#    ],
+#)
 ###########****######################################################################
 
 age_form = dbc.Form(
@@ -150,19 +166,27 @@ age_form = dbc.Form(
 
 ##################################################################################
 
+
+
+select_uni = dbc.Select(
+    id="select_1",
+    options=[{"label": i , "value": i } for i in departamento_options_1],
+)
+
+
+
 state_uni_form = dbc.Form(
     [
         dbc.FormGroup(
             [
                 dbc.Label("State Where you Study", className="mr-2"),
-                dbc.Input(type="text", placeholder="State Where you Study"),
+                select_uni,
             ],
             className="mr-3",
         )
 
     ],
 )
-
 
 #####################################################################################
 
