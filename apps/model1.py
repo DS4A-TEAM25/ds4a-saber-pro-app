@@ -140,18 +140,18 @@ ScoreEnglishHighSchool_form = dbc.Form(
 #
 #
 #
-#state_form = dbc.Form(
-#    [
-#        dbc.FormGroup(
-#            [
-#                dbc.Label("State Where you Live", className="mr-2"),
+state_form = dbc.Form(
+    [
+        dbc.FormGroup(
+            [
+                dbc.Label("State Where you Live", className="mr-2"),
 #                select_lugar_est,
-#            ],
-#            className="mr-3",
-#        )
-#
-#    ],
-#)
+            ],
+            className="mr-3",
+        )
+
+    ],
+)
 ###########****######################################################################
 
 age_form = dbc.Form(
