@@ -586,6 +586,16 @@ def modelos(n_clicks,m010):
 
         return "Not clicked."
     else:
+        mof=0
         genero = m010
+        if genero == 'M':
+            mof=1
+        else:
+            mof=0
+            ModelQRPrueba = joblib.load('ModelQR.pkl')
+            QR1 = np.round(ModelQRPrueba.predict([[59, 59, 59, 22, 6, mof, 1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0]]), 0)
+            X1 = int(QR1[0])
+        return X1
 
-        return genero
+
+        
