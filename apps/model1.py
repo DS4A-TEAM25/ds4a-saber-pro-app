@@ -14,6 +14,8 @@ import joblib
 import pickle
 from sqlalchemy import create_engine
 from utils import *
+from dash.dependencies import Input, Output
+
 
 # Create Engine and connect to DB
 engine = create_engine('postgresql://admin:ds4a@data-team25.c6tqz0tiazsw.us-east-2.rds.amazonaws.com/project_ds4a')
@@ -311,7 +313,7 @@ help_form = dbc.Form(
 )
 ##################################################################
 
-suerte_botton = dbc.Button("Wish me luck!", color="primary")
+suerte_botton = dbc.Button("Wish me luck!", color="primary", id="m016",)
 
 ##################################################################################################################
 ##################################################################################################################
@@ -556,3 +558,4 @@ layout = html.Div([
     html.H1("I will present my exam soon and i want to check how is going to be my result"),
     esquema,   
 ])
+
