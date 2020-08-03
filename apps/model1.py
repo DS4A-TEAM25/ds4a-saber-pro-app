@@ -327,7 +327,6 @@ tarjeta2 = dbc.Card(
             program_form,
             university_form,
             state_form,
-            age_form,
             state_uni_form,
             gender_form,
             mother_level_form,
