@@ -559,3 +559,13 @@ layout = html.Div([
     html.H3("resultado del modelo", id="mout_01"),
     esquema,   
 ])
+
+
+@app.callback(
+    Output("mout_01", "children"), [Input("m016', "n_clicks')]
+def on_button_click(n):
+    if n is None:
+        return ""
+    else:
+        n==0
+        return "Clicked {n} times."
