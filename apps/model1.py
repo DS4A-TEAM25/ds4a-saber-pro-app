@@ -10,7 +10,7 @@ import glob
 from sklearn import metrics
 from sklearn.ensemble import RandomForestRegressor 
 import joblib
-from sklearn.model_selection import train_test_split
+#from sklearn.model_selection import train_test_split
 import pickle
 from sqlalchemy import create_engine
 from utils import *
