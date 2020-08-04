@@ -603,6 +603,7 @@ def modelos(n_clicks,m01,m03,m05,m07,m015,m010):
         else:
             mof=0
         hmvalue=m03
+        hscore=m01
   
 
         ModelQRPrueba = joblib.load('ModelQR.pkl')
