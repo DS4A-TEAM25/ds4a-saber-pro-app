@@ -571,18 +571,17 @@ layout = html.Div([
 ])
 
 
-
-
 @app.callback(Output("mout_01", "children"), [Input("m016", "n_clicks"),
                                               Input("m01", "value"),
                                               Input("m03", "value"),
                                               Input("m05", "value"),
                                               Input("m07", "value"),
                                               Input("m015", "value"),
+                                              Input("m014", "value"),
                                               Input("m010", "value")])
 
 
-def modelos(n_clicks, m01, m03, m05, m07, m015, m010):
+def modelos(n_clicks, m01, m03, m05, m07,m014, m015, m010):
     if n_clicks is None:
         return "Not clicked."
     else:
@@ -593,6 +592,8 @@ def modelos(n_clicks, m01, m03, m05, m07, m015, m010):
         paydwayscholar = 0
         paydwayparent = 0
         mof = 0
+        credito=0
+        credito_m= m014
         genero = m010
         if genero == 'M':
             mof = 1
@@ -610,10 +611,18 @@ def modelos(n_clicks, m01, m03, m05, m07, m015, m010):
             else:
                 paydwayparent = 0
                 paydwayscholar = 0
+        if credito_m == 'YES':
+            credito = 1
+        else:
+            credito = 0
+        
+            
 
         ModelQRPrueba = joblib.load('ModelQR.pkl')
-        QR1 = np.round(ModelQRPrueba.predict([[hscore, hmvalue, 59, agevalue, 6, mof, 1, paydwayscholar, 1, paydwayparent, 0, 1, 0, 0, 0, 0, 0, 0]]),
+        QR1 = np.round(ModelQRPrueba.predict([[hscore, hmvalue, 59, agevalue, 6, mof, 1, paydwayscholar, credito, paydwayparent, 0, 1, 0, 0, 0, 0, 0, 0]]),
                        0)
         X1 = int(QR1[0])
+
+        return X1
 
         return X1
