@@ -19,6 +19,10 @@ This multi-page app allows the user to explore all the data from 2016 to 2019 of
 
 ![1 home page](/screenshots/FE_screenshot_1.PNG)
 
+*EXPLORE BY LOCATION PAGE*  
+
+![2 by_location page](/screenshots/FE_screenshot_2.PNG)
+
 ## Back end Structure
 
 
