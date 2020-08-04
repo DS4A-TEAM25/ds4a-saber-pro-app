@@ -18,11 +18,11 @@ from dash.dependencies import Input, Output
 from app import app
 
 # Create Engine and connect to DB
-engine = create_engine('postgresql://admin:ds4a@data-team25.c6tqz0tiazsw.us-east-2.rds.amazonaws.com/project_ds4a')
+#engine = create_engine('postgresql://admin:ds4a@data-team25.c6tqz0tiazsw.us-east-2.rds.amazonaws.com/project_ds4a')
 
 #Define variables for reactive components
 #Departamento options
-departamento_options_1 = get_unique(engine, 'pro_data', "estu_inst_departamento")
+#departamento_options_1 = get_unique(engine, 'pro_data', "estu_inst_departamento")
 
 
 ModelQRPrueba = joblib.load('ModelQR.pkl')
