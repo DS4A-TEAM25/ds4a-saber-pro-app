@@ -570,7 +570,6 @@ layout = html.Div([
     esquema,
 ])
 
-
 @app.callback(Output("mout_01", "children"), [Input("m016", "n_clicks"),
                                               Input("m01", "value"),
                                               Input("m03", "value"),
@@ -579,10 +578,11 @@ layout = html.Div([
                                               Input("m015", "value"),
                                               Input("m014", "value"),
                                               Input("m012", "value"),
+                                              Input("m013", "value"),
                                               Input("m010", "value")])
 
 
-def modelos(n_clicks, m01, m03, m05, m07,m014, m015,m012, m010):
+def modelos(n_clicks, m01, m03, m05, m07,m014, m015,m012,m013, m010):
     if n_clicks is None:
         return "Not clicked."
     else:
@@ -600,6 +600,11 @@ def modelos(n_clicks, m01, m03, m05, m07,m014, m015,m012, m010):
         mama_5 = 0
         mama_m = m012
         credito_m= m014
+        costo = m013
+        costo_1 = 0
+        costo_2 = 0
+        costo_3 = 0
+        costo_no = 0
         genero = m010
         if genero == 'M':
             mof = 1
@@ -640,10 +645,27 @@ def modelos(n_clicks, m01, m03, m05, m07,m014, m015,m012, m010):
                         mama_3 = 0
                         mama_4 = 0
                         mama_5 = 0
-        
+#########################################
+        if costo == '1':
+            costo_1 = 1
+        else:
+            if costo == '2'
+                costo_2 = 1
+            else:
+                if costo == '3':
+                    costo_3 = 1
+                else
+                    if costo == '5':
+                        costo_no = 1
+                    else:
+                        costo_1 = 0
+                        costo_2 = 0
+                        costo_3 = 0
+                        costo_no = 0
+
 
         ModelQRPrueba = joblib.load('ModelQR.pkl')
-        QR1 = np.round(ModelQRPrueba.predict([[hscore, hmvalue, 59, agevalue, 6, mof, 1, paydwayscholar, credito, paydwayparent, 0, 1, 0, 0, 0, 0, 0, 0]]),
+        QR1 = np.round(ModelQRPrueba.predict([[hscore, hmvalue, 59, agevalue, 6, mof, 1, paydwayscholar, credito, paydwayparent, mama_1, mama_3, mama_4, mama_5, costo_1, costo_2, costo_3, costo_no]]),
                        0)
         X1 = int(QR1[0])
 
