@@ -379,18 +379,6 @@ card_content_1 = [
                 "Score expected for you:",
                 className="card-text",
             ),
-            html.P(
-                "Average Score expected for your program",
-                className="card-text",
-            ),
-            html.P(
-                "Average Score expected for your University",
-                className="card-text",
-            ),
-            html.P(
-                "Average Score Expected for your State",
-                className="card-text",
-            ),
 
         ]
     ),
@@ -402,18 +390,6 @@ card_content_2 = [
         [
             html.P(
                 "Score expected for you:",
-                className="card-text",
-            ),
-            html.P(
-                "Average Score expected for your program",
-                className="card-text",
-            ),
-            html.P(
-                "Average Score expected for your University",
-                className="card-text",
-            ),
-            html.P(
-                "Average Score Expected for your State",
                 className="card-text",
             ),
 
@@ -429,18 +405,6 @@ card_content_3 = [
                 "Score expected for you:",
                 className="card-text",
             ),
-            html.P(
-                "Average Score expected for your program",
-                className="card-text",
-            ),
-            html.P(
-                "Average Score expected for your University",
-                className="card-text",
-            ),
-            html.P(
-                "Average Score Expected for your State",
-                className="card-text",
-            ),
 
         ]
     ),
@@ -454,70 +418,31 @@ card_content_4 = [
                 "Score expected for you:",
                 className="card-text",
             ),
-            html.P(
-                "Average Score expected for your program",
-                className="card-text",
-            ),
-            html.P(
-                "Average Score expected for your University",
-                className="card-text",
-            ),
-            html.P(
-                "Average Score Expected for your State",
-                className="card-text",
-            ),
-
         ]
     ),
 ]
 
 
 card_content_5 = [
-    dbc.CardHeader("model 5"),
+    dbc.CardHeader("Written Communication"),
     dbc.CardBody(
         [
             html.P(
                 "Score expected for you:",
                 className="card-text",
             ),
-            html.P(
-                "Average Score expected for your program",
-                className="card-text",
-            ),
-            html.P(
-                "Average Score expected for your University",
-                className="card-text",
-            ),
-            html.P(
-                "Average Score Expected for your State",
-                className="card-text",
-            ),
-
         ]
     ),
 ]
 
 card_content_6 = [
-    dbc.CardHeader("model 6"),
+    dbc.CardHeader("Global Score"),
     dbc.CardBody(
         [
             html.P(
                 "Score expected for you:",
                 className="card-text",
             ),
-            html.P(
-                "Average Score expected for your program",
-                className="card-text",
-            ),
-            html.P(
-                "Average Score expected for your University",
-                className="card-text",
-            ),
-            html.P(
-                "Average Score Expected for your State",
-                className="card-text",
-            ),
-
         ]
     ),
 ]
@@ -680,5 +605,9 @@ def modelos(n_clicks, m01, m03, m05, m07,m014, m015,m012,m013,m09,m011, m010):
         QR1 = np.round(ModelQRPrueba.predict([[hscore, hmvalue, 59, agevalue, timesaber, mof, 1, paydwayscholar, credito, paydwayparent, mama_1, mama_3, mama_4, mama_5, costo_1, costo_2, costo_3, costo_no]]),
                        0)
         X1 = int(QR1[0])
+        
+        return X1
+        
+        
 
   
