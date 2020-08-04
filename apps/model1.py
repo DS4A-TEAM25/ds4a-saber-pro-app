@@ -16,6 +16,7 @@ from sqlalchemy import create_engine
 from utils import *
 from dash.dependencies import Input, Output
 from app import app
+from math import radians, cos, sin, asin, sqrt
 
 def haversine(lon1, lat1, lon2, lat2):
     """
