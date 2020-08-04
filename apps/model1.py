@@ -579,10 +579,12 @@ layout = html.Div([
                                               Input("m014", "value"),
                                               Input("m012", "value"),
                                               Input("m013", "value"),
+                                              Input("m09", "value"),
+                                              Input("m011", "value"),
                                               Input("m010", "value")])
 
 
-def modelos(n_clicks, m01, m03, m05, m07,m014, m015,m012,m013, m010):
+def modelos(n_clicks, m01, m03, m05, m07,m014, m015,m012,m013,m09,m011, m010):
     if n_clicks is None:
         return "Not clicked."
     else:
@@ -590,6 +592,8 @@ def modelos(n_clicks, m01, m03, m05, m07,m014, m015,m012,m013, m010):
         hscore = 100
         hmvalue = 100
         agevalue = 30
+        saber11 = 2014
+        saberpro = 2019
         paydwayscholar = 0
         paydwayparent = 0
         mof = 0
@@ -613,6 +617,10 @@ def modelos(n_clicks, m01, m03, m05, m07,m014, m015,m012,m013, m010):
         hmvalue = float(m03)
         hscore = float(m01)
         agevalue = float(m07)
+        saber11 = float(m09)
+        saberpro = float(m011)
+        timesaber = saberpro -saber11
+        
         paydway = m015
 ###################################
         if paydway == 'Parents':
@@ -665,8 +673,8 @@ def modelos(n_clicks, m01, m03, m05, m07,m014, m015,m012,m013, m010):
 
 
         ModelQRPrueba = joblib.load('ModelQR.pkl')
-        QR1 = np.round(ModelQRPrueba.predict([[hscore, hmvalue, 59, agevalue, 6, mof, 1, paydwayscholar, credito, paydwayparent, mama_1, mama_3, mama_4, mama_5, costo_1, costo_2, costo_3, costo_no]]),
+        QR1 = np.round(ModelQRPrueba.predict([[hscore, hmvalue, 59, agevalue, timesaber, mof, 1, paydwayscholar, credito, paydwayparent, mama_1, mama_3, mama_4, mama_5, costo_1, costo_2, costo_3, costo_no]]),
                        0)
         X1 = int(QR1[0])
 
-        return X1
+  
