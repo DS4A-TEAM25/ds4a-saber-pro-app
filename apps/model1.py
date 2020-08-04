@@ -637,7 +637,7 @@ def modelos(n_clicks, m01, m03, m05, m07,m014, m015,m012,m013, m010):
             else:
                 if mama_m == '4':
                     mama_4 = 1
-                else
+                else:
                     if mama_m == '5':
                         mama_5 = 1
                     else:
@@ -654,7 +654,7 @@ def modelos(n_clicks, m01, m03, m05, m07,m014, m015,m012,m013, m010):
             else:
                 if costo == '3':
                     costo_3 = 1
-                else
+                else:
                     if costo == '5':
                         costo_no = 1
                     else:
