@@ -17,6 +17,8 @@ from utils import *
 from dash.dependencies import Input, Output
 from app import app
 
+tablacluster=pd.read_excel('DepartamentoDash.xlsx') 
+
 # Create Engine and connect to DB
 #engine = create_engine('postgresql://admin:ds4a@data-team25.c6tqz0tiazsw.us-east-2.rds.amazonaws.com/project_ds4a')
 
