@@ -348,7 +348,10 @@ def update_avg_dpt(scores, period_slider, departamentos):
 
         p=[str(period_slider[0]), str(period_slider[1])] 
         mean_dpt = get_avg(engine, 'pro_data', scores, "estu_inst_departamento", "'"+str(departamentos)+"'", "'"+p[0]+"'", "'"+p[1]+"'")
-        return round(mean_dpt[0],2)
+        if mean_dpt[0]!= None:
+            return round(mean_dpt[0],2)
+        else:
+             return str("No Data for Selected Period")
 
 
 
@@ -395,9 +398,14 @@ def update_rank(scores, period_slider, departamentos):
     else:
         p=[str(period_slider[0]), str(period_slider[1])] 
         mean_score = pd.read_sql("SELECT estu_inst_departamento,AVG("+scores+") mean_score FROM pro_data WHERE periodo BETWEEN '"+p[0]+ "' AND '" +p[1]+"'  GROUP BY estu_inst_departamento", engine.connect())
-        mean_score = mean_score.sort_values(by='mean_score', ascending=False).reset_index(drop=True)
-        mean_score.index = mean_score.index + 1
-        return str(mean_score.index[mean_score.estu_inst_departamento==departamentos][0]) + "/29"
+        if len(mean_score[mean_score.estu_inst_departamento==departamentos])!= 0:
+            mean_score  = mean_score .dropna()
+            total_departments = str(len(mean_score['estu_inst_departamento'].unique()))
+            mean_score = mean_score.sort_values(by='mean_score', ascending=False).reset_index(drop=True)
+            mean_score.index = mean_score.index + 1
+            return str(mean_score.index[mean_score.estu_inst_departamento==departamentos][0]) + "/" + total_departments
+        else:
+            return str("No Data for Selected Period")
         
 
 
