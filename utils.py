@@ -21,6 +21,19 @@ def get_unique(connection, db, col):
     return [x[0] for x in connection.execute(query).fetchall()]
 
 
+#SQL QUERY FORMULAS
+#Unique values of column by condition
+def get_unique_conditional(connection, db, var, col, value, period1, period2):
+    query = f"""
+    SELECT DISTINCT {var}
+    FROM {db}
+    WHERE 
+        (periodo BETWEEN {period1} AND {period2}) 
+    AND {col} = {value};
+    """
+    return [x[0] for x in connection.execute(query).fetchall()]
+
+
 #GENERATE QUINTLE DF
 def get_pct(connection, db, var, quintile_score, score, col, value, period1, period2):
     query = f"""
@@ -51,6 +64,23 @@ def get_avg(connection, db, score, col, value, period1, period2):
     return [x[0] for x in connection.execute(query).fetchall()]
 
 
+#Average of a column given period and column values
+def get_avg(connection, db, score, col, value, period1, period2):
+    query = f"""
+    SELECT AVG({score})
+    FROM {db}
+    WHERE 
+        (periodo BETWEEN {period1} AND {period2}) 
+    AND {col} = {value}
+    ;
+    """
+    return [x[0] for x in connection.execute(query).fetchall()]
+
+
+
+
+
+
 #Average grouped by column given period and column values
 def get_avg_input(connection, db, score, col1, col2, value, period1, period2):
     query = f"""
@@ -64,6 +94,35 @@ def get_avg_input(connection, db, score, col1, col2, value, period1, period2):
     """
     return [x for x in connection.execute(query).fetchall()]
 
+
+
+#Average grouped by column given period and column values
+def get_avg_input2(connection, db, score, col1, col2, value, period1, period2):
+    query = f"""
+    SELECT {col2},{col1},  AVG({score})
+    FROM {db}
+    WHERE 
+        (periodo BETWEEN {period1} AND {period2}) 
+    AND {col2} = {value}
+    GROUP BY {col2}, {col1}
+    ;
+    """
+    return [x for x in connection.execute(query).fetchall()]
+
+
+
+#Average grouped by column given period and column values
+def get_avg_input3(connection, db, score, col1, col2, value, period1, period2):
+    query = f"""
+    SELECT {col1},  AVG({score})
+    FROM {db}
+    WHERE 
+        (periodo BETWEEN {period1} AND {period2}) 
+    AND {col1} = (SELECT {col1}  FROM {db} WHERE {col2}= {value} LIMIT 1 )
+    GROUP BY {col1}
+    ;
+    """
+    return [x for x in connection.execute(query).fetchall()]
 
 # Cache function
 def connect_read_sql(query, engine):
