@@ -602,8 +602,8 @@ def modelos(n_clicks,m01,m03,m05,m07,m015,m010):
             mof=1
         else:
             mof=0
-        hmvalue=m03
-        hscore=m01
+        hmvalue=  float(m03)
+        hscore= float(m01)
   
 
         ModelQRPrueba = joblib.load('ModelQR.pkl')
