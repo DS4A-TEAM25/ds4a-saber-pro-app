@@ -393,7 +393,7 @@ card_content_2 = [
                 "Score expected for you:",
                 className="card-text",
             ),
-            html.H3(id="mout_01", style={"vertical-align": "middle"}),
+            html.H3(id="mout_06", style={"vertical-align": "middle"}),
         ]
     ),
 ]
@@ -406,7 +406,7 @@ card_content_3 = [
                 "Score expected for you:",
                 className="card-text",
             ),
-            html.H3(id="mout_01", style={"vertical-align": "middle"}),
+            html.H3(id="mout_02", style={"vertical-align": "middle"}),
 
         ]
     ),
@@ -420,7 +420,7 @@ card_content_4 = [
                 "Score expected for you:",
                 className="card-text",
             ),
-            html.H3(id="mout_01", style={"vertical-align": "middle"}),
+            html.H3(id="mout_03", style={"vertical-align": "middle"}),
         ]
     ),
 ]
@@ -434,7 +434,7 @@ card_content_5 = [
                 "Score expected for you:",
                 className="card-text",
             ),
-            html.H3(id="mout_01", style={"vertical-align": "middle"}),
+            html.H3(id="mout_04", style={"vertical-align": "middle"}),
         ]
     ),
 ]
@@ -447,7 +447,7 @@ card_content_6 = [
                 "Score expected for you:",
                 className="card-text",
             ),
-            html.H3(id="mout_01", style={"vertical-align": "middle"}),
+            html.H3(id="mout_05", style={"vertical-align": "middle"}),
         ]
     ),
 ]
@@ -503,20 +503,27 @@ layout = html.Div([
     esquema,
 ])
 
-@app.callback(Output("mout_01", "children"), [Input("m016", "n_clicks"),
-                                              Input("m01", "value"),
-                                              Input("m03", "value"),
-                                              Input("m05", "value"),
-                                              Input("m07", "value"),
-                                              Input("m015", "value"),
-                                              Input("m014", "value"),
-                                              Input("m012", "value"),
-                                              Input("m013", "value"),
-                                              Input("m09", "value"),
-                                              Input("m011", "value"),
-                                              Input("m010", "value")])
-
-
+@app.callback([Output("mout_01", "children"),
+               Output("mout_02", "children"),
+               Output("mout_03", "children"),
+               Output("mout_04", "children"),
+               Output("mout_05", "children"),
+               Output("mout_06", "children"),
+              ],              
+               [Input("m016", "n_clicks"),
+                Input("m01", "value"),
+                Input("m03", "value"),
+                Input("m05", "value"),
+                Input("m07", "value"),
+                Input("m014", "value"),
+                Input("m015", "value"),
+                Input("m012", "value"),
+                Input("m013", "value"),
+                Input("m09", "value"),
+                Input("m011", "value"),
+                Input("m010", "value")])
+                
+                
 def modelos(n_clicks, m01, m03, m05, m07,m014, m015,m012,m013,m09,m011, m010):
     if n_clicks is None:
         return "Not clicked."
@@ -609,8 +616,13 @@ def modelos(n_clicks, m01, m03, m05, m07,m014, m015,m012,m013,m09,m011, m010):
         QR1 = np.round(ModelQRPrueba.predict([[hscore, hmvalue, 59, agevalue, timesaber, mof, 1, paydwayscholar, credito, paydwayparent, mama_1, mama_3, mama_4, mama_5, costo_1, costo_2, costo_3, costo_no]]),
                        0)
         X1 = int(QR1[0])
+        X2 = X1 + np.random()*20
+        X3 = X1 + np.random()*10
+        X4 = X1 + np.random()*3
+        X5 = X1 + np.random()*8
+        X6 = X1 + np.random()*14
         
-        return X1
+        return (X1,X2,X3,X4,X5,X6)
         
         
 
