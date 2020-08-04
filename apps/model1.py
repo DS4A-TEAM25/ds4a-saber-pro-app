@@ -602,10 +602,11 @@ def modelos(n_clicks,m01,m03,m05,m07,m015,m010):
             mof=1
         else:
             mof=0
+        hmvalue=m03
   
 
         ModelQRPrueba = joblib.load('ModelQR.pkl')
-        QR1 = np.round(ModelQRPrueba.predict([[hscore, 59, 59, 22, 6, mof, 1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0]]), 0)
+        QR1 = np.round(ModelQRPrueba.predict([[hscore, hmvalue, 59, 22, 6, mof, 1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0]]), 0)
         X1 = int(QR1[0])
 
         return X1
