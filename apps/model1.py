@@ -37,8 +37,7 @@ def haversine(lon1, lat1, lon2, lat2):
 
 
 tablacluster=pd.read_csv('DepartamentoDash.csv', sep=';' ,header=0) 
-tablacluster[["Lat", "Lon"]] = tablacluster[["Lat", "Lon"]].apply(pd.to_numeric)
-depto_tab= float(tablacluster['Departamento'])
+depto_tab= tablacluster['Departamento']
 lon_depto_tab=tablacluster['Lon']
 lat_depto_tab=tablacluster['Lat']
 
@@ -50,7 +49,7 @@ matriz = np.zeros((33,33))
 
 for i in range(tammano):
     for j in range(tammano):
-        matriz[i,j]=haversine(lon_depto_tab[i], lat_depto_tab[i], lon_depto_tab[j],lat_depto_tab[j])
+        matriz[i,j]=haversine(float(lon_depto_tab[i]), float(lat_depto_tab[i]), float(lon_depto_tab[j]),float(lat_depto_tab[j]))
 
 
 # Create Engine and connect to DB
