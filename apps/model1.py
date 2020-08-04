@@ -36,7 +36,7 @@ def haversine(lon1, lat1, lon2, lat2):
 
 
 
-tablacluster=pd.read_csv('DepartamentoDash.csv')
+tablacluster=pd.read_csv('DepartamentoDash.csv', sep=';' ,header=0) 
 depto_tab=tablacluster['Departamento']
 lon_depto_tab=tablacluster['Lon']
 lat_depto_tab=tablacluster['Lat']
