@@ -1,5 +1,7 @@
 import dash
 import dash_bootstrap_components as dbc
+import pandas as pd
+import numpy as np
 
 #Use if you want to change the style later or if you wanna make your own css
 BS = "https://stackpath.bootstrapcdn.com/bootswatch/4.5.0/simplex/bootstrap.min.css"
