@@ -578,10 +578,11 @@ layout = html.Div([
                                               Input("m07", "value"),
                                               Input("m015", "value"),
                                               Input("m014", "value"),
+                                              Input("m012", "value"),
                                               Input("m010", "value")])
 
 
-def modelos(n_clicks, m01, m03, m05, m07,m014, m015, m010):
+def modelos(n_clicks, m01, m03, m05, m07,m014, m015,m012, m010):
     if n_clicks is None:
         return "Not clicked."
     else:
@@ -593,6 +594,11 @@ def modelos(n_clicks, m01, m03, m05, m07,m014, m015, m010):
         paydwayparent = 0
         mof = 0
         credito=0
+        mama_1 = 0
+        mama_3 = 0
+        mama_4 = 0
+        mama_5 = 0
+        mama_m = m012
         credito_m= m014
         genero = m010
         if genero == 'M':
@@ -603,6 +609,7 @@ def modelos(n_clicks, m01, m03, m05, m07,m014, m015, m010):
         hscore = float(m01)
         agevalue = float(m07)
         paydway = m015
+###################################
         if paydway == 'Parents':
             paydwayparent = 1
         else:
@@ -611,18 +618,33 @@ def modelos(n_clicks, m01, m03, m05, m07,m014, m015, m010):
             else:
                 paydwayparent = 0
                 paydwayscholar = 0
+ ####################################
         if credito_m == 'YES':
             credito = 1
         else:
             credito = 0
+#########################################
+        if mama_m == '1':
+            mama_1 = 1
+        else:
+            if mama_m == '3'
+                mama_3 = 1
+            else:
+                if mama_m == '4':
+                    mama_4 = 1
+                else
+                    if mama_m == '5':
+                        mama_5 = 1
+                    else:
+                        mama_1 = 0
+                        mama_3 = 0
+                        mama_4 = 0
+                        mama_5 = 0
         
-            
 
         ModelQRPrueba = joblib.load('ModelQR.pkl')
         QR1 = np.round(ModelQRPrueba.predict([[hscore, hmvalue, 59, agevalue, 6, mof, 1, paydwayscholar, credito, paydwayparent, 0, 1, 0, 0, 0, 0, 0, 0]]),
                        0)
         X1 = int(QR1[0])
-
-        return X1
 
         return X1
