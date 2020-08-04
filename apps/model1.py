@@ -18,38 +18,7 @@ from dash.dependencies import Input, Output
 from app import app
 from math import radians, cos, sin, asin, sqrt
 
-def haversine(lon1, lat1, lon2, lat2):
-    """
-    Calculate the great circle distance between two points 
-    on the earth (specified in decimal degrees)
-    """
-    # convert decimal degrees to radians 
-    lon1, lat1, lon2, lat2 = map(radians, [lon1, lat1, lon2, lat2])
-    # haversine formula 
-    dlon = lon2 - lon1 
-    dlat = lat2 - lat1 
-    a = sin(dlat/2)**2 + cos(lat1) * cos(lat2) * sin(dlon/2)**2
-    c = 2 * asin(sqrt(a)) 
-    # Radius of earth in kilometers is 6371
-    km = 6371* c
-    return km
 
-
-
-tablacluster=pd.read_csv('DepartamentoDash.csv', sep=';' ,header=0) 
-depto_tab= tablacluster['Departamento']
-lon_depto_tab=tablacluster['Lon']
-lat_depto_tab=tablacluster['Lat']
-
-
-
-
-tammano=len(lat_depto_tab)
-matriz = np.zeros((33,33))
-
-for i in range(tammano):
-    for j in range(tammano):
-        matriz[i,j]=haversine(float(lon_depto_tab[i]), float(lat_depto_tab[i]), float(lon_depto_tab[j]),float(lat_depto_tab[j]))
 
 
 # Create Engine and connect to DB
