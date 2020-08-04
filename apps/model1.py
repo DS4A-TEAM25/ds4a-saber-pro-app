@@ -586,7 +586,7 @@ layout = html.Div([
                                               Input("m010", "value")])
 
 
-def modelos(n_clicks,m01,m03,m05,m010):
+def modelos(n_clicks,m01,m03,m05,m07,m015,m010):
     if n_clicks is None:
         return "Not clicked."
     else:
