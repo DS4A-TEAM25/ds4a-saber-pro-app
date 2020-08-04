@@ -586,15 +586,6 @@ layout = html.Div([
                                               Input("m010", "value")])
 
 
-@app.callback(Output("mout_01", "children"), [Input("m016", "n_clicks"),
-                                              Input("m01", "value"),
-                                              Input("m03", "value"),
-                                              Input("m05", "value"),
-                                              Input("m07", "value"),
-                                              Input("m015", "value"),
-                                              Input("m010", "value")])
-
-
 def modelos(n_clicks,m01,m03,m05,m07,m015,m010):
     if n_clicks is None:
         return "Not clicked."
