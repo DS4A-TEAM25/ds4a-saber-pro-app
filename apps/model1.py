@@ -41,7 +41,7 @@ posenglish_form = dbc.Form(
     [
         dbc.FormGroup(
             [
-                dbc.Label("posenglish", className="mr-2"),
+                dbc.Label("Position Saber 11", className="mr-2"),
                 dbc.Input(id="m01", type="number", placeholder="posenglish", min=0, max=1000, step=0.01),
             ],
             className="mr-3",
@@ -69,7 +69,7 @@ scoreMathHighSchool_form = dbc.Form(
     [
 dbc.FormGroup(
     [
-        dbc.Label("ScoreMathHighSchool", className="mr-2"),
+        dbc.Label("Score Math Saber 11", className="mr-2"),
         dbc.Input(id="m03", type="number", placeholder="ScoreMathHighSchool", min=0, max=150, step=0.01),
     ],
     className="mr-3",
@@ -95,7 +95,7 @@ ScoreEnglishHighSchool_form = dbc.Form(
     [
         dbc.FormGroup(
             [
-                dbc.Label("ScoreEnglishHighSchool", className="mr-2"),
+                dbc.Label("Score English Saber 11", className="mr-2"),
                 dbc.Input(id="m05", type="number", placeholder="ScoreEnglishHighSchool", min=0, max=150, step=0.01),
             ],
             className="mr-3",
@@ -127,7 +127,7 @@ age_form = dbc.Form(
     [
         dbc.FormGroup(
             [
-                dbc.Label("age", className="mr-2"),
+                dbc.Label("Age", className="mr-2"),
                 dbc.Input(id="m07", type="number", placeholder="age", min=0, max=60, step=1),
             ],
             className="mr-3",
@@ -216,7 +216,7 @@ mother_level_form = dbc.Form(
     [
         dbc.FormGroup(
             [
-                dbc.Label("MotherEducation", className="mr-2"),
+                dbc.Label("Mother education", className="mr-2"),
                 dbc.Select(
                     id="m012",
                     options=[
@@ -272,7 +272,7 @@ credit_form = dbc.Form(
     [
         dbc.FormGroup(
             [
-                dbc.Label("VDid you use a credit to pay university?", className="mr-2"),
+                dbc.Label("Did you use a credit to pay university?", className="mr-2"),
                 dbc.Select(
                     id="m014", 
                     options=[
@@ -379,6 +379,7 @@ card_content_1 = [
                 "Score expected for you:",
                 className="card-text",
             ),
+            html.H3(id="mout_01", style={"vertical-align": "middle"}),
 
         ]
     ),
@@ -392,7 +393,7 @@ card_content_2 = [
                 "Score expected for you:",
                 className="card-text",
             ),
-
+            html.H3(id="mout_01", style={"vertical-align": "middle"}),
         ]
     ),
 ]
@@ -405,6 +406,7 @@ card_content_3 = [
                 "Score expected for you:",
                 className="card-text",
             ),
+            html.H3(id="mout_01", style={"vertical-align": "middle"}),
 
         ]
     ),
@@ -418,6 +420,7 @@ card_content_4 = [
                 "Score expected for you:",
                 className="card-text",
             ),
+            html.H3(id="mout_01", style={"vertical-align": "middle"}),
         ]
     ),
 ]
@@ -431,6 +434,7 @@ card_content_5 = [
                 "Score expected for you:",
                 className="card-text",
             ),
+            html.H3(id="mout_01", style={"vertical-align": "middle"}),
         ]
     ),
 ]
@@ -443,6 +447,7 @@ card_content_6 = [
                 "Score expected for you:",
                 className="card-text",
             ),
+            html.H3(id="mout_01", style={"vertical-align": "middle"}),
         ]
     ),
 ]
