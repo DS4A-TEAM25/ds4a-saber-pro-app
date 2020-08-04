@@ -623,8 +623,5 @@ def modelos(n_clicks,m01,m03,m05,m010):
 
         ModelQRPrueba = joblib.load('ModelQR.pkl')
         QR1 = np.round(ModelQRPrueba.predict([[hscore, hmvalue, 59, agevalue, 6, mof, 1, paydwayscholar, 1, paydwayparent, 0, 1, 0, 0, 0, 0, 0, 0]]), 0)
-        QR1
         X1 = int(QR1[0])
-        X1
-
-        return X1
+    return X1
