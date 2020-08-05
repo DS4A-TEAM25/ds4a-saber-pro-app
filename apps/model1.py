@@ -520,6 +520,7 @@ layout = html.Div([
 
 @app.callback(Output("mout_01", "children"), [Input("m016", "n_clicks"),
                                                Input("m01", "value"),
+                                               Input("m02", "value"),
                                                Input("m03", "value"),
                                                Input("m05", "value"),
                                                Input("m07", "value"),
@@ -529,15 +530,59 @@ layout = html.Div([
                                                Input("m013", "value"),
                                                Input("m09", "value"),
                                                Input("m011", "value"),
-                                               Input("m010", "value")])
+                                               Input("m010", "value"),
+                                               Input("m06", "value"),
+                                               Input("m08", "value")])
 
                 
                 
-def modelos(n_clicks, m01, m03, m05, m07,m014, m015,m012,m013,m09,m011, m010):
+def modelos1(n_clicks, m01,m02, m03, m05, m07,m014, m015,m012,m013,m09,m011, m010,m06,m08):
     if n_clicks is None:
         return ""
     else:
 
+        #############################################################################################################################################
+        scrores_3years = pd.read_sql("select CitizenScore3yearsProgram, EnglishScore3yearsProgram,ReadingScore3yearsProgram,QuantitativeReasoningScore3yearsProgram,ComunicationScore3yearsProgram from  score_programas where Program='"+m02+"'", engine.connect())
+        CitizenScore3yearsProgram=scrores_3years.values.tolist()[0][0]
+        EnglishScore3yearsProgram=scrores_3years.values.tolist()[0][1]
+        ReadingScore3yearsProgram=scrores_3years.values.tolist()[0][2]
+        QuantitativeReasoningScore3yearsProgram=scrores_3years.values.tolist()[0][3]
+        ComunicationScore3yearsProgram=scrores_3years.values.tolist()[0][4]
+                                     
+                                    
+        #############################################################################################################################################
+        
+        dept1 = pd.read_sql("SELECT Lat,Lon FROM departamento_detallado where Departamento='"+m06+"'", engine.connect())
+        dept2 = pd.read_sql("SELECT Lat,Lon FROM departamento_detallado where Departamento='"+m08+"'", engine.connect())
+        lon1=dept1.values.tolist()[0][0]
+        lat1=dept1.values.tolist()[0][1]
+        lon2=dept2.values.tolist()[0][0]
+        lat2=dept2.values.tolist()[0][1]
+        lon1, lat1, lon2, lat2 = map(radians, [lon1, lat1, lon2, lat2])
+        # haversine formula 
+        dlon = lon2 - lon1 
+        dlat = lat2 - lat1 
+        a = sin(dlat/2)**2 + cos(lat1) * cos(lat2) * sin(dlon/2)**2
+        c = 2 * asin(sqrt(a)) 
+        # Radius of earth in kilometers is 6371
+        km = 6371* c
+        #############################################################################################################################################
+        cluster_1=0
+        cluster_2=0
+        cluster_3=0
+        cluster_4=0
+        cluster = pd.read_sql("SELECT clusterdepartamentoescalado FROM departamento_detallado WHERE departamento='"+m08+"'", engine.connect())
+        cluster_m = cluster.values.tolist()[0][0]
+        if cluster_m == 1:
+            cluster_1 = 1
+        elif cluster_m == 2:
+            cluster_2 = 1
+        elif cluster_m == 3:
+            cluster_3 = 1            
+        elif cluster_m == 4:
+            cluster_4 = 1           
+   
+        ###############################################################################################################################################
         hscore = 100
         hmvalue = 100
         agevalue = 30
@@ -622,7 +667,7 @@ def modelos(n_clicks, m01, m03, m05, m07,m014, m015,m012,m013,m09,m011, m010):
 
 
         ModelQRPrueba = joblib.load('ModelQR.pkl')
-        QR1 = np.round(ModelQRPrueba.predict([[hscore, hmvalue, 59, agevalue, timesaber, mof, 1, paydwayscholar, credito, paydwayparent, mama_1, mama_3, mama_4, mama_5, costo_1, costo_2, costo_3, costo_no]]),
+        QR1 = np.round(ModelQRPrueba.predict([[hscore, hmvalue, QuantitativeReasoningScore3yearsProgram, agevalue, timesaber, mof, km, paydwayscholar, credito, paydwayparent, mama_1, mama_3, mama_4, mama_5, costo_1, costo_2, costo_3, costo_no]]),
                        0)
         X1 = int(QR1[0])
         
@@ -693,9 +738,7 @@ def modelos2(n_clicks, m01,m02, m03, m05, m07,m014, m015,m012,m013,m09,m011, m01
             cluster_3 = 1            
         elif cluster_m == 4:
             cluster_4 = 1           
-        elif cluster_m == 4:
-            cluster_4 = 1        
-            
+
         ###############################################################################################################################################
         hscore = 100
         hmvalue = 100
@@ -810,354 +853,7 @@ def modelos2(n_clicks, m01,m02, m03, m05, m07,m014, m015,m012,m013,m09,m011, m01
  ##########################################################################################################
 @app.callback(Output("mout_03", "children"), [Input("m016", "n_clicks"),
                                                Input("m01", "value"),
-                                               Input("m03", "value"),
-                                               Input("m05", "value"),
-                                               Input("m07", "value"),
-                                               Input("m014", "value"),
-                                               Input("m015", "value"),
-                                               Input("m012", "value"),
-                                               Input("m013", "value"),
-                                               Input("m09", "value"),
-                                               Input("m011", "value"),
-                                               Input("m010", "value")])
-
-                
-                
-def modelos3(n_clicks, m01, m03, m05, m07,m014, m015,m012,m013,m09,m011, m010):
-    if n_clicks is None:
-        return ""
-    else:
-
-        hscore = 100
-        hmvalue = 100
-        agevalue = 30
-        saber11 = 2014
-        saberpro = 2019
-        paydwayscholar = 0
-        paydwayparent = 0
-        mof = 0
-        credito=0
-        mama_1 = 0
-        mama_3 = 0
-        mama_4 = 0
-        mama_5 = 0
-        mama_m = m012
-        credito_m= m014
-        costo = m013
-        costo_1 = 0
-        costo_2 = 0
-        costo_3 = 0
-        costo_no = 0
-        genero = m010
-        if genero == 'M':
-            mof = 1
-        else:
-            mof = 0
-        hmvalue = float(m03)
-        hscore = float(m01)
-        agevalue = float(m07)
-        saber11 = float(m09)
-        saberpro = float(m011)
-        timesaber = saberpro -saber11
-        
-        paydway = m015
-###################################
-        if paydway == 'Parents':
-            paydwayparent = 1
-        else:
-            if paydway == 'Scholarship':
-                paydwayscholar = 1
-            else:
-                paydwayparent = 0
-                paydwayscholar = 0
- ####################################
-        if credito_m == 'YES':
-            credito = 1
-        else:
-            credito = 0
-#########################################
-        if mama_m == '1':
-            mama_1 = 1
-        else:
-            if mama_m == '3':
-                mama_3 = 1
-            else:
-                if mama_m == '4':
-                    mama_4 = 1
-                else:
-                    if mama_m == '5':
-                        mama_5 = 1
-                    else:
-                        mama_1 = 0
-                        mama_3 = 0
-                        mama_4 = 0
-                        mama_5 = 0
-#########################################
-        if costo == '1':
-            costo_1 = 1
-        else:
-            if costo == '2':
-                costo_2 = 1
-            else:
-                if costo == '3':
-                    costo_3 = 1
-                else:
-                    if costo == '5':
-                        costo_no = 1
-                    else:
-                        costo_1 = 0
-                        costo_2 = 0
-                        costo_3 = 0
-                        costo_no = 0
-
-
-        ModelQRPrueba = joblib.load('ModelQR.pkl')
-        QR1 = np.round(ModelQRPrueba.predict([[hscore, hmvalue, 59, agevalue, timesaber, mof, 1, paydwayscholar, credito, paydwayparent, mama_1, mama_3, mama_4, mama_5, costo_1, costo_2, costo_3, costo_no]]),
-                       0)
-        X1 = int(QR1[0])
-        X2 = X1 + 12
-        X3 = X1 + 8
-        X4 = X1 + 4
-        X5 = X1 + 5
-        X6 = X1 + 15
-        
-        return X3
-
-     ##########################################################################################################
-@app.callback(Output("mout_04", "children"), [Input("m016", "n_clicks"),
-                                               Input("m01", "value"),
-                                               Input("m03", "value"),
-                                               Input("m05", "value"),
-                                               Input("m07", "value"),
-                                               Input("m014", "value"),
-                                               Input("m015", "value"),
-                                               Input("m012", "value"),
-                                               Input("m013", "value"),
-                                               Input("m09", "value"),
-                                               Input("m011", "value"),
-                                               Input("m010", "value")])
-
-                
-                
-def modelos4(n_clicks, m01, m03, m05, m07,m014, m015,m012,m013,m09,m011, m010):
-    if n_clicks is None:
-        return ""
-    else:
-
-        hscore = 100
-        hmvalue = 100
-        agevalue = 30
-        saber11 = 2014
-        saberpro = 2019
-        paydwayscholar = 0
-        paydwayparent = 0
-        mof = 0
-        credito=0
-        mama_1 = 0
-        mama_3 = 0
-        mama_4 = 0
-        mama_5 = 0
-        mama_m = m012
-        credito_m= m014
-        costo = m013
-        costo_1 = 0
-        costo_2 = 0
-        costo_3 = 0
-        costo_no = 0
-        genero = m010
-        if genero == 'M':
-            mof = 1
-        else:
-            mof = 0
-        hmvalue = float(m03)
-        hscore = float(m01)
-        agevalue = float(m07)
-        saber11 = float(m09)
-        saberpro = float(m011)
-        timesaber = saberpro -saber11
-        
-        paydway = m015
-###################################
-        if paydway == 'Parents':
-            paydwayparent = 1
-        else:
-            if paydway == 'Scholarship':
-                paydwayscholar = 1
-            else:
-                paydwayparent = 0
-                paydwayscholar = 0
- ####################################
-        if credito_m == 'YES':
-            credito = 1
-        else:
-            credito = 0
-#########################################
-        if mama_m == '1':
-            mama_1 = 1
-        else:
-            if mama_m == '3':
-                mama_3 = 1
-            else:
-                if mama_m == '4':
-                    mama_4 = 1
-                else:
-                    if mama_m == '5':
-                        mama_5 = 1
-                    else:
-                        mama_1 = 0
-                        mama_3 = 0
-                        mama_4 = 0
-                        mama_5 = 0
-#########################################
-        if costo == '1':
-            costo_1 = 1
-        else:
-            if costo == '2':
-                costo_2 = 1
-            else:
-                if costo == '3':
-                    costo_3 = 1
-                else:
-                    if costo == '5':
-                        costo_no = 1
-                    else:
-                        costo_1 = 0
-                        costo_2 = 0
-                        costo_3 = 0
-                        costo_no = 0
-
-
-        ModelQRPrueba = joblib.load('ModelQR.pkl')
-        QR1 = np.round(ModelQRPrueba.predict([[hscore, hmvalue, 59, agevalue, timesaber, mof, 1, paydwayscholar, credito, paydwayparent, mama_1, mama_3, mama_4, mama_5, costo_1, costo_2, costo_3, costo_no]]),
-                       0)
-        X1 = int(QR1[0])
-        X2 = X1 + 12
-        X3 = X1 + 8
-        X4 = X1 + 4
-        X5 = X1 + 5
-        X6 = X1 + 15
-        
-        return X4
-
-     ##########################################################################################################
-@app.callback(Output("mout_05", "children"), [Input("m016", "n_clicks"),
-                                               Input("m01", "value"),
-                                               Input("m03", "value"),
-                                               Input("m05", "value"),
-                                               Input("m07", "value"),
-                                               Input("m014", "value"),
-                                               Input("m015", "value"),
-                                               Input("m012", "value"),
-                                               Input("m013", "value"),
-                                               Input("m09", "value"),
-                                               Input("m011", "value"),
-                                               Input("m010", "value")])
-
-                
-                
-def modelos5(n_clicks, m01, m03, m05, m07,m014, m015,m012,m013,m09,m011, m010):
-    if n_clicks is None:
-        return ""
-    else:
-
-        hscore = 100
-        hmvalue = 100
-        agevalue = 30
-        saber11 = 2014
-        saberpro = 2019
-        paydwayscholar = 0
-        paydwayparent = 0
-        mof = 0
-        credito=0
-        mama_1 = 0
-        mama_3 = 0
-        mama_4 = 0
-        mama_5 = 0
-        mama_m = m012
-        credito_m= m014
-        costo = m013
-        costo_1 = 0
-        costo_2 = 0
-        costo_3 = 0
-        costo_no = 0
-        genero = m010
-        if genero == 'M':
-            mof = 1
-        else:
-            mof = 0
-        hmvalue = float(m03)
-        hscore = float(m01)
-        agevalue = float(m07)
-        saber11 = float(m09)
-        saberpro = float(m011)
-        timesaber = saberpro -saber11
-        
-        paydway = m015
-###################################
-        if paydway == 'Parents':
-            paydwayparent = 1
-        else:
-            if paydway == 'Scholarship':
-                paydwayscholar = 1
-            else:
-                paydwayparent = 0
-                paydwayscholar = 0
- ####################################
-        if credito_m == 'YES':
-            credito = 1
-        else:
-            credito = 0
-#########################################
-        if mama_m == '1':
-            mama_1 = 1
-        else:
-            if mama_m == '3':
-                mama_3 = 1
-            else:
-                if mama_m == '4':
-                    mama_4 = 1
-                else:
-                    if mama_m == '5':
-                        mama_5 = 1
-                    else:
-                        mama_1 = 0
-                        mama_3 = 0
-                        mama_4 = 0
-                        mama_5 = 0
-#########################################
-        if costo == '1':
-            costo_1 = 1
-        else:
-            if costo == '2':
-                costo_2 = 1
-            else:
-                if costo == '3':
-                    costo_3 = 1
-                else:
-                    if costo == '5':
-                        costo_no = 1
-                    else:
-                        costo_1 = 0
-                        costo_2 = 0
-                        costo_3 = 0
-                        costo_no = 0
-
-
-        ModelQRPrueba = joblib.load('ModelQR.pkl')
-        QR1 = np.round(ModelQRPrueba.predict([[hscore, hmvalue, 59, agevalue, timesaber, mof, 1, paydwayscholar, credito, paydwayparent, mama_1, mama_3, mama_4, mama_5, costo_1, costo_2, costo_3, costo_no]]),
-                       0)
-        X1 = int(QR1[0])
-        X2 = X1 + 12
-        X3 = X1 + 8
-        X4 = X1 + 4
-        X5 = X1 + 5
-        X6 = X1 + 15
-        
-        return X5
-
-     ##########################################################################################################
-@app.callback(Output("mout_06", "children"), [Input("m016", "n_clicks"),
-                                               Input("m01", "value"),
+                                               Input("m02", "value"),
                                                Input("m03", "value"),
                                                Input("m05", "value"),
                                                Input("m07", "value"),
@@ -1173,11 +869,229 @@ def modelos5(n_clicks, m01, m03, m05, m07,m014, m015,m012,m013,m09,m011, m010):
 
                 
                 
-def modelos6(n_clicks, m01, m03, m05, m07,m014, m015,m012,m013,m09,m011, m010,m06,m08):
+def modelos3(n_clicks, m01,m02, m03, m05, m07,m014, m015,m012,m013,m09,m011, m010,m06,m08):
     if n_clicks is None:
         return ""
     else:
 
+        #############################################################################################################################################
+        scrores_3years = pd.read_sql("select CitizenScore3yearsProgram, EnglishScore3yearsProgram,ReadingScore3yearsProgram,QuantitativeReasoningScore3yearsProgram,ComunicationScore3yearsProgram from  score_programas where Program='"+m02+"'", engine.connect())
+        CitizenScore3yearsProgram=scrores_3years.values.tolist()[0][0]
+        EnglishScore3yearsProgram=scrores_3years.values.tolist()[0][1]
+        ReadingScore3yearsProgram=scrores_3years.values.tolist()[0][2]
+        QuantitativeReasoningScore3yearsProgram=scrores_3years.values.tolist()[0][3]
+        ComunicationScore3yearsProgram=scrores_3years.values.tolist()[0][4]
+                                     
+                                    
+        #############################################################################################################################################
+        
+        dept1 = pd.read_sql("SELECT Lat,Lon FROM departamento_detallado where Departamento='"+m06+"'", engine.connect())
+        dept2 = pd.read_sql("SELECT Lat,Lon FROM departamento_detallado where Departamento='"+m08+"'", engine.connect())
+        lon1=dept1.values.tolist()[0][0]
+        lat1=dept1.values.tolist()[0][1]
+        lon2=dept2.values.tolist()[0][0]
+        lat2=dept2.values.tolist()[0][1]
+        lon1, lat1, lon2, lat2 = map(radians, [lon1, lat1, lon2, lat2])
+        # haversine formula 
+        dlon = lon2 - lon1 
+        dlat = lat2 - lat1 
+        a = sin(dlat/2)**2 + cos(lat1) * cos(lat2) * sin(dlon/2)**2
+        c = 2 * asin(sqrt(a)) 
+        # Radius of earth in kilometers is 6371
+        km = 6371* c
+        #############################################################################################################################################
+        cluster_1=0
+        cluster_2=0
+        cluster_3=0
+        cluster_4=0
+        cluster = pd.read_sql("SELECT clusterdepartamentoescalado FROM departamento_detallado WHERE departamento='"+m08+"'", engine.connect())
+        cluster_m = cluster.values.tolist()[0][0]
+        if cluster_m == 1:
+            cluster_1 = 1
+        elif cluster_m == 2:
+            cluster_2 = 1
+        elif cluster_m == 3:
+            cluster_3 = 1            
+        elif cluster_m == 4:
+            cluster_4 = 1           
+
+        ###############################################################################################################################################
+        hscore = 100
+        hmvalue = 100
+        hinglesvalue = 100
+        hinglesvalue = m05
+        agevalue = 30
+        saber11 = 2014
+        saberpro = 2019
+        paydwayscholar = 0
+        paydwayparent = 0
+        mof = 0
+        credito=0
+        mama_1 = 0
+        mama_3 = 0
+        mama_4 = 0
+        mama_5 = 0
+        mama_m = m012
+        credito_m= m014
+        costo = m013
+        costo_1 = 0
+        costo_2 = 0
+        costo_3 = 0
+        costo_no = 0
+        genero = m010
+        if genero == 'M':
+            mof = 1
+        else:
+            mof = 0
+        hmvalue = float(m03)
+        hscore = float(m01)
+        agevalue = float(m07)
+        saber11 = float(m09)
+        saberpro = float(m011)
+        timesaber = saberpro -saber11
+        
+        paydway = m015
+###################################
+        if paydway == 'Parents':
+            paydwayparent = 1
+        else:
+            if paydway == 'Scholarship':
+                paydwayscholar = 1
+            else:
+                paydwayparent = 0
+                paydwayscholar = 0
+ ####################################
+        if credito_m == 'YES':
+            credito = 1
+        else:
+            credito = 0
+#########################################
+        if mama_m == '1':
+            mama_1 = 1
+        else:
+            if mama_m == '3':
+                mama_3 = 1
+            else:
+                if mama_m == '4':
+                    mama_4 = 1
+                else:
+                    if mama_m == '5':
+                        mama_5 = 1
+                    else:
+                        mama_1 = 0
+                        mama_3 = 0
+                        mama_4 = 0
+                        mama_5 = 0
+#########################################
+        if costo == '1':
+            costo_1 = 1
+        else:
+            if costo == '2':
+                costo_2 = 1
+            else:
+                if costo == '3':
+                    costo_3 = 1
+                else:
+                    if costo == '5':
+                        costo_no = 1
+                    else:
+                        costo_1 = 0
+                        costo_2 = 0
+                        costo_3 = 0
+                        costo_no = 0
+
+
+        ModelEN = joblib.load('ModelEN.pkl')
+        EN=np.round(ModelEN.predict([[  hscore,
+                                        hinglesvalue,
+                                        EnglishScore3yearsProgram,
+                                        agevalue,
+                                        timesaber,
+                                        mof,
+                                        km,
+                                        paydwayscholar,
+                                        credito,
+                                        paydwayparent,
+                                        mama_1,
+                                        mama_3,
+                                        mama_4,
+                                        mama_5,
+                                        cluster_1,
+                                        cluster_2,
+                                        cluster_3,
+                                        cluster_4
+                                     ]]),0)
+        ENGLISH=int(EN[0])
+        X3 = ENGLISH
+        return X3
+
+     ##########################################################################################################
+@app.callback(Output("mout_04", "children"), [Input("m016", "n_clicks"),
+                                               Input("m01", "value"),
+                                               Input("m02", "value"),
+                                               Input("m03", "value"),
+                                               Input("m05", "value"),
+                                               Input("m07", "value"),
+                                               Input("m014", "value"),
+                                               Input("m015", "value"),
+                                               Input("m012", "value"),
+                                               Input("m013", "value"),
+                                               Input("m09", "value"),
+                                               Input("m011", "value"),
+                                               Input("m010", "value"),
+                                               Input("m06", "value"),
+                                               Input("m08", "value")])
+
+                
+                
+def modelos4(n_clicks, m01,m02, m03, m05, m07,m014, m015,m012,m013,m09,m011, m010,m06,m08):
+    if n_clicks is None:
+        return ""
+    else:
+
+        #############################################################################################################################################
+        scrores_3years = pd.read_sql("select CitizenScore3yearsProgram, EnglishScore3yearsProgram,ReadingScore3yearsProgram,QuantitativeReasoningScore3yearsProgram,ComunicationScore3yearsProgram from  score_programas where Program='"+m02+"'", engine.connect())
+        CitizenScore3yearsProgram=scrores_3years.values.tolist()[0][0]
+        EnglishScore3yearsProgram=scrores_3years.values.tolist()[0][1]
+        ReadingScore3yearsProgram=scrores_3years.values.tolist()[0][2]
+        QuantitativeReasoningScore3yearsProgram=scrores_3years.values.tolist()[0][3]
+        ComunicationScore3yearsProgram=scrores_3years.values.tolist()[0][4]
+                                     
+                                    
+        #############################################################################################################################################
+        
+        dept1 = pd.read_sql("SELECT Lat,Lon FROM departamento_detallado where Departamento='"+m06+"'", engine.connect())
+        dept2 = pd.read_sql("SELECT Lat,Lon FROM departamento_detallado where Departamento='"+m08+"'", engine.connect())
+        lon1=dept1.values.tolist()[0][0]
+        lat1=dept1.values.tolist()[0][1]
+        lon2=dept2.values.tolist()[0][0]
+        lat2=dept2.values.tolist()[0][1]
+        lon1, lat1, lon2, lat2 = map(radians, [lon1, lat1, lon2, lat2])
+        # haversine formula 
+        dlon = lon2 - lon1 
+        dlat = lat2 - lat1 
+        a = sin(dlat/2)**2 + cos(lat1) * cos(lat2) * sin(dlon/2)**2
+        c = 2 * asin(sqrt(a)) 
+        # Radius of earth in kilometers is 6371
+        km = 6371* c
+        #############################################################################################################################################
+        cluster_1=0
+        cluster_2=0
+        cluster_3=0
+        cluster_4=0
+        cluster = pd.read_sql("SELECT clusterdepartamentoescalado FROM departamento_detallado WHERE departamento='"+m08+"'", engine.connect())
+        cluster_m = cluster.values.tolist()[0][0]
+        if cluster_m == 1:
+            cluster_1 = 1
+        elif cluster_m == 2:
+            cluster_2 = 1
+        elif cluster_m == 3:
+            cluster_3 = 1            
+        elif cluster_m == 4:
+            cluster_4 = 1           
+    
+            
+        ###############################################################################################################################################
         hscore = 100
         hmvalue = 100
         agevalue = 30
@@ -1245,13 +1159,262 @@ def modelos6(n_clicks, m01, m03, m05, m07,m014, m015,m012,m013,m09,m011, m010,m0
 #########################################
         if costo == '1':
             costo_1 = 1
-        elif costo == '2':
-            costo_2 = 1
-        elif costo == '3':
-            costo_3 = 1
-        elif costo == '5':
-            costo_no = 1                       
-                        
+        else:
+            if costo == '2':
+                costo_2 = 1
+            else:
+                if costo == '3':
+                    costo_3 = 1
+                else:
+                    if costo == '5':
+                        costo_no = 1
+                    else:
+                        costo_1 = 0
+                        costo_2 = 0
+                        costo_3 = 0
+                        costo_no = 0
+
+
+        ModelCOMMUNICATION = joblib.load('ModelCOMMUNICATION.pkl')
+        COMM=np.round(ModelCOMMUNICATION.predict([[hscore,
+                                                    hmvalue,
+                                                    ComunicationScore3yearsProgram,
+                                                    agevalue,
+                                                    timesaber,
+                                                    mof,
+                                                    km,
+                                                    paydwayscholar,
+                                                    credito,
+                                                    paydwayparent,
+                                                    mama_1,
+                                                    mama_3,
+                                                    mama_4,
+                                                    mama_5,
+                                                    cluster_1,
+                                                    cluster_2,
+                                                    cluster_3,
+                                                    cluster_4
+                                                  ]]),0)
+        COMMUNICATION=int(COMM[0])
+
+        X4 = COMMUNICATION
+
+        return X4
+
+     ##########################################################################################################
+@app.callback(Output("mout_05", "children"), [Input("m016", "n_clicks"),
+                                               Input("m01", "value"),
+                                               Input("m02", "value"),
+                                               Input("m03", "value"),
+                                               Input("m05", "value"),
+                                               Input("m07", "value"),
+                                               Input("m014", "value"),
+                                               Input("m015", "value"),
+                                               Input("m012", "value"),
+                                               Input("m013", "value"),
+                                               Input("m09", "value"),
+                                               Input("m011", "value"),
+                                               Input("m010", "value"),
+                                               Input("m06", "value"),
+                                               Input("m08", "value")])
+
+                
+                
+def modelos5(n_clicks, m01,m02, m03, m05, m07,m014, m015,m012,m013,m09,m011, m010,m06,m08):
+    if n_clicks is None:
+        return ""
+    else:
+
+         #############################################################################################################################################
+        scrores_3years = pd.read_sql("select CitizenScore3yearsProgram, EnglishScore3yearsProgram,ReadingScore3yearsProgram,QuantitativeReasoningScore3yearsProgram,ComunicationScore3yearsProgram from  score_programas where Program='"+m02+"'", engine.connect())
+        CitizenScore3yearsProgram=scrores_3years.values.tolist()[0][0]
+        EnglishScore3yearsProgram=scrores_3years.values.tolist()[0][1]
+        ReadingScore3yearsProgram=scrores_3years.values.tolist()[0][2]
+        QuantitativeReasoningScore3yearsProgram=scrores_3years.values.tolist()[0][3]
+        ComunicationScore3yearsProgram=scrores_3years.values.tolist()[0][4]
+                                     
+                                    
+        #############################################################################################################################################
+        
+        dept1 = pd.read_sql("SELECT Lat,Lon FROM departamento_detallado where Departamento='"+m06+"'", engine.connect())
+        dept2 = pd.read_sql("SELECT Lat,Lon FROM departamento_detallado where Departamento='"+m08+"'", engine.connect())
+        lon1=dept1.values.tolist()[0][0]
+        lat1=dept1.values.tolist()[0][1]
+        lon2=dept2.values.tolist()[0][0]
+        lat2=dept2.values.tolist()[0][1]
+        lon1, lat1, lon2, lat2 = map(radians, [lon1, lat1, lon2, lat2])
+        # haversine formula 
+        dlon = lon2 - lon1 
+        dlat = lat2 - lat1 
+        a = sin(dlat/2)**2 + cos(lat1) * cos(lat2) * sin(dlon/2)**2
+        c = 2 * asin(sqrt(a)) 
+        # Radius of earth in kilometers is 6371
+        km = 6371* c
+        #############################################################################################################################################
+        cluster_1=0
+        cluster_2=0
+        cluster_3=0
+        cluster_4=0
+        cluster = pd.read_sql("SELECT clusterdepartamentoescalado FROM departamento_detallado WHERE departamento='"+m08+"'", engine.connect())
+        cluster_m = cluster.values.tolist()[0][0]
+        if cluster_m == 1:
+            cluster_1 = 1
+        elif cluster_m == 2:
+            cluster_2 = 1
+        elif cluster_m == 3:
+            cluster_3 = 1            
+        elif cluster_m == 4:
+            cluster_4 = 1           
+      
+            
+        ###############################################################################################################################################
+        hscore = 100
+        hmvalue = 100
+        agevalue = 30
+        saber11 = 2014
+        saberpro = 2019
+        paydwayscholar = 0
+        paydwayparent = 0
+        mof = 0
+        credito=0
+        mama_1 = 0
+        mama_3 = 0
+        mama_4 = 0
+        mama_5 = 0
+        mama_m = m012
+        credito_m= m014
+        costo = m013
+        costo_1 = 0
+        costo_2 = 0
+        costo_3 = 0
+        costo_no = 0
+        genero = m010
+        if genero == 'M':
+            mof = 1
+        else:
+            mof = 0
+        hmvalue = float(m03)
+        hscore = float(m01)
+        agevalue = float(m07)
+        saber11 = float(m09)
+        saberpro = float(m011)
+        timesaber = saberpro -saber11
+        
+        paydway = m015
+###################################
+        if paydway == 'Parents':
+            paydwayparent = 1
+        else:
+            if paydway == 'Scholarship':
+                paydwayscholar = 1
+            else:
+                paydwayparent = 0
+                paydwayscholar = 0
+ ####################################
+        if credito_m == 'YES':
+            credito = 1
+        else:
+            credito = 0
+#########################################
+        if mama_m == '1':
+            mama_1 = 1
+        else:
+            if mama_m == '3':
+                mama_3 = 1
+            else:
+                if mama_m == '4':
+                    mama_4 = 1
+                else:
+                    if mama_m == '5':
+                        mama_5 = 1
+                    else:
+                        mama_1 = 0
+                        mama_3 = 0
+                        mama_4 = 0
+                        mama_5 = 0
+#########################################
+        if costo == '1':
+            costo_1 = 1
+        else:
+            if costo == '2':
+                costo_2 = 1
+            else:
+                if costo == '3':
+                    costo_3 = 1
+                else:
+                    if costo == '5':
+                        costo_no = 1
+                    else:
+                        costo_1 = 0
+                        costo_2 = 0
+                        costo_3 = 0
+                        costo_no = 0
+
+
+        ModelGLOBAL = joblib.load('ModelGLOBAL.pkl')
+        GLOBALSCORE=np.round(ModelGLOBAL.predict([[
+                                                        hscore,
+                                                        hmvalue,
+                                                        CitizenScore3yearsProgram,
+                                                        agevalue,
+                                                        timesaber,
+                                                        mof,
+                                                        km,
+                                                        paydwayscholar,
+                                                        credito,
+                                                        paydwayparent,
+                                                        mama_1,
+                                                        mama_3,
+                                                        mama_4,
+                                                        mama_5,
+                                                        cluster_1,
+                                                        cluster_2,
+                                                        cluster_3,
+                                                        cluster_4,
+                                                        costo_1,
+                                                        costo_2,
+                                                        costo_3,
+                                                        costo_no
+                                                  ]]),0)
+        GLOBAL=int(GLOBALSCORE[0])
+        X5 = GLOBAL
+        return X5
+
+     ##########################################################################################################
+@app.callback(Output("mout_06", "children"), [Input("m016", "n_clicks"),
+                                               Input("m01", "value"),
+                                               Input("m02", "value"),
+                                               Input("m03", "value"),
+                                               Input("m05", "value"),
+                                               Input("m07", "value"),
+                                               Input("m014", "value"),
+                                               Input("m015", "value"),
+                                               Input("m012", "value"),
+                                               Input("m013", "value"),
+                                               Input("m09", "value"),
+                                               Input("m011", "value"),
+                                               Input("m010", "value"),
+                                               Input("m06", "value"),
+                                               Input("m08", "value")])
+
+                
+                
+def modelos6(n_clicks, m01,m02, m03, m05, m07,m014, m015,m012,m013,m09,m011, m010,m06,m08):
+    if n_clicks is None:
+        return ""
+    else:
+
+        #############################################################################################################################################
+        scrores_3years = pd.read_sql("select CitizenScore3yearsProgram, EnglishScore3yearsProgram,ReadingScore3yearsProgram,QuantitativeReasoningScore3yearsProgram,ComunicationScore3yearsProgram from  score_programas where Program='"+m02+"'", engine.connect())
+        CitizenScore3yearsProgram=scrores_3years.values.tolist()[0][0]
+        EnglishScore3yearsProgram=scrores_3years.values.tolist()[0][1]
+        ReadingScore3yearsProgram=scrores_3years.values.tolist()[0][2]
+        QuantitativeReasoningScore3yearsProgram=scrores_3years.values.tolist()[0][3]
+        ComunicationScore3yearsProgram=scrores_3years.values.tolist()[0][4]
+                                     
+                                    
+        #############################################################################################################################################
+        
         dept1 = pd.read_sql("SELECT Lat,Lon FROM departamento_detallado where Departamento='"+m06+"'", engine.connect())
         dept2 = pd.read_sql("SELECT Lat,Lon FROM departamento_detallado where Departamento='"+m08+"'", engine.connect())
         lon1=dept1.values.tolist()[0][0]
@@ -1282,13 +1445,99 @@ def modelos6(n_clicks, m01, m03, m05, m07,m014, m015,m012,m013,m09,m011, m010,m0
         elif cluster_m == 4:
             cluster_4 = 1           
         elif cluster_m == 4:
-            cluster_4 = 1     
+            cluster_4 = 1        
+            
+        ###############################################################################################################################################
+        hscore = 100
+        hmvalue = 100
+        hinglesvalue = 100
+        hinglesvalue = m05
+        agevalue = 30
+        saber11 = 2014
+        saberpro = 2019
+        paydwayscholar = 0
+        paydwayparent = 0
+        mof = 0
+        credito=0
+        mama_1 = 0
+        mama_3 = 0
+        mama_4 = 0
+        mama_5 = 0
+        mama_m = m012
+        credito_m= m014
+        costo = m013
+        costo_1 = 0
+        costo_2 = 0
+        costo_3 = 0
+        costo_no = 0
+        genero = m010
+        if genero == 'M':
+            mof = 1
+        else:
+            mof = 0
+        hmvalue = float(m03)
+        hscore = float(m01)
+        agevalue = float(m07)
+        saber11 = float(m09)
+        saberpro = float(m011)
+        timesaber = saberpro -saber11
+        
+        paydway = m015
+###################################
+        if paydway == 'Parents':
+            paydwayparent = 1
+        else:
+            if paydway == 'Scholarship':
+                paydwayscholar = 1
+            else:
+                paydwayparent = 0
+                paydwayscholar = 0
+ ####################################
+        if credito_m == 'YES':
+            credito = 1
+        else:
+            credito = 0
+#########################################
+        if mama_m == '1':
+            mama_1 = 1
+        else:
+            if mama_m == '3':
+                mama_3 = 1
+            else:
+                if mama_m == '4':
+                    mama_4 = 1
+                else:
+                    if mama_m == '5':
+                        mama_5 = 1
+                    else:
+                        mama_1 = 0
+                        mama_3 = 0
+                        mama_4 = 0
+                        mama_5 = 0
+#########################################
+        if costo == '1':
+            costo_1 = 1
+        else:
+            if costo == '2':
+                costo_2 = 1
+            else:
+                if costo == '3':
+                    costo_3 = 1
+                else:
+                    if costo == '5':
+                        costo_no = 1
+                    else:
+                        costo_1 = 0
+                        costo_2 = 0
+                        costo_3 = 0
+                        costo_no = 0
+ 
 
         ModelCI = joblib.load('ModelCI.pkl')
         CI=np.round(ModelCI.predict([[
                                     hscore,
                                     hmvalue,
-                                    146,
+                                    CitizenScore3yearsProgram,
                                     agevalue,
                                     timesaber,
                                     mof,
