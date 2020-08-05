@@ -632,6 +632,7 @@ def modelos(n_clicks, m01, m03, m05, m07,m014, m015,m012,m013,m09,m011, m010):
   ##########################################################################################################
 @app.callback(Output("mout_02", "children"), [Input("m016", "n_clicks"),
                                                Input("m01", "value"),
+                                               Input("m02", "value"),
                                                Input("m03", "value"),
                                                Input("m05", "value"),
                                                Input("m07", "value"),
@@ -647,7 +648,7 @@ def modelos(n_clicks, m01, m03, m05, m07,m014, m015,m012,m013,m09,m011, m010):
 
                 
                 
-def modelos2(n_clicks, m01, m03, m05, m07,m014, m015,m012,m013,m09,m011, m010,m06,m08):
+def modelos2(n_clicks, m01,m02, m03, m05, m07,m014, m015,m012,m013,m09,m011, m010,m06,m08):
     if n_clicks is None:
         return ""
     else:
