@@ -29,9 +29,7 @@ engine = create_engine('postgresql://admin:ds4a@project.c6mkiiu8v7ky.us-east-2.r
 departamento_model = get_unique(engine, 'pro_data', "estu_inst_departamento")
 departamento_model.sort()
 prograns_model = get_unique(engine, 'score_programas', "program") 
-prograns_model.sort()
 university_model = get_unique(engine, 'pro_data', "inst_nombre_institucion")
-university_model.sort()
 
 
 ModelQRPrueba = joblib.load('ModelQR.pkl')
@@ -653,6 +651,18 @@ def modelos2(n_clicks, m01, m03, m05, m07,m014, m015,m012,m013,m09,m011, m010,m0
     if n_clicks is None:
         return ""
     else:
+        
+        #############################################################################################################################################
+        scrores_3years = pd.read_sql("select CitizenScore3yearsProgram, EnglishScore3yearsProgram,ReadingScore3yearsProgram,QuantitativeReasoningScore3yearsProgram,ComunicationScore3yearsProgram from  score_programas where Program='"+m02+"', engine.connect())
+        CitizenScore3yearsProgram=scrores_3years.values.tolist()[0][0]
+        EnglishScore3yearsProgram=scrores_3years.values.tolist()[0][1]
+        ReadingScore3yearsProgram=scrores_3years.values.tolist()[0][2]
+        QuantitativeReasoningScore3yearsProgram=scrores_3years.values.tolist()[0][3]
+        ComunicationScore3yearsProgram=scrores_3years.values.tolist()[0][4]
+                                     
+                                    
+        #############################################################################################################################################
+        
         dept1 = pd.read_sql("SELECT Lat,Lon FROM departamento_detallado where Departamento='"+m06+"'", engine.connect())
         dept2 = pd.read_sql("SELECT Lat,Lon FROM departamento_detallado where Departamento='"+m08+"'", engine.connect())
         lon1=dept1.values.tolist()[0][0]
@@ -773,7 +783,7 @@ def modelos2(n_clicks, m01, m03, m05, m07,m014, m015,m012,m013,m09,m011, m010,m0
         RE=np.round(ModelRE.predict([[
                                         hscore,
                                         hmvalue,
-                                        154,
+                                        ReadingScore3yearsProgram,
                                         agevalue,
                                         timesaber,
                                         mof,
