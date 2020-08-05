@@ -27,8 +27,11 @@ engine = create_engine('postgresql://admin:ds4a@project.c6mkiiu8v7ky.us-east-2.r
 #Define variables for reactive components
 #Departamento options
 departamento_model = get_unique(engine, 'pro_data', "estu_inst_departamento")
+departamento_model.sort()
 prograns_model = get_unique(engine, 'score_programas', "program") 
+prograns_model.sort()
 university_model = get_unique(engine, 'pro_data', "inst_nombre_institucion")
+university_model.sort()
 
 
 ModelQRPrueba = joblib.load('ModelQR.pkl')
