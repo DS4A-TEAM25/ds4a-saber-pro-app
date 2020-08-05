@@ -295,9 +295,9 @@ html.Div(
                             dbc.Button(
                             html.Span([html.I(className="fas fa-question-circle ml-0"), ""]), id="simple-toast-toggle3", color="#395CA3", outline=False),
                          dbc.Toast(
-                             [html.P("This graph shows a box plot, for each academic program of the selected univeristy, that describes the distribution of the selected score. Academic Programs at the left of the graph have a higher median score. As we move to the right of the graph, the median score decrease. ", className="mb-0")],
+                             [html.P("This graph shows a bar plot, for the selected academic program of the selected univeristy, that describes the average selected score by student characteristic.", className="mb-0")],
                              id="simple-toast3",
-                             header="Box Plot by Academic Program",
+                             header="Bar Plot of Academic Program by Student Variable",
                              icon="#395CA3", is_open=False,
                              dismissable=True,
                          ),
@@ -567,6 +567,424 @@ def create_data_table(scores, period_slider):
                 )
         
         return dt_university
+    
+    
+### CREATE LINE GRAPH
+@app.callback(Output("score_over_period", "figure"), [Input("scores", "value"), 
+                                                     Input("universities", "value"), 
+                                                     Input("program", "value")])
+
+def make_line_graph(scores, universities, program):
+    
+    if scores is None:
+        return {"layout": {
+            "xaxis": {
+                "visible": True, 
+                'range': [2016,2019], 
+                'dtick' : 1
+            },
+            "yaxis": {
+                "visible": True, 
+                'range':[0,300]
+            },
+            'title': {
+                'text' : '<b>Average Score over time:</b><br>' + 'Select Academic Institution and Saber Pro Score'
+            },
+            'titlefont': {
+                'size':'14'
+            },
+            'plot_bgcolor': "#F9F9F9",
+            'paper_bgcolor':"#F9F9F9"
+        }
+               }        
+    
+    
+    if universities is None:
+        colombia = pd.read_sql("SELECT periodo,AVG("+scores+") mean_score FROM pro_data  GROUP BY periodo", engine.connect())
+        period = colombia['periodo']
+        colombia = colombia['mean_score'].round(2)
+        data = [
+            dict(
+                type="scatter",
+                mode="lines+markers",
+                name="Colombia",
+                x=period,
+                y=colombia,
+                line=dict(shape="spline", smoothing="1", color="#F9ADA0"),
+            ),
+        ]
+        layout_graph = dict(
+            hovermode="closest",
+            title= dict(text = '<b>Average Score over time</b><br>' + "Colombia"), 
+            titlefont= dict(size=14), 
+            plot_bgcolor="#F9F9F9",
+            paper_bgcolor="#F9F9F9")
+        figure = dict(data=data, layout=layout_graph)
+        return figure
+    
+    if program is None:
+        colombia = pd.read_sql("SELECT periodo,AVG("+scores+") mean_score FROM pro_data  GROUP BY periodo", engine.connect())
+        period = colombia['periodo']
+        colombia = colombia['mean_score'].round(2)
+        university = pd.read_sql("SELECT periodo,AVG("+scores+") mean_score FROM pro_data WHERE inst_nombre_institucion = '"+universities+"' GROUP BY periodo", engine.connect())
+        university = university['mean_score'].round(2)
+        data = [
+            dict(
+                type="scatter",
+                mode="lines+markers",
+                name="Colombia",
+                x=period,
+                y=colombia,
+                line=dict(shape="spline", smoothing="1", color="#F9ADA0"),
+            ),
+            
+            dict(
+                type="scatter",
+                mode="lines+markers",
+                name="University",
+                x=period,
+                y=university,
+                line=dict(shape="spline", smoothing="1", color="#849E68"),
+            ),
+        ]
+        layout_graph = dict(
+            hovermode="closest",
+            title= dict(text = '<b>Average Score over time:</b><br>' + universities), 
+            titlefont= dict(size=14), 
+            plot_bgcolor="#F9F9F9",
+            paper_bgcolor="#F9F9F9")
+        figure = dict(data=data, layout=layout_graph)
+        return figure
+    
+    else:
+        colombia = pd.read_sql("SELECT periodo,AVG("+scores+") mean_score FROM pro_data  GROUP BY periodo", engine.connect())
+        period = colombia['periodo']
+        colombia = colombia['mean_score'].round(2)
+        university = pd.read_sql("SELECT periodo,AVG("+scores+") mean_score FROM pro_data WHERE inst_nombre_institucion = '"+universities+"' GROUP BY periodo", engine.connect())
+        university = university['mean_score'].round(2)
+        programv = pd.read_sql("SELECT periodo,AVG("+scores+") mean_score FROM pro_data WHERE estu_prgm_academico = '"+program+"' GROUP BY periodo", engine.connect())
+        programv = programv['mean_score'].round(2)
+        data = [
+            dict(
+                type="scatter",
+                mode="lines+markers",
+                name="Colombia",
+                x=period,
+                y=colombia,
+                line=dict(shape="spline", smoothing="1", color="#F9ADA0"),
+            ),
+            dict(
+                type="scatter",
+                mode="lines+markers",
+                name="University",
+                x=period,
+                y=university,
+                line=dict(shape="spline", smoothing="1", color="#849E68"),
+            ),
+            dict(
+                type="scatter",
+                mode="lines+markers",
+                name="Program",
+                x=period,
+                y=programv,
+                line=dict(shape="spline", smoothing="1", color="#59C3C3"),
+            ),
+        ]
+        layout_graph = dict(
+            hovermode="closest",
+            title= dict(text = '<b>Average Score over time:</b><br>' + universities), 
+            titlefont= dict(size=14), 
+            plot_bgcolor="#F9F9F9",
+            paper_bgcolor="#F9F9F9")
+        figure = dict(data=data, layout=layout_graph)
+        return figure
+
+### CREATE QUINTILE PLOT
+@app.callback(
+    Output('program_quantiles', 'figure'),
+    [
+        Input("universities", "value"),
+        Input("period_slider", "value"), 
+        Input("scores", "value")
+    ],
+)
+
+def update_program_quantiles(universities, period_slider, scores):
+
+    if universities is None or scores is None:
+        return {"layout": {
+            "xaxis": {
+                "visible": True, 
+                'range': [1,80]
+            },
+            "yaxis": {
+                "visible": True, 
+                'range':[1,100]
+            },
+            'title': {
+                'text' : '<b>Academic Programs by Score Quintiles:</b><br>' + 'Select Academic Institution and Saber Pro Score'
+            },
+            'titlefont': {
+                'size':'14'
+            },
+            'plot_bgcolor': "#F9F9F9",
+            'paper_bgcolor':"#F9F9F9"
+        }
+               }
+    
+    else:
+        quintile_score = 'quintile_' + scores
         
+        p=[str(period_slider[0]), str(period_slider[1])] 
+        
+        #Quintile df
+        quint_table = get_pct(engine, "pro_data", "estu_prgm_academico", quintile_score, scores,"inst_nombre_institucion", "'"+str(universities)+"'", "'"+p[0]+"'", "'"+p[1]+"'") 
+        quint_table = pd.DataFrame(quint_table, columns = ['estu_prgm_academico', 'sum_quintil_1', 'sum_quintil_5', 'sum_students', 'avg_score'])
+        quint_table['pct_quint1'] = round(quint_table['sum_quintil_1']/quint_table['sum_students'] * 100,2)
+        quint_table['pct_quint5'] =round(quint_table['sum_quintil_5']/quint_table['sum_students'] * 100,2)
+        
+        #School averages df
+        average_program = pd.read_sql("SELECT estu_nucleo_pregrado,AVG("+scores+") mean_score_school FROM pro_data  WHERE inst_nombre_institucion = '"+universities+"'  GROUP BY estu_nucleo_pregrado", engine.connect())
+        programs = pd.read_sql("SELECT DISTINCT estu_prgm_academico FROM pro_data  WHERE inst_nombre_institucion = '"+universities+"'", engine.connect())
+        program_key =  pd.read_sql("SELECT * FROM program_key", engine.connect())
+        program_key.columns = ['estu_nucleo_pregrado', 'estu_prgm_academico']
+        programs = programs['estu_prgm_academico'].tolist()
+        program_key = program_key[program_key['estu_prgm_academico'].isin(programs)]
+        join_df = pd.merge(average_program, program_key, on='estu_nucleo_pregrado')
+                               
+        #Combine datasets and create below and above average column
+        quint_table = pd.merge(quint_table, join_df, on='estu_prgm_academico')
+        quint_table = quint_table.dropna()
+        quint_table['compare']= np.where(quint_table[quint_table.columns[4]]>quint_table[quint_table.columns[8]], 'Above average', 'Below average')
+
+        figq = go.Figure()
+        figq.add_trace(go.Scatter(
+            x=quint_table['pct_quint1'].loc[quint_table['compare'] == 'Below average'] ,
+            y=quint_table['pct_quint5'].loc[quint_table['compare'] == 'Below average'] ,
+            hovertext=quint_table['estu_prgm_academico'].loc[quint_table['compare'] == 'Below average'] , 
+            hoverlabel=dict(namelength=0),
+            hovertemplate='%{hovertext}<br>1st Quintile: %{x}%  <br>5th Quintile: %{y}% ',
+            mode='markers',
+            marker_color="#E15759", 
+            name="Below average<br>when compared with<br>similar programs in Col"
+        ))
+        
+        figq.add_trace(go.Scatter(
+            x=quint_table['pct_quint1'].loc[quint_table['compare'] == 'Above average'],
+            y=quint_table['pct_quint5'].loc[quint_table['compare'] == 'Above average'],
+            hovertext=quint_table['estu_prgm_academico'].loc[quint_table['compare'] == 'Above average'], 
+            hoverlabel=dict(namelength=0),
+            hovertemplate='%{hovertext}<br>1st Quintile: %{x}%  <br>5th Quintile: %{y}% ',
+            mode='markers',
+            marker_color="#59A14F", 
+            name="Above average<br>when compared with<br>similar programs in Col"
+        ))
+       
+        figq.add_shape(
+        # Line Vertical
+            dict(
+                type="line",
+                x0=20,
+                y0=0,
+                x1=20,
+                y1=100,
+                line=dict(color="black",
+                          width=1, 
+                          dash="dot",
+                         ))
+        )
+        
+        
+        figq.add_shape(
+        # Line Horizontal
+            dict(
+                type="line",
+                x0=0,
+                y0=50,
+                x1=100,
+                y1=50,
+                line=dict(color="black",
+                          width=1, 
+                          dash="dot",
+                         ))
+        )
+        
+        
+        figq.add_annotation(
+            x=10,
+            y=70,
+            text="Ideal",
+            showarrow=False, 
+            opacity=0.3)
+        
+        figq.add_annotation(
+            x=45,
+            y=70,
+            text="Atypical",
+            showarrow=False, 
+            opacity=0.3)
+        
+        figq.add_annotation(
+            x=10,
+            y=25,
+            text="Acceptable",
+            showarrow=False, 
+            opacity=0.3)
+        
+        figq.add_annotation(
+            x=45,
+            y=25,
+            text="Negative",
+            showarrow=False, 
+            opacity=0.3)
+        
+        figq.update_layout(
+            title='<b>Academic Programs by Score Quintiles:</b><br>'+ universities,
+            title_x=0.5,
+            xaxis_title=dict(text='% of Students in Lowest Quintile of Score', font = dict(size=12)),
+            yaxis_title=dict(text='% of Students in Highest Quintile of Score', font = dict(size=12)),
+            plot_bgcolor="#F9F9F9",
+            paper_bgcolor="#F9F9F9", 
+            showlegend=True, 
+            yaxis=dict(range=[-1,101]), 
+            xaxis=dict(range=[-1,80]), 
+            titlefont= dict(size=14), 
+            legend=dict(font=dict(family="sans-serif", size=10, color="black"), x=0.8, y=1)            
+            
+        )
+        
+        
+        
+        
+        return figq
+    
+### CREATE BAR CHART
+@app.callback(
+    Output('bar_program', 'figure'),
+    [
+        Input("universities", "value"),
+        Input("period_slider", "value"), 
+        Input("scores", "value"), 
+        Input("var1", "value"), 
+        Input("program", "value"),
+        
+    ],
+)
+
+def update_program_bar(universities, period_slider, scores, var1, program):
+ 
+    if universities is None:
+        return {"layout": {
+            "xaxis": {
+                "visible": True, 
+                'range': [1,80]
+            },
+            "yaxis": {
+                "visible": True, 
+                'range':[1,100]
+            },
+            'title': {
+                'text' : '<b>Average Score by Student Characteristics at Program :</b><br>' + 'Select University, Program and Student Characteristic'
+            },
+            'titlefont': {
+                'size':'14'
+            },
+            'plot_bgcolor': "#F9F9F9",
+            'paper_bgcolor':"#F9F9F9"
+        }
+               }
+    
+    
+    if scores is None:
+        return {"layout": {
+            "xaxis": {
+                "visible": True, 
+                'range': [1,80]
+            },
+            "yaxis": {
+                "visible": True, 
+                'range':[1,100]
+            },
+            'title': {
+                'text' : '<b>Average Score by Student Characteristics at Program :</b><br>' + 'Select University, Program and Student Characteristic'
+            },
+            'titlefont': {
+                'size':'14'
+            },
+            'plot_bgcolor': "#F9F9F9",
+            'paper_bgcolor':"#F9F9F9"
+        }
+               }
+    
+    if  program is None:
+        return {"layout": {
+            "xaxis": {
+                "visible": True, 
+                'range': [1,80]
+            },
+            "yaxis": {
+                "visible": True, 
+                'range':[1,100]
+            },
+            'title': {
+                'text' : '<b>Average Score by Student Characteristics at Program :</b><br>' + 'Select University, Program and Student Characteristic'
+            },
+            'titlefont': {
+                'size':'14'
+            },
+            'plot_bgcolor': "#F9F9F9",
+            'paper_bgcolor':"#F9F9F9"
+        }
+               }
+    
+    if  var1 is None:
+        return {"layout": {
+            "xaxis": {
+                "visible": True, 
+                'range': [1,80]
+            },
+            "yaxis": {
+                "visible": True, 
+                'range':[1,100]
+            },
+            'title': {
+                'text' : '<b>Average Score by Student Characteristics at Program :</b><br>' + 'Select University, Program and Student Characteristic'
+            },
+            'titlefont': {
+                'size':'14'
+            },
+            'plot_bgcolor': "#F9F9F9",
+            'paper_bgcolor':"#F9F9F9"
+        }
+               }
+    
+    else:
+        p=[str(period_slider[0]), str(period_slider[1])] 
+        mean_score = get_avg_multi(engine, "pro_data", scores, var1 , "inst_nombre_institucion", "'"+str(universities)+"'", "estu_prgm_academico", "'"+str(program)+"'", "'"+p[0]+"'", "'"+p[1]+"'")
+        mean_score = pd.DataFrame(mean_score, columns = ['variable', 'avg'])
+        mean_score = mean_score.dropna()
+        mean_score["avg"] = mean_score["avg"].round(2)
+        mean_score= mean_score.sort_values(by=['avg'], ascending=False)
+        
+        figbar = px.bar(mean_score, x='variable', y='avg', color='avg')
+        
+        # format the layout
+        figbar.update_layout(
+            title='<b>Average Score by Student Characteristics:</b><br>'+ universities,
+            title_x=0.5,
+            titlefont= dict(size=14), 
+            xaxis=dict(showgrid=False, zeroline=False, showticklabels=False),
+            yaxis=dict(zeroline=False, gridcolor='#E9E9E9'),
+            hovermode="x unified",
+            paper_bgcolor='#F9F9F9',
+            plot_bgcolor='#F9F9F9',
+            legend=dict(font=dict(family="sans-serif", size=8, color="black")) 
+        )
+        
+        return figbar
+
+    
+    
+    
     
     
