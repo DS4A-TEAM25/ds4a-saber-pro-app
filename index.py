@@ -22,8 +22,8 @@ dropdown = dbc.DropdownMenu(
             html.Span([html.I(className="fas fa-university ml-0"), " Explore by University"]), href="/by_university"),
         dbc.DropdownMenuItem(divider=True),
         dbc.DropdownMenuItem("Estimate", header=True),
-        #dbc.DropdownMenuItem(
-         #   html.Span([html.I(className="fas fa-chart-line ml-0"), " Predict Scores"]), href="/model1"),
+        dbc.DropdownMenuItem(
+            html.Span([html.I(className="fas fa-chart-line ml-0"), " Predict Scores"]), href="#"),
         dbc.DropdownMenuItem(
             html.Span([html.I(className="fas fa-chart-bar ml-0"), " Which factors matter?"]), href="#"),
         dbc.DropdownMenuItem(divider=True),
