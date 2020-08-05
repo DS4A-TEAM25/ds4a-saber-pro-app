@@ -1190,7 +1190,7 @@ def modelos6(n_clicks, m01, m03, m05, m07,m014, m015,m012,m013,m09,m011, m010):
         CI=np.round(ModelCI.predict([[
                                     hscore,
                                     hmvalue,
-                                    #CitizenScore3yearsProgram,
+                                    146,
                                     agevalue,
                                     timesaber,
                                     mof,
