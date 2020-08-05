@@ -503,7 +503,7 @@ layout = html.Div([
     esquema,
 ])
 
-@app.callback([Output("mout_01", "children"), [Input("m016", "n_clicks"),
+@app.callback(Output("mout_01", "children"), [Input("m016", "n_clicks"),
                                                Input("m01", "value"),
                                                Input("m03", "value"),
                                                Input("m05", "value"),
