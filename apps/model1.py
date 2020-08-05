@@ -112,7 +112,7 @@ state_form = dbc.Form(
         dbc.FormGroup(
             [
                 dbc.Label("State Where you Live", className="mr-2"),
-                select = dbc.Select(
+                state_alum = dbc.Select(
                     id="m06",
                     options=[
                         {"label": "Amazonas", "value": "1"},
@@ -151,7 +151,7 @@ state_uni_form = dbc.Form(
         dbc.FormGroup(
             [
                 dbc.Label("State Where you Study", className="mr-2"),
-                select = dbc.Select(
+                state_uni = dbc.Select(
                     id="m08",
                     options=[
                         {"label": "Amazonas", "value": "1"},
