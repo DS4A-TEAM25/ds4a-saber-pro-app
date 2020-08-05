@@ -520,7 +520,7 @@ layout = html.Div([
                 
 def modelos(n_clicks, m01, m03, m05, m07,m014, m015,m012,m013,m09,m011, m010):
     if n_clicks is None:
-        return "Not clicked."
+        return "Model not Launched"
     else:
 
         hscore = 100
@@ -618,6 +618,582 @@ def modelos(n_clicks, m01, m03, m05, m07,m014, m015,m012,m013,m09,m011, m010):
         
         return X1
         
-        
+  ##########################################################################################################
+@app.callback(Output("mout_02", "children"), [Input("m016", "n_clicks"),
+                                               Input("m01", "value"),
+                                               Input("m03", "value"),
+                                               Input("m05", "value"),
+                                               Input("m07", "value"),
+                                               Input("m014", "value"),
+                                               Input("m015", "value"),
+                                               Input("m012", "value"),
+                                               Input("m013", "value"),
+                                               Input("m09", "value"),
+                                               Input("m011", "value"),
+                                               Input("m010", "value")])
 
-  
+                
+                
+def modelos(n_clicks, m01, m03, m05, m07,m014, m015,m012,m013,m09,m011, m010):
+    if n_clicks is None:
+        return "Model not Launched""
+    else:
+
+        hscore = 100
+        hmvalue = 100
+        agevalue = 30
+        saber11 = 2014
+        saberpro = 2019
+        paydwayscholar = 0
+        paydwayparent = 0
+        mof = 0
+        credito=0
+        mama_1 = 0
+        mama_3 = 0
+        mama_4 = 0
+        mama_5 = 0
+        mama_m = m012
+        credito_m= m014
+        costo = m013
+        costo_1 = 0
+        costo_2 = 0
+        costo_3 = 0
+        costo_no = 0
+        genero = m010
+        if genero == 'M':
+            mof = 1
+        else:
+            mof = 0
+        hmvalue = float(m03)
+        hscore = float(m01)
+        agevalue = float(m07)
+        saber11 = float(m09)
+        saberpro = float(m011)
+        timesaber = saberpro -saber11
+        
+        paydway = m015
+###################################
+        if paydway == 'Parents':
+            paydwayparent = 1
+        else:
+            if paydway == 'Scholarship':
+                paydwayscholar = 1
+            else:
+                paydwayparent = 0
+                paydwayscholar = 0
+ ####################################
+        if credito_m == 'YES':
+            credito = 1
+        else:
+            credito = 0
+#########################################
+        if mama_m == '1':
+            mama_1 = 1
+        else:
+            if mama_m == '3':
+                mama_3 = 1
+            else:
+                if mama_m == '4':
+                    mama_4 = 1
+                else:
+                    if mama_m == '5':
+                        mama_5 = 1
+                    else:
+                        mama_1 = 0
+                        mama_3 = 0
+                        mama_4 = 0
+                        mama_5 = 0
+#########################################
+        if costo == '1':
+            costo_1 = 1
+        else:
+            if costo == '2':
+                costo_2 = 1
+            else:
+                if costo == '3':
+                    costo_3 = 1
+                else:
+                    if costo == '5':
+                        costo_no = 1
+                    else:
+                        costo_1 = 0
+                        costo_2 = 0
+                        costo_3 = 0
+                        costo_no = 0
+
+
+        ModelQRPrueba = joblib.load('ModelQR.pkl')
+        QR1 = np.round(ModelQRPrueba.predict([[hscore, hmvalue, 59, agevalue, timesaber, mof, 1, paydwayscholar, credito, paydwayparent, mama_1, mama_3, mama_4, mama_5, costo_1, costo_2, costo_3, costo_no]]),
+                       0)
+        X1 = int(QR1[0])
+        X2 = X1 + np.random()*20
+        X3 = X1 + np.random()*10
+        X4 = X1 + np.random()*3
+        X5 = X1 + np.random()*8
+        X6 = X1 + np.random()*14
+        
+        return X2
+
+ ##########################################################################################################
+@app.callback(Output("mout_03", "children"), [Input("m016", "n_clicks"),
+                                               Input("m01", "value"),
+                                               Input("m03", "value"),
+                                               Input("m05", "value"),
+                                               Input("m07", "value"),
+                                               Input("m014", "value"),
+                                               Input("m015", "value"),
+                                               Input("m012", "value"),
+                                               Input("m013", "value"),
+                                               Input("m09", "value"),
+                                               Input("m011", "value"),
+                                               Input("m010", "value")])
+
+                
+                
+def modelos(n_clicks, m01, m03, m05, m07,m014, m015,m012,m013,m09,m011, m010):
+    if n_clicks is None:
+        return "Model not Launched"
+    else:
+
+        hscore = 100
+        hmvalue = 100
+        agevalue = 30
+        saber11 = 2014
+        saberpro = 2019
+        paydwayscholar = 0
+        paydwayparent = 0
+        mof = 0
+        credito=0
+        mama_1 = 0
+        mama_3 = 0
+        mama_4 = 0
+        mama_5 = 0
+        mama_m = m012
+        credito_m= m014
+        costo = m013
+        costo_1 = 0
+        costo_2 = 0
+        costo_3 = 0
+        costo_no = 0
+        genero = m010
+        if genero == 'M':
+            mof = 1
+        else:
+            mof = 0
+        hmvalue = float(m03)
+        hscore = float(m01)
+        agevalue = float(m07)
+        saber11 = float(m09)
+        saberpro = float(m011)
+        timesaber = saberpro -saber11
+        
+        paydway = m015
+###################################
+        if paydway == 'Parents':
+            paydwayparent = 1
+        else:
+            if paydway == 'Scholarship':
+                paydwayscholar = 1
+            else:
+                paydwayparent = 0
+                paydwayscholar = 0
+ ####################################
+        if credito_m == 'YES':
+            credito = 1
+        else:
+            credito = 0
+#########################################
+        if mama_m == '1':
+            mama_1 = 1
+        else:
+            if mama_m == '3':
+                mama_3 = 1
+            else:
+                if mama_m == '4':
+                    mama_4 = 1
+                else:
+                    if mama_m == '5':
+                        mama_5 = 1
+                    else:
+                        mama_1 = 0
+                        mama_3 = 0
+                        mama_4 = 0
+                        mama_5 = 0
+#########################################
+        if costo == '1':
+            costo_1 = 1
+        else:
+            if costo == '2':
+                costo_2 = 1
+            else:
+                if costo == '3':
+                    costo_3 = 1
+                else:
+                    if costo == '5':
+                        costo_no = 1
+                    else:
+                        costo_1 = 0
+                        costo_2 = 0
+                        costo_3 = 0
+                        costo_no = 0
+
+
+        ModelQRPrueba = joblib.load('ModelQR.pkl')
+        QR1 = np.round(ModelQRPrueba.predict([[hscore, hmvalue, 59, agevalue, timesaber, mof, 1, paydwayscholar, credito, paydwayparent, mama_1, mama_3, mama_4, mama_5, costo_1, costo_2, costo_3, costo_no]]),
+                       0)
+        X1 = int(QR1[0])
+        X2 = X1 + np.random()*20
+        X3 = X1 + np.random()*10
+        X4 = X1 + np.random()*3
+        X5 = X1 + np.random()*8
+        X6 = X1 + np.random()*14
+        
+        return X3
+
+     ##########################################################################################################
+@app.callback(Output("mout_04", "children"), [Input("m016", "n_clicks"),
+                                               Input("m01", "value"),
+                                               Input("m03", "value"),
+                                               Input("m05", "value"),
+                                               Input("m07", "value"),
+                                               Input("m014", "value"),
+                                               Input("m015", "value"),
+                                               Input("m012", "value"),
+                                               Input("m013", "value"),
+                                               Input("m09", "value"),
+                                               Input("m011", "value"),
+                                               Input("m010", "value")])
+
+                
+                
+def modelos(n_clicks, m01, m03, m05, m07,m014, m015,m012,m013,m09,m011, m010):
+    if n_clicks is None:
+        return "Model not Launched"
+    else:
+
+        hscore = 100
+        hmvalue = 100
+        agevalue = 30
+        saber11 = 2014
+        saberpro = 2019
+        paydwayscholar = 0
+        paydwayparent = 0
+        mof = 0
+        credito=0
+        mama_1 = 0
+        mama_3 = 0
+        mama_4 = 0
+        mama_5 = 0
+        mama_m = m012
+        credito_m= m014
+        costo = m013
+        costo_1 = 0
+        costo_2 = 0
+        costo_3 = 0
+        costo_no = 0
+        genero = m010
+        if genero == 'M':
+            mof = 1
+        else:
+            mof = 0
+        hmvalue = float(m03)
+        hscore = float(m01)
+        agevalue = float(m07)
+        saber11 = float(m09)
+        saberpro = float(m011)
+        timesaber = saberpro -saber11
+        
+        paydway = m015
+###################################
+        if paydway == 'Parents':
+            paydwayparent = 1
+        else:
+            if paydway == 'Scholarship':
+                paydwayscholar = 1
+            else:
+                paydwayparent = 0
+                paydwayscholar = 0
+ ####################################
+        if credito_m == 'YES':
+            credito = 1
+        else:
+            credito = 0
+#########################################
+        if mama_m == '1':
+            mama_1 = 1
+        else:
+            if mama_m == '3':
+                mama_3 = 1
+            else:
+                if mama_m == '4':
+                    mama_4 = 1
+                else:
+                    if mama_m == '5':
+                        mama_5 = 1
+                    else:
+                        mama_1 = 0
+                        mama_3 = 0
+                        mama_4 = 0
+                        mama_5 = 0
+#########################################
+        if costo == '1':
+            costo_1 = 1
+        else:
+            if costo == '2':
+                costo_2 = 1
+            else:
+                if costo == '3':
+                    costo_3 = 1
+                else:
+                    if costo == '5':
+                        costo_no = 1
+                    else:
+                        costo_1 = 0
+                        costo_2 = 0
+                        costo_3 = 0
+                        costo_no = 0
+
+
+        ModelQRPrueba = joblib.load('ModelQR.pkl')
+        QR1 = np.round(ModelQRPrueba.predict([[hscore, hmvalue, 59, agevalue, timesaber, mof, 1, paydwayscholar, credito, paydwayparent, mama_1, mama_3, mama_4, mama_5, costo_1, costo_2, costo_3, costo_no]]),
+                       0)
+        X1 = int(QR1[0])
+        X2 = X1 + np.random()*20
+        X3 = X1 + np.random()*10
+        X4 = X1 + np.random()*3
+        X5 = X1 + np.random()*8
+        X6 = X1 + np.random()*14
+        
+        return X4
+
+     ##########################################################################################################
+@app.callback(Output("mout_05", "children"), [Input("m016", "n_clicks"),
+                                               Input("m01", "value"),
+                                               Input("m03", "value"),
+                                               Input("m05", "value"),
+                                               Input("m07", "value"),
+                                               Input("m014", "value"),
+                                               Input("m015", "value"),
+                                               Input("m012", "value"),
+                                               Input("m013", "value"),
+                                               Input("m09", "value"),
+                                               Input("m011", "value"),
+                                               Input("m010", "value")])
+
+                
+                
+def modelos(n_clicks, m01, m03, m05, m07,m014, m015,m012,m013,m09,m011, m010):
+    if n_clicks is None:
+        return "Model not Launched"
+    else:
+
+        hscore = 100
+        hmvalue = 100
+        agevalue = 30
+        saber11 = 2014
+        saberpro = 2019
+        paydwayscholar = 0
+        paydwayparent = 0
+        mof = 0
+        credito=0
+        mama_1 = 0
+        mama_3 = 0
+        mama_4 = 0
+        mama_5 = 0
+        mama_m = m012
+        credito_m= m014
+        costo = m013
+        costo_1 = 0
+        costo_2 = 0
+        costo_3 = 0
+        costo_no = 0
+        genero = m010
+        if genero == 'M':
+            mof = 1
+        else:
+            mof = 0
+        hmvalue = float(m03)
+        hscore = float(m01)
+        agevalue = float(m07)
+        saber11 = float(m09)
+        saberpro = float(m011)
+        timesaber = saberpro -saber11
+        
+        paydway = m015
+###################################
+        if paydway == 'Parents':
+            paydwayparent = 1
+        else:
+            if paydway == 'Scholarship':
+                paydwayscholar = 1
+            else:
+                paydwayparent = 0
+                paydwayscholar = 0
+ ####################################
+        if credito_m == 'YES':
+            credito = 1
+        else:
+            credito = 0
+#########################################
+        if mama_m == '1':
+            mama_1 = 1
+        else:
+            if mama_m == '3':
+                mama_3 = 1
+            else:
+                if mama_m == '4':
+                    mama_4 = 1
+                else:
+                    if mama_m == '5':
+                        mama_5 = 1
+                    else:
+                        mama_1 = 0
+                        mama_3 = 0
+                        mama_4 = 0
+                        mama_5 = 0
+#########################################
+        if costo == '1':
+            costo_1 = 1
+        else:
+            if costo == '2':
+                costo_2 = 1
+            else:
+                if costo == '3':
+                    costo_3 = 1
+                else:
+                    if costo == '5':
+                        costo_no = 1
+                    else:
+                        costo_1 = 0
+                        costo_2 = 0
+                        costo_3 = 0
+                        costo_no = 0
+
+
+        ModelQRPrueba = joblib.load('ModelQR.pkl')
+        QR1 = np.round(ModelQRPrueba.predict([[hscore, hmvalue, 59, agevalue, timesaber, mof, 1, paydwayscholar, credito, paydwayparent, mama_1, mama_3, mama_4, mama_5, costo_1, costo_2, costo_3, costo_no]]),
+                       0)
+        X1 = int(QR1[0])
+        X2 = X1 + np.random()*20
+        X3 = X1 + np.random()*10
+        X4 = X1 + np.random()*3
+        X5 = X1 + np.random()*8
+        X6 = X1 + np.random()*14
+        
+        return X5
+
+     ##########################################################################################################
+@app.callback(Output("mout_06", "children"), [Input("m016", "n_clicks"),
+                                               Input("m01", "value"),
+                                               Input("m03", "value"),
+                                               Input("m05", "value"),
+                                               Input("m07", "value"),
+                                               Input("m014", "value"),
+                                               Input("m015", "value"),
+                                               Input("m012", "value"),
+                                               Input("m013", "value"),
+                                               Input("m09", "value"),
+                                               Input("m011", "value"),
+                                               Input("m010", "value")])
+
+                
+                
+def modelos(n_clicks, m01, m03, m05, m07,m014, m015,m012,m013,m09,m011, m010):
+    if n_clicks is None:
+        return "Model not Launched"
+    else:
+
+        hscore = 100
+        hmvalue = 100
+        agevalue = 30
+        saber11 = 2014
+        saberpro = 2019
+        paydwayscholar = 0
+        paydwayparent = 0
+        mof = 0
+        credito=0
+        mama_1 = 0
+        mama_3 = 0
+        mama_4 = 0
+        mama_5 = 0
+        mama_m = m012
+        credito_m= m014
+        costo = m013
+        costo_1 = 0
+        costo_2 = 0
+        costo_3 = 0
+        costo_no = 0
+        genero = m010
+        if genero == 'M':
+            mof = 1
+        else:
+            mof = 0
+        hmvalue = float(m03)
+        hscore = float(m01)
+        agevalue = float(m07)
+        saber11 = float(m09)
+        saberpro = float(m011)
+        timesaber = saberpro -saber11
+        
+        paydway = m015
+###################################
+        if paydway == 'Parents':
+            paydwayparent = 1
+        else:
+            if paydway == 'Scholarship':
+                paydwayscholar = 1
+            else:
+                paydwayparent = 0
+                paydwayscholar = 0
+ ####################################
+        if credito_m == 'YES':
+            credito = 1
+        else:
+            credito = 0
+#########################################
+        if mama_m == '1':
+            mama_1 = 1
+        else:
+            if mama_m == '3':
+                mama_3 = 1
+            else:
+                if mama_m == '4':
+                    mama_4 = 1
+                else:
+                    if mama_m == '5':
+                        mama_5 = 1
+                    else:
+                        mama_1 = 0
+                        mama_3 = 0
+                        mama_4 = 0
+                        mama_5 = 0
+#########################################
+        if costo == '1':
+            costo_1 = 1
+        else:
+            if costo == '2':
+                costo_2 = 1
+            else:
+                if costo == '3':
+                    costo_3 = 1
+                else:
+                    if costo == '5':
+                        costo_no = 1
+                    else:
+                        costo_1 = 0
+                        costo_2 = 0
+                        costo_3 = 0
+                        costo_no = 0
+
+
+        ModelQRPrueba = joblib.load('ModelQR.pkl')
+        QR1 = np.round(ModelQRPrueba.predict([[hscore, hmvalue, 59, agevalue, timesaber, mof, 1, paydwayscholar, credito, paydwayparent, mama_1, mama_3, mama_4, mama_5, costo_1, costo_2, costo_3, costo_no]]),
+                       0)
+        X1 = int(QR1[0])
+        X2 = X1 + np.random()*20
+        X3 = X1 + np.random()*10
+        X4 = X1 + np.random()*3
+        X5 = X1 + np.random()*8
+        X6 = X1 + np.random()*14
+        
+        return X6
