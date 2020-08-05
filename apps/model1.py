@@ -114,7 +114,7 @@ state_form = dbc.Form(
                 dbc.Label("State Where you Live", className="mr-2"),
                 dbc.Select(
                     id="m06",
-                    options=[{'label': i, 'value': i} for i in departamento_options],
+                    options=[{'label': i, 'value': i} for i in departamento_model],
                 )
         ],
             className="mr-3",
@@ -149,7 +149,7 @@ state_uni_form = dbc.Form(
                 dbc.Label("State Where you Study", className="mr-2"),
                 dbc.Select(
                     id="m08",
-                    options=[{'label': i, 'value': i} for i in departamento_options]
+                    options=[{'label': i, 'value': i} for i in departamento_model]
                 )
             ],
             className="mr-3",
