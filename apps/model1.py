@@ -722,15 +722,30 @@ def modelos2(n_clicks, m01, m03, m05, m07,m014, m015,m012,m013,m09,m011, m010):
                         costo_no = 0
 
 
-        ModelQRPrueba = joblib.load('ModelQR.pkl')
-        QR1 = np.round(ModelQRPrueba.predict([[hscore, hmvalue, 59, agevalue, timesaber, mof, 1, paydwayscholar, credito, paydwayparent, mama_1, mama_3, mama_4, mama_5, costo_1, costo_2, costo_3, costo_no]]),
-                       0)
-        X1 = int(QR1[0])
-        X2 = X1 + 20
-        X3 = X1 - 3
-        X4 = X1 + 3
-        X5 = X1 + 8
-        X6 = X1 + 14
+        ModelRE = joblib.load('ModelRE.pkl')
+        RE=np.round(ModelRE.predict([[
+                                        hscore,
+                                        hmvalue,
+                                        154,
+                                        agevalue,
+                                        timesaber,
+                                        mof,
+                                        0,
+                                        paydwayscholar,
+                                        credito,
+                                        paydwayparent,
+                                        mama_1,
+                                        mama_3,
+                                        mama_4,
+                                        mama_5,
+                                        costo_1,
+                                        costo_2,
+                                        costo_3,
+                                        costo_no
+                                        ]]),0)
+        READING=int(RE[0])
+        X2 = READING
+
         
         return X2
 
