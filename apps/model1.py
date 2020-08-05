@@ -374,7 +374,7 @@ forumulario = html.Div([row_1])
 card_content_1 = [
     dbc.CardBody(
         [
-            html.H5("Quantitative Reasoning", className="card-title"),
+            html.H3("Quantitative Reasoning", className="card-title"),
             html.P(
                 "Score expected for you:",
                 className="card-text",
@@ -388,7 +388,7 @@ card_content_1 = [
 card_content_2 = [
     dbc.CardBody(
         [
-            html.H5("Citizen competence", className="card-title"),          
+            html.H3("Citizen competence", className="card-title"),          
             html.P(
                 "Score expected for you:",
                 className="card-text",
@@ -401,7 +401,7 @@ card_content_2 = [
 card_content_3 = [
     dbc.CardBody(
         [
-            html.H5("Critical Lecture", className="card-title"), 
+            html.H3("Critical Lecture", className="card-title"), 
             html.P(
                 "Score expected for you:",
                 className="card-text",
@@ -415,7 +415,7 @@ card_content_3 = [
 card_content_4 = [
     dbc.CardBody(
         [
-            html.H5("English", className="card-title"),             
+            html.H3("English", className="card-title"),             
             html.P(
                 "Score expected for you:",
                 className="card-text",
@@ -429,7 +429,7 @@ card_content_4 = [
 card_content_5 = [
     dbc.CardBody(
         [
-            html.H5("Written Communication", className="card-title"),                       
+            html.H3("Written Communication", className="card-title"),                       
             html.P(
                 "Score expected for you:",
                 className="card-text",
@@ -442,7 +442,7 @@ card_content_5 = [
 card_content_6 = [
     dbc.CardBody(
         [
-            html.H5("Global Score", className="card-title"),                       
+            html.H3("Global Score", className="card-title"),                       
             html.P(
                 "Score expected for you:",
                 className="card-text",
@@ -1186,14 +1186,32 @@ def modelos6(n_clicks, m01, m03, m05, m07,m014, m015,m012,m013,m09,m011, m010):
                         costo_no = 0
 
 
-        ModelQRPrueba = joblib.load('ModelQR.pkl')
-        QR1 = np.round(ModelQRPrueba.predict([[hscore, hmvalue, 59, agevalue, timesaber, mof, 1, paydwayscholar, credito, paydwayparent, mama_1, mama_3, mama_4, mama_5, costo_1, costo_2, costo_3, costo_no]]),
-                       0)
-        X1 = int(QR1[0])
-        X2 = X1 + 12
-        X3 = X1 + 8
-        X4 = X1 + 4
-        X5 = X1 + 5
-        X6 = X1 + 15
+        ModelCI = joblib.load('ModelCI.pkl')
+        CI=np.round(ModelCI.predict([[
+                                    hscore,
+                                    hmvalue,
+                                    #CitizenScore3yearsProgram,
+                                    agevalue,
+                                    timesaber,
+                                    mof,
+                                    0,
+                                    paydwayscholar,
+                                    credito,
+                                    paydwayparent,
+                                    mama_1,
+                                    mama_3,
+                                    mama_4,
+                                    mama_5,
+                                    0,
+                                    1,
+                                    0,
+                                    1,
+                                    costo_1,
+                                    costo_2,
+                                    costo_13,
+                                    costo__no
+                                    ]]),0)
+        CITIZEN=int(CI[0])
+        X6 = int(QR1[0])
         
         return X6
