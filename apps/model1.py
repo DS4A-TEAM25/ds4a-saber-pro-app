@@ -112,8 +112,15 @@ state_form = dbc.Form(
         dbc.FormGroup(
             [
                 dbc.Label("State Where you Live", className="mr-2"),
-                dbc.Input(id="m06", type="text", placeholder="Atlantico"),
-            ],
+                select = dbc.Select(
+                    id="m06",
+                    options=[
+                        {"label": "Amazonas", "value": "1"},
+                        {"label": "Bolivar", "value": "2"},
+                        {"label": "Cordoba", "value": "3", "disabled": True},
+                    ],
+                )
+        ],
             className="mr-3",
         )
 
@@ -144,7 +151,14 @@ state_uni_form = dbc.Form(
         dbc.FormGroup(
             [
                 dbc.Label("State Where you Study", className="mr-2"),
-                dbc.Input(id="m08", type="text", placeholder="Bolivar"),
+                select = dbc.Select(
+                    id="m08",
+                    options=[
+                        {"label": "Amazonas", "value": "1"},
+                        {"label": "Bolivar", "value": "2"},
+                        {"label": "Cordoba", "value": "3", "disabled": True},
+                    ],
+                )
             ],
             className="mr-3",
         )
