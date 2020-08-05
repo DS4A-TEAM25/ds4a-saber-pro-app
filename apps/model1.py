@@ -654,7 +654,7 @@ def modelos2(n_clicks, m01,m02, m03, m05, m07,m014, m015,m012,m013,m09,m011, m01
     else:
         
         #############################################################################################################################################
-        scrores_3years = pd.read_sql("select CitizenScore3yearsProgram, EnglishScore3yearsProgram,ReadingScore3yearsProgram,QuantitativeReasoningScore3yearsProgram,ComunicationScore3yearsProgram from  score_programas where Program='"+m02+"', engine.connect())
+        scrores_3years = pd.read_sql("select CitizenScore3yearsProgram, EnglishScore3yearsProgram,ReadingScore3yearsProgram,QuantitativeReasoningScore3yearsProgram,ComunicationScore3yearsProgram from  score_programas where Program='"+m02+"'", engine.connect())
         CitizenScore3yearsProgram=scrores_3years.values.tolist()[0][0]
         EnglishScore3yearsProgram=scrores_3years.values.tolist()[0][1]
         ReadingScore3yearsProgram=scrores_3years.values.tolist()[0][2]
