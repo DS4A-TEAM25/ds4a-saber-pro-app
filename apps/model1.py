@@ -27,6 +27,8 @@ engine = create_engine('postgresql://admin:ds4a@project.c6mkiiu8v7ky.us-east-2.r
 #Define variables for reactive components
 #Departamento options
 departamento_model = get_unique(engine, 'pro_data', "estu_inst_departamento")
+prograns_model = get_unique(engine, 'score_programas', "program") 
+university_model = get_unique(engine, 'pro_data', "inst_nombre_institucion")
 
 
 ModelQRPrueba = joblib.load('ModelQR.pkl')
@@ -57,7 +59,10 @@ program_form = dbc.Form(
     dbc.FormGroup(
         [
             dbc.Label("Program", className="mr-2"),
-            dbc.Input(id="m02", type="text", placeholder="Ingenieria Industrial"),
+            dbc.Select(
+                    id="m02",
+                    options=[{'label': i, 'value': i} for i in prograns_model],
+                )
         ],
         className="mr-3",
     )
@@ -83,7 +88,10 @@ university_form = dbc.Form(
         dbc.FormGroup(
             [
     dbc.Label("University", className="mr-2"),
-    dbc.Input(id="m04", type="text", placeholder="Universidad De Cartagena"),
+    dbc.Select(
+                    id="m04",
+                    options=[{'label': i, 'value': i} for i in university_model],
+                )
             ],
             className="mr-3",
         )
