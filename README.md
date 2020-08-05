@@ -26,7 +26,12 @@ This multi-page app allows the user to explore all the data from 2016 to 2019 of
 
 *EXPLORE BY UNIVERSITY PAGE*  
 
-![2 by_university page](/screenshots/FE_screenshot_3.PNG)
+![3 by_university page](/screenshots/FE_screenshot_3.PNG)
+
+
+*PREDICT SABER PRO TEST SCORES*  
+
+![4 by_university page](/screenshots/FE_screenshot_4.PNG)
 
 ## Back end Structure
 
