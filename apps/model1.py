@@ -1208,7 +1208,7 @@ def modelos6(n_clicks, m01, m03, m05, m07,m014, m015,m012,m013,m09,m011, m010):
                                     1,
                                     costo_1,
                                     costo_2,
-                                    costo_13,
+                                    costo_3,
                                     costo__no
                                     ]]),0)
         CITIZEN=int(CI[0])
