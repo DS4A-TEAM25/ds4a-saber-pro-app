@@ -57,7 +57,7 @@ program_form = dbc.Form(
     dbc.FormGroup(
         [
             dbc.Label("Program", className="mr-2"),
-            dbc.Input(id="m02", type="text", placeholder="Program"),
+            dbc.Input(id="m02", type="text", placeholder="Ingenieria Industrial"),
         ],
         className="mr-3",
     )
@@ -83,7 +83,7 @@ university_form = dbc.Form(
         dbc.FormGroup(
             [
     dbc.Label("University", className="mr-2"),
-    dbc.Input(id="m04", type="text", placeholder="University"),
+    dbc.Input(id="m04", type="text", placeholder="Universidad De Cartagena"),
             ],
             className="mr-3",
         )
@@ -112,7 +112,7 @@ state_form = dbc.Form(
         dbc.FormGroup(
             [
                 dbc.Label("State Where you Live", className="mr-2"),
-                dbc.Input(id="m06", type="text", placeholder="State Where you Live"),
+                dbc.Input(id="m06", type="text", placeholder="Atlantico"),
             ],
             className="mr-3",
         )
@@ -144,7 +144,7 @@ state_uni_form = dbc.Form(
         dbc.FormGroup(
             [
                 dbc.Label("State Where you Study", className="mr-2"),
-                dbc.Input(id="m08", type="text", placeholder="State Where you Study"),
+                dbc.Input(id="m08", type="text", placeholder="Bolivar"),
             ],
             className="mr-3",
         )
@@ -499,7 +499,7 @@ button = html.Div(
 
 
 layout = html.Div([
-    html.H1("I will present my exam soon and i want to check how is going to be my result"),
+    html.H1("Predicting Saber Pro Scores"),
     esquema,
 ])
 
@@ -520,7 +520,7 @@ layout = html.Div([
                 
 def modelos(n_clicks, m01, m03, m05, m07,m014, m015,m012,m013,m09,m011, m010):
     if n_clicks is None:
-        return "Model not Launched"
+        return ""
     else:
 
         hscore = 100
@@ -636,7 +636,7 @@ def modelos(n_clicks, m01, m03, m05, m07,m014, m015,m012,m013,m09,m011, m010):
                 
 def modelos2(n_clicks, m01, m03, m05, m07,m014, m015,m012,m013,m09,m011, m010):
     if n_clicks is None:
-        return "Model not Launched"
+        return ""
     else:
 
         hscore = 100
@@ -752,7 +752,7 @@ def modelos2(n_clicks, m01, m03, m05, m07,m014, m015,m012,m013,m09,m011, m010):
                 
 def modelos3(n_clicks, m01, m03, m05, m07,m014, m015,m012,m013,m09,m011, m010):
     if n_clicks is None:
-        return "Model not Launched"
+        return ""
     else:
 
         hscore = 100
@@ -868,7 +868,7 @@ def modelos3(n_clicks, m01, m03, m05, m07,m014, m015,m012,m013,m09,m011, m010):
                 
 def modelos4(n_clicks, m01, m03, m05, m07,m014, m015,m012,m013,m09,m011, m010):
     if n_clicks is None:
-        return "Model not Launched"
+        return ""
     else:
 
         hscore = 100
@@ -984,7 +984,7 @@ def modelos4(n_clicks, m01, m03, m05, m07,m014, m015,m012,m013,m09,m011, m010):
                 
 def modelos5(n_clicks, m01, m03, m05, m07,m014, m015,m012,m013,m09,m011, m010):
     if n_clicks is None:
-        return "Model not Launched"
+        return ""
     else:
 
         hscore = 100
@@ -1100,7 +1100,7 @@ def modelos5(n_clicks, m01, m03, m05, m07,m014, m015,m012,m013,m09,m011, m010):
                 
 def modelos6(n_clicks, m01, m03, m05, m07,m014, m015,m012,m013,m09,m011, m010):
     if n_clicks is None:
-        return "Model not Launched"
+        return ""
     else:
 
         hscore = 100
