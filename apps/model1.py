@@ -17,7 +17,7 @@ from utils import *
 from dash.dependencies import Input, Output
 from app import app
 from math import radians, cos, sin, asin, sqrt
-
+from sqlalchemy import create_engine
 
 
 
@@ -616,11 +616,7 @@ def modelos(n_clicks, m01, m03, m05, m07,m014, m015,m012,m013,m09,m011, m010):
         QR1 = np.round(ModelQRPrueba.predict([[hscore, hmvalue, 59, agevalue, timesaber, mof, 1, paydwayscholar, credito, paydwayparent, mama_1, mama_3, mama_4, mama_5, costo_1, costo_2, costo_3, costo_no]]),
                        0)
         X1 = int(QR1[0])
-        X2 = X1 + 12
-        X3 = X1 + 8
-        X4 = X1 + 4
-        X5 = X1 + 5
-        X6 = X1 + 15
+        
         
         return X1
         
@@ -644,7 +640,39 @@ def modelos2(n_clicks, m01, m03, m05, m07,m014, m015,m012,m013,m09,m011, m010):
     if n_clicks is None:
         return ""
     else:
-
+        dept1 = pd.read_sql("SELECT Lat,Lon FROM departamento_detallado where Departamento='"+m06+"'", engine.connect())
+        dept2 = pd.read_sql("SELECT Lat,Lon FROM departamento_detallado where Departamento='"+m08+"'", engine.connect())
+        lon1=dept1.values.tolist()[0][0]
+        lat1=dept1.values.tolist()[0][1]
+        lon2=dept2.values.tolist()[0][0]
+        lat2=dept2.values.tolist()[0][1]
+        lon1, lat1, lon2, lat2 = map(radians, [lon1, lat1, lon2, lat2])
+        # haversine formula 
+        dlon = lon2 - lon1 
+        dlat = lat2 - lat1 
+        a = sin(dlat/2)**2 + cos(lat1) * cos(lat2) * sin(dlon/2)**2
+        c = 2 * asin(sqrt(a)) 
+        # Radius of earth in kilometers is 6371
+        km = 6371* c
+        #############################################################################################################################################
+        cluster_1=0
+        cluster_2=0
+        cluster_3=0
+        cluster_4=0
+        cluster = pd.read_sql("SELECT clusterdepartamentoescalado FROM departamento_detallado WHERE departamento='"+m08+"'", engine.connect())
+        cluster_m = cluster.values.tolist()[0][0]
+        if cluster_m == 1:
+            cluster_1 = 1
+        else:
+            if cluster_m == 2:
+                cluster_2 = 1
+            else:
+                if cluster_m == 3:
+                    
+                
+                
+            
+        ###############################################################################################################################################
         hscore = 100
         hmvalue = 100
         agevalue = 30
@@ -736,7 +764,7 @@ def modelos2(n_clicks, m01, m03, m05, m07,m014, m015,m012,m013,m09,m011, m010):
                                         agevalue,
                                         timesaber,
                                         mof,
-                                        0,
+                                        km,
                                         paydwayscholar,
                                         credito,
                                         paydwayparent,
