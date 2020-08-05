@@ -1145,7 +1145,7 @@ def modelos5(n_clicks, m01, m03, m05, m07,m014, m015,m012,m013,m09,m011, m010):
                                                Input("m013", "value"),
                                                Input("m09", "value"),
                                                Input("m011", "value"),
-                                               Input("m010", "value")
+                                               Input("m010", "value"),
                                                Input("m06", "value"),
                                                Input("m08", "value")])
 
