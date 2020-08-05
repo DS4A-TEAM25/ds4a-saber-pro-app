@@ -63,24 +63,6 @@ def get_avg(connection, db, score, col, value, period1, period2):
     """
     return [x[0] for x in connection.execute(query).fetchall()]
 
-
-#Average of a column given period and column values
-def get_avg(connection, db, score, col, value, period1, period2):
-    query = f"""
-    SELECT AVG({score})
-    FROM {db}
-    WHERE 
-        (periodo BETWEEN {period1} AND {period2}) 
-    AND {col} = {value}
-    ;
-    """
-    return [x[0] for x in connection.execute(query).fetchall()]
-
-
-
-
-
-
 #Average grouped by column given period and column values
 def get_avg_input(connection, db, score, col1, col2, value, period1, period2):
     query = f"""
@@ -120,6 +102,36 @@ def get_avg_input3(connection, db, score, col1, col2, value, period1, period2):
         (periodo BETWEEN {period1} AND {period2}) 
     AND {col1} = (SELECT {col1}  FROM {db} WHERE {col2}= {value} LIMIT 1 )
     GROUP BY {col1}
+    ;
+    """
+    return [x for x in connection.execute(query).fetchall()]
+
+
+#Average grouped by column given period and column values
+def get_avg_input3(connection, db, score, col1, col2, value, period1, period2):
+    query = f"""
+    SELECT {col1},  AVG({score})
+    FROM {db}
+    WHERE 
+        (periodo BETWEEN {period1} AND {period2}) 
+    AND {col1} = (SELECT {col1}  FROM {db} WHERE {col2}= {value} LIMIT 1 )
+    GROUP BY {col1}
+    ;
+    """
+    return [x for x in connection.execute(query).fetchall()]
+
+
+
+#Average of a column given period and 2 column values
+def get_avg_multi(connection, db, score, var, col1, value1, col2, value2, period1, period2):
+    query = f"""
+    SELECT {var}, AVG({score})
+    FROM {db}
+    WHERE 
+        (periodo BETWEEN {period1} AND {period2}) 
+    AND ({col1} = {value1})
+    AND ({col2} = {value2})
+    GROUP BY {var}
     ;
     """
     return [x for x in connection.execute(query).fetchall()]
