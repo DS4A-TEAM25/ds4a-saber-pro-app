@@ -22,11 +22,11 @@ from math import radians, cos, sin, asin, sqrt
 
 
 # Create Engine and connect to DB
-#engine = create_engine('postgresql://admin:ds4a@data-team25.c6tqz0tiazsw.us-east-2.rds.amazonaws.com/project_ds4a')
+engine = create_engine('postgresql://admin:ds4a@project.c6mkiiu8v7ky.us-east-2.rds.amazonaws.com/project_ds4a')
 
 #Define variables for reactive components
 #Departamento options
-#departamento_options_1 = get_unique(engine, 'pro_data', "estu_inst_departamento")
+departamento_model = get_unique(engine, 'pro_data', "estu_inst_departamento")
 
 
 ModelQRPrueba = joblib.load('ModelQR.pkl')
@@ -114,11 +114,7 @@ state_form = dbc.Form(
                 dbc.Label("State Where you Live", className="mr-2"),
                 dbc.Select(
                     id="m06",
-                    options=[
-                        {"label": "Amazonas", "value": "1"},
-                        {"label": "Bolivar", "value": "2"},
-                        {"label": "Cordoba", "value": "3", "disabled": True},
-                    ],
+                    options=[{'label': i, 'value': i} for i in departamento_options],
                 )
         ],
             className="mr-3",
@@ -153,11 +149,7 @@ state_uni_form = dbc.Form(
                 dbc.Label("State Where you Study", className="mr-2"),
                 dbc.Select(
                     id="m08",
-                    options=[
-                        {"label": "Amazonas", "value": "1"},
-                        {"label": "Bolivar", "value": "2"},
-                        {"label": "Cordoba", "value": "3", "disabled": True},
-                    ],
+                    options=[{'label': i, 'value': i} for i in departamento_options]
                 )
             ],
             className="mr-3",
