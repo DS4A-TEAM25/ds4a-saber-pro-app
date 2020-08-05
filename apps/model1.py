@@ -372,9 +372,9 @@ forumulario = html.Div([row_1])
 
 
 card_content_1 = [
-    dbc.CardHeader("Quantitative Reasoning"),
     dbc.CardBody(
         [
+            html.H5("Quantitative Reasoning", className="card-title"),
             html.P(
                 "Score expected for you:",
                 className="card-text",
@@ -386,9 +386,9 @@ card_content_1 = [
 ]
 
 card_content_2 = [
-    dbc.CardHeader("Citizen competence"),
     dbc.CardBody(
         [
+            html.H5("Citizen competence", className="card-title"),          
             html.P(
                 "Score expected for you:",
                 className="card-text",
@@ -399,9 +399,9 @@ card_content_2 = [
 ]
 
 card_content_3 = [
-    dbc.CardHeader("Critical Lecture"),
     dbc.CardBody(
         [
+            html.H5("Critical Lecture", className="card-title"), 
             html.P(
                 "Score expected for you:",
                 className="card-text",
@@ -413,9 +413,9 @@ card_content_3 = [
 ]
 
 card_content_4 = [
-    dbc.CardHeader("English"),
     dbc.CardBody(
         [
+            html.H5("English", className="card-title"),             
             html.P(
                 "Score expected for you:",
                 className="card-text",
@@ -427,9 +427,9 @@ card_content_4 = [
 
 
 card_content_5 = [
-    dbc.CardHeader("Written Communication"),
     dbc.CardBody(
         [
+            html.H5("Written Communication", className="card-title"),                       
             html.P(
                 "Score expected for you:",
                 className="card-text",
@@ -440,9 +440,9 @@ card_content_5 = [
 ]
 
 card_content_6 = [
-    dbc.CardHeader("Global Score"),
     dbc.CardBody(
         [
+            html.H5("Global Score", className="card-title"),                       
             html.P(
                 "Score expected for you:",
                 className="card-text",
