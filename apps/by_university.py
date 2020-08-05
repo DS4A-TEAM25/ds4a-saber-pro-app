@@ -973,7 +973,7 @@ def update_program_bar(universities, period_slider, scores, var1, program):
             title='<b>Average Score by Student Characteristics:</b><br>'+ universities,
             title_x=0.5,
             titlefont= dict(size=14), 
-            xaxis=dict(showgrid=False, zeroline=False, showticklabels=False),
+            xaxis=dict(showgrid=False, zeroline=False, showticklabels=True),
             yaxis=dict(zeroline=False, gridcolor='#E9E9E9'),
             hovermode="x unified",
             paper_bgcolor='#F9F9F9',
