@@ -503,25 +503,19 @@ layout = html.Div([
     esquema,
 ])
 
-@app.callback([Output("mout_01", "children"),
-               Output("mout_02", "children"),
-               Output("mout_03", "children"),
-               Output("mout_04", "children"),
-               Output("mout_05", "children"),
-               Output("mout_06", "children")
-              ],              
-               [Input("m016", "n_clicks"),
-                Input("m01", "value"),
-                Input("m03", "value"),
-                Input("m05", "value"),
-                Input("m07", "value"),
-                Input("m014", "value"),
-                Input("m015", "value"),
-                Input("m012", "value"),
-                Input("m013", "value"),
-                Input("m09", "value"),
-                Input("m011", "value"),
-                Input("m010", "value")])
+@app.callback([Output("mout_01", "children"), [Input("m016", "n_clicks"),
+                                               Input("m01", "value"),
+                                               Input("m03", "value"),
+                                               Input("m05", "value"),
+                                               Input("m07", "value"),
+                                               Input("m014", "value"),
+                                               Input("m015", "value"),
+                                               Input("m012", "value"),
+                                               Input("m013", "value"),
+                                               Input("m09", "value"),
+                                               Input("m011", "value"),
+                                               Input("m010", "value")])
+
                 
                 
 def modelos(n_clicks, m01, m03, m05, m07,m014, m015,m012,m013,m09,m011, m010):
@@ -622,7 +616,7 @@ def modelos(n_clicks, m01, m03, m05, m07,m014, m015,m012,m013,m09,m011, m010):
         X5 = X1 + np.random()*8
         X6 = X1 + np.random()*14
         
-        return (X1,X2,X3,X4,X5,X6)
+        return X1
         
         
 
