@@ -610,11 +610,11 @@ def modelos(n_clicks, m01, m03, m05, m07,m014, m015,m012,m013,m09,m011, m010):
         QR1 = np.round(ModelQRPrueba.predict([[hscore, hmvalue, 59, agevalue, timesaber, mof, 1, paydwayscholar, credito, paydwayparent, mama_1, mama_3, mama_4, mama_5, costo_1, costo_2, costo_3, costo_no]]),
                        0)
         X1 = int(QR1[0])
-        X2 = X1 + np.random()*20
-        X3 = X1 + np.random()*10
-        X4 = X1 + np.random()*3
-        X5 = X1 + np.random()*8
-        X6 = X1 + np.random()*14
+        X2 = X1 + 12
+        X3 = X1 + 8
+        X4 = X1 + 4
+        X5 = X1 + 5
+        X6 = X1 + 15
         
         return X1
         
@@ -634,9 +634,9 @@ def modelos(n_clicks, m01, m03, m05, m07,m014, m015,m012,m013,m09,m011, m010):
 
                 
                 
-def modelos(n_clicks, m01, m03, m05, m07,m014, m015,m012,m013,m09,m011, m010):
+def modelos2(n_clicks, m01, m03, m05, m07,m014, m015,m012,m013,m09,m011, m010):
     if n_clicks is None:
-        return "Model not Launched""
+        return "Model not Launched"
     else:
 
         hscore = 100
@@ -750,7 +750,7 @@ def modelos(n_clicks, m01, m03, m05, m07,m014, m015,m012,m013,m09,m011, m010):
 
                 
                 
-def modelos(n_clicks, m01, m03, m05, m07,m014, m015,m012,m013,m09,m011, m010):
+def modelos3(n_clicks, m01, m03, m05, m07,m014, m015,m012,m013,m09,m011, m010):
     if n_clicks is None:
         return "Model not Launched"
     else:
@@ -842,11 +842,11 @@ def modelos(n_clicks, m01, m03, m05, m07,m014, m015,m012,m013,m09,m011, m010):
         QR1 = np.round(ModelQRPrueba.predict([[hscore, hmvalue, 59, agevalue, timesaber, mof, 1, paydwayscholar, credito, paydwayparent, mama_1, mama_3, mama_4, mama_5, costo_1, costo_2, costo_3, costo_no]]),
                        0)
         X1 = int(QR1[0])
-        X2 = X1 + np.random()*20
-        X3 = X1 + np.random()*10
-        X4 = X1 + np.random()*3
-        X5 = X1 + np.random()*8
-        X6 = X1 + np.random()*14
+        X2 = X1 + 12
+        X3 = X1 + 8
+        X4 = X1 + 4
+        X5 = X1 + 5
+        X6 = X1 + 15
         
         return X3
 
@@ -866,7 +866,7 @@ def modelos(n_clicks, m01, m03, m05, m07,m014, m015,m012,m013,m09,m011, m010):
 
                 
                 
-def modelos(n_clicks, m01, m03, m05, m07,m014, m015,m012,m013,m09,m011, m010):
+def modelos4(n_clicks, m01, m03, m05, m07,m014, m015,m012,m013,m09,m011, m010):
     if n_clicks is None:
         return "Model not Launched"
     else:
@@ -958,11 +958,11 @@ def modelos(n_clicks, m01, m03, m05, m07,m014, m015,m012,m013,m09,m011, m010):
         QR1 = np.round(ModelQRPrueba.predict([[hscore, hmvalue, 59, agevalue, timesaber, mof, 1, paydwayscholar, credito, paydwayparent, mama_1, mama_3, mama_4, mama_5, costo_1, costo_2, costo_3, costo_no]]),
                        0)
         X1 = int(QR1[0])
-        X2 = X1 + np.random()*20
-        X3 = X1 + np.random()*10
-        X4 = X1 + np.random()*3
-        X5 = X1 + np.random()*8
-        X6 = X1 + np.random()*14
+        X2 = X1 + 12
+        X3 = X1 + 8
+        X4 = X1 + 4
+        X5 = X1 + 5
+        X6 = X1 + 15
         
         return X4
 
@@ -982,7 +982,7 @@ def modelos(n_clicks, m01, m03, m05, m07,m014, m015,m012,m013,m09,m011, m010):
 
                 
                 
-def modelos(n_clicks, m01, m03, m05, m07,m014, m015,m012,m013,m09,m011, m010):
+def modelos5(n_clicks, m01, m03, m05, m07,m014, m015,m012,m013,m09,m011, m010):
     if n_clicks is None:
         return "Model not Launched"
     else:
@@ -1074,11 +1074,11 @@ def modelos(n_clicks, m01, m03, m05, m07,m014, m015,m012,m013,m09,m011, m010):
         QR1 = np.round(ModelQRPrueba.predict([[hscore, hmvalue, 59, agevalue, timesaber, mof, 1, paydwayscholar, credito, paydwayparent, mama_1, mama_3, mama_4, mama_5, costo_1, costo_2, costo_3, costo_no]]),
                        0)
         X1 = int(QR1[0])
-        X2 = X1 + np.random()*20
-        X3 = X1 + np.random()*10
-        X4 = X1 + np.random()*3
-        X5 = X1 + np.random()*8
-        X6 = X1 + np.random()*14
+        X2 = X1 + 12
+        X3 = X1 + 8
+        X4 = X1 + 4
+        X5 = X1 + 5
+        X6 = X1 + 15
         
         return X5
 
@@ -1098,7 +1098,7 @@ def modelos(n_clicks, m01, m03, m05, m07,m014, m015,m012,m013,m09,m011, m010):
 
                 
                 
-def modelos(n_clicks, m01, m03, m05, m07,m014, m015,m012,m013,m09,m011, m010):
+def modelos6(n_clicks, m01, m03, m05, m07,m014, m015,m012,m013,m09,m011, m010):
     if n_clicks is None:
         return "Model not Launched"
     else:
@@ -1190,10 +1190,10 @@ def modelos(n_clicks, m01, m03, m05, m07,m014, m015,m012,m013,m09,m011, m010):
         QR1 = np.round(ModelQRPrueba.predict([[hscore, hmvalue, 59, agevalue, timesaber, mof, 1, paydwayscholar, credito, paydwayparent, mama_1, mama_3, mama_4, mama_5, costo_1, costo_2, costo_3, costo_no]]),
                        0)
         X1 = int(QR1[0])
-        X2 = X1 + np.random()*20
-        X3 = X1 + np.random()*10
-        X4 = X1 + np.random()*3
-        X5 = X1 + np.random()*8
-        X6 = X1 + np.random()*14
+        X2 = X1 + 12
+        X3 = X1 + 8
+        X4 = X1 + 4
+        X5 = X1 + 5
+        X6 = X1 + 15
         
         return X6
