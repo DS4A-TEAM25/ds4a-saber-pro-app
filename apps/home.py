@@ -80,7 +80,7 @@ layout = html.Div([
                                                className="text-center"),
                                        
                                        dbc.Button(
-            html.Span([html.I(className="far fa-file-alt ml-0"), " Report"]), href="#", target="_blank",
+            html.Span([html.I(className="far fa-file-alt ml-0"), " Report"]), href="https://drive.google.com/file/d/1DV-GhxB7kpaUtnh-crTKo4zWKl0hRrEw/view", target="_blank",
                                                   color="primary",
                                                   className="mt-3"), #LINK TO OUR REPORT
 
