@@ -575,7 +575,7 @@ button = html.Div(
 
 
 layout = html.Div([
-    html.H1("Predicting Saber Pro Scores", style = {'color': '4d4d4d', 
+    html.H1("Predict Saber Pro Scores", style = {'color': '4d4d4d', 
                                     'text-shadow': '2px 8px 6px rgba(0,0,0,0.2), 0px -5px 35px rgba(255,255,255,0.3)'}),
     esquema,
 ])
