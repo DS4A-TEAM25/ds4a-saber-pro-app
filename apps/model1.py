@@ -1559,6 +1559,6 @@ def modelos6(n_clicks, m01,m02, m03, m05, m07,m014, m015,m012,m013,m09,m011, m01
                                     costo_no
                                     ]]),0)
         CITIZEN=int(CI[0])
-        X6 = int(QR1[0])
+        X6 = CITIZEN
         
         return X6
