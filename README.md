@@ -31,7 +31,7 @@ This multi-page app allows the user to explore all the data from 2016 to 2019 of
 
 *PREDICT SABER PRO TEST SCORES*  
 
-![4 by_university page](/screenshots/FE_screenshot_4b.PNG)
+![4 by_university page](/screenshots/FE_screenshot_4.PNG)
 
 ## Back end Structure
 
