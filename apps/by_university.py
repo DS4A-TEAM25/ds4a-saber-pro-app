@@ -148,7 +148,7 @@ html.Div(
         html.P(
             "Student Variables", className="lead"
         ),
-        dcc.Dropdown(
+        dbc.Select(
         id='var1',
          options=[
             {'label': 'Gender', 'value': 'estu_genero'},
@@ -161,8 +161,6 @@ html.Div(
             {'label': 'Tuituion paid by parents', 'value': 'estu_pagomatriculapadres'},
             {'label': 'SABER PRO preparation', 'value': 'estu_comocapacitoexamensb11'},  
         ],
-        placeholder="Select a Variable", 
-        multi=False,
         className= "mb-4",      
         style={'width': '100%'}
         ), 
@@ -970,7 +968,7 @@ def update_program_bar(universities, period_slider, scores, var1, program):
         
         # format the layout
         figbar.update_layout(
-            title='<b>Average Score by Student Characteristics:</b><br>'+ universities,
+            title='<b>Average Score by Student Characteristics:</b><br>'+ program,
             title_x=0.5,
             titlefont= dict(size=14), 
             xaxis=dict(showgrid=False, zeroline=False, showticklabels=True),
