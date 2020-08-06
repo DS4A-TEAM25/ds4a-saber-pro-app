@@ -1352,30 +1352,7 @@ def modelos5(n_clicks, m01,m02, m03, m05, m07,m014, m015,m012,m013,m09,m011, m01
 
 
         ModelGLOBAL = joblib.load('ModelGLOBAL.pkl')
-        GLOBALSCORE=np.round(ModelGLOBAL.predict([[
-                                                        hscore,
-                                                        hmvalue,
-                                                        CitizenScore3yearsProgram,
-                                                        agevalue,
-                                                        timesaber,
-                                                        mof,
-                                                        km,
-                                                        paydwayscholar,
-                                                        credito,
-                                                        paydwayparent,
-                                                        mama_1,
-                                                        mama_3,
-                                                        mama_4,
-                                                        mama_5,
-                                                        cluster_1,
-                                                        cluster_2,
-                                                        cluster_3,
-                                                        cluster_4,
-                                                        costo_1,
-                                                        costo_2,
-                                                        costo_3,
-                                                        costo_no
-                                                  ]]),0)
+        GLOBALSCORE=np.round(ModelGLOBAL.predict([[hscore,hmvalue,CitizenScore3yearsProgram,agevalue,timesaber,mof,km,paydwayscholar,credito,paydwayparent,mama_1,mama_3,mama_4,mama_5,cluster_1,cluster_2,cluster_3,cluster_4,costo_1,costo_2,costo_3,costo_no]]),0)
         GLOBAL=int(GLOBALSCORE[0])
         X5 = GLOBAL
         return X5
@@ -1444,8 +1421,7 @@ def modelos6(n_clicks, m01,m02, m03, m05, m07,m014, m015,m012,m013,m09,m011, m01
             cluster_3 = 1            
         elif cluster_m == 4:
             cluster_4 = 1           
-        elif cluster_m == 4:
-            cluster_4 = 1        
+       
             
         ###############################################################################################################################################
         hscore = 100
