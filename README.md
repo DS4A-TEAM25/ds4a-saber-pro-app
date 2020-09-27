@@ -2,7 +2,7 @@
 
 # SABER PRO Exploratory Dashboard Repo 
 
-This is the code to deploy an interactive Python Dash app created for 2020 Colombia Data Science for All -DS4A- program.
+This is the code to deploy an interactive Python Dash app created for 2020 Colombia Data Science for All -DS4A- program. For a video describing the project and showcasing the app click [here](https://www.youtube.com/watch?v=No72PBfOhSQ&ab_channel=MariaAroca). 
 
 
 ## Introduction
